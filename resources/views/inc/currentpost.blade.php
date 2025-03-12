@@ -1,0 +1,19 @@
+<div class="recent-posts-widget widget-item">
+    <a href="{{Route('events')}}">
+        <h3 class="widget-title">Habari Matukio</h3>
+    </a>
+    @if(count([$postInfos]) > 0)
+    @foreach($postInfos as $postInfo)
+    @if ($postInfo->post_status == 1)
+    <div class="post-item">
+        <img src="{{ asset('storage/uploads/post_images/' .$postInfo->post_image)}}" alt="" class="flex-shrink-0">
+        <div>
+            <h4><a href="{{Route('read_more', $postInfo->id)}}">{{$postInfo->post_tittle}}</a></h4>
+            <time datetime="2020-01-01">{{ $postInfo->created_at->diffForHumans() }}</time>
+        </div>
+    </div><!-- End recent post item-->
+    @endif
+    @endforeach
+    @endif
+
+</div>
