@@ -61,7 +61,7 @@
                                                     <td>{{$loop->index + 1}}</td>
                                                     <td>{{$anouncementInfo->tittle}}</td>
                                                     <td>
-                                                        <img src="{{ asset('storage/uploads/anouncement_files/'.$anouncementInfo->file_name)}}" alt="" width="50px" height="50px;">
+                                                       {{$anouncementInfo->file_name}}
                                                     </td>
 
                                                     <td>
@@ -146,14 +146,14 @@
         });
         $('.switch').change(function() {
             let status = $(this).prop('checked') === true ? 1 : 0;
-            let slide_id = $(this).data('id');
+            let anouncement_id = $(this).data('id');
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "",//{{Route('update_slide_status')}}
+                url: "{{Route('update_anouncement_status')}}",//{{Route('update_slide_status')}}
                 data: {
                     'status': status,
-                    'slide_id': slide_id
+                    'anouncement_id': anouncement_id
                 },
                 success: function(data) {
                     toastr.options.closeButton = true;
@@ -170,21 +170,21 @@
 
     });
 
-    // Ajax for add slides data to the db
+    // Ajax for add anouncement data to the db
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#slideCreateForm').on('submit', function(e) {
+        $('#anouncementCreateForm').on('submit', function(e) {
             e.preventDefault();
 
             if (confirm('Are you sure want to save it??')) {
                 $.ajax({
                     type: "post",
                     dataType: "json",
-                    url: "", //For using Resource Controller {{ route('image-slide.store')}}
+                    url: "{{Route('admin-anouncement.store')}}", //For using Resource Controller {{ route('image-slide.store')}}
                     data: new FormData(this),
                     cache: false,
                     processData: false,

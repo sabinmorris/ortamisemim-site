@@ -39,7 +39,47 @@ class AnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'tittle' => ['required', 'string', 'max:255'],
+            'file_name' => 'mimes:pdf|required|max:5120', // max 5120kb
+            
+        ]);
+
+        if (request()->hasFile('file_name')) {
+            
+            $request =request(); 
+            $file = $request->file('file_name');
+            //Get filename with extension
+            $filenameWithExt = $request->file('file_name')->getClientOriginalName();
+            //Get file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //File Extension
+            $extension = $file->getClientOriginalExtension();
+            
+            $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
+            $file->move('storage/uploads/anouncement_docs', $fileNamestoStore);
+
+        }else{
+            $fileNamestoStore = 'noFile.pdf';
+        }
+
+        $anouncementInfos = new Anouncement();
+        $anouncementInfos->tittle = $request->input('tittle');
+        $anouncementInfos->file_name = $fileNamestoStore;
+        
+        $anouncementInfos->save();
+
+        if ($anouncementInfos) {
+            return response()->json([
+                'message' => 'Successifully Anouncement Info Saved',
+                'code' => 200
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Interna Server Error',
+                'code' => 500
+            ]);
+        }
     }
 
     /**

@@ -59,4 +59,5 @@ Route::post('post-upadte', [GeneralUpdateController::class, 'updatepost'])->name
 
 //Route for Special Anouncement
 Route::resource('admin-anouncement', AnouncementController::class);
-//Route::post('anouncement-status', [])
+Route::post('anouncement-status', [GeneralUpdateController::class, 'updateanouncementstatus'])->name('update_anouncement_status');
+Route::post('anouncement-update', [GeneralUpdateController::class, 'updateanounce'])->name('update_anaouncement');

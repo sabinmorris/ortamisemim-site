@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Anouncement;
 use App\Models\Post;
 use Illuminate\Support\Facades\File;
 
@@ -159,6 +160,27 @@ class GeneralUpdateController extends Controller
         } else {
             return response()->json([
                 'message' => 'Interna Server Error',
+                'code' => 500
+            ]);
+        }
+    }
+
+
+    //function to update anoucement status only
+    public function updateanouncementstatus(Request $request){
+
+        $anouncementInfo = Anouncement::findOrFail($request->anouncement_id);
+        $anouncementInfo->status = $request->status;
+        $anouncementInfo->save();
+        if ($anouncementInfo) {
+            return response()->json([
+                'message' => 'Status updated successfully.',
+                'code' => 200
+
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Inernal Server Error',
                 'code' => 500
             ]);
         }

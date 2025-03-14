@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anouncement;
 use App\Models\Post;
 use App\Models\Slide;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class PagesController extends Controller
         $postInfos = Post::where('post_status', 1)->get();
         $postInfos = Post::orderBy('id', 'desc')->paginate(3);
         $postInfos1 = Post::orderBy('created_at', 'desc')->limit(1)->get();
-        return view('index', compact(['slideInfos', 'postInfos', 'postInfos1']));
+        $anouncementInfos = Anouncement::all();
+        return view('index', compact(['slideInfos', 'postInfos', 'postInfos1', 'anouncementInfos']));
     }
     
     public function aboutUs(){
