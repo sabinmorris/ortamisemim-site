@@ -54,13 +54,13 @@
     </div>
 
     <div class="col-lg-2 col-md-3 footer-links">
-      <h4>Nobis illum</h4>
+      <h4>Kurasa za Karibu</h4>
       <ul>
-        <li><a href="#">Ipsam</a></li>
-        <li><a href="#">Laudantium dolorum</a></li>
-        <li><a href="#">Dinera</a></li>
-        <li><a href="#">Trodelas</a></li>
-        <li><a href="#">Flexo</a></li>
+        <li><a href="https://eoffice.goz.go.tz/login" target="_blank">E-Office</a></li>
+        <li><a href="https://mail.tamisemim.go.tz/" target="_blank">Mail</a></li>
+        <li><a href="https://www.zhsfsmz.go.tz/" target="_blank">Zhsf</a></li>
+        <!-- <li><a href="#">Trodelas</a></li>
+        <li><a href="#">Flexo</a></li> -->
       </ul>
     </div>
 
