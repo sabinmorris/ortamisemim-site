@@ -68,8 +68,8 @@ Route::resource('minister-description', MinisterController::class);
 Route::post('minister-status', [GeneralUpdateController::class, 'updateministerstatus'])->name('update_minister_status');
 Route::post('minister-update', [GeneralUpdateController::class, 'updateministerdescription'])->name('update_minister_description');
 
-Route::get('/storage-link', function(){
-    $storagFolder = storage_path('app/public');
-    $linkFolder = $_SERVER['DOCUMENT_ROOT']. '/storage';
-    symlink($storagFolder, $linkFolder);
-});
+// Route::get('/storage-link', function(){
+//     $storagFolder = storage_path('app/public');
+//     $linkFolder = $_SERVER['DOCUMENT_ROOT']. '/storage';
+//     symlink($storagFolder, $linkFolder);
+// });
