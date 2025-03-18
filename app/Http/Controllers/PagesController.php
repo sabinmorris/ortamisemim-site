@@ -58,4 +58,8 @@ class PagesController extends Controller
     public function utumishidepartment(){
         return view('pages.utumishi');
     }
+
+    public function runsymbolink(){
+        return view('symlink');
+    }
 }
