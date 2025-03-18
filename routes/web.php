@@ -36,8 +36,6 @@ Route::get('kuhusu-sisi-zaidi', [PagesController::class, 'readmoreabout'])->name
 Route::get('uongozi', [PagesController::class, 'leadership'])->name('our_leadership');
 Route::get('utumishi-uendeshaji', [PagesController::class, 'utumishidepartment'])->name('utumishi_department');
 
-Route::get('storage-link', [PagesController::class, 'runsymbolink']);
-
 Auth::routes();
 
 Route::get('/admin-dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('admin-dashboard');
@@ -69,3 +67,9 @@ Route::post('anouncement-update', [GeneralUpdateController::class, 'updateanounc
 Route::resource('minister-description', MinisterController::class);
 Route::post('minister-status', [GeneralUpdateController::class, 'updateministerstatus'])->name('update_minister_status');
 Route::post('minister-update', [GeneralUpdateController::class, 'updateministerdescription'])->name('update_minister_description');
+
+Route::get('/storage-link', function(){
+    $storagFolder = storage_path('app/public');
+    $linkFolder = $_SERVER['DOCUMENT_ROOT']. '/storage';
+    symlink($storagFolder, $linkFolder);
+});
