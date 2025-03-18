@@ -20,15 +20,15 @@
                         <div class="alert alert-success">{{ session('message') }}</div>
                         @endif
                         <div class="x_title">
-                            <h2>Anouncement Info</h2>
+                            <h2>Minister description</h2>
                             <ul class="nav navbar-right panel_toolbox">
 
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".anouncement-page-modal-lg">
-                                    {{ __('Anouncemnt')}} <i class="fa fa-plus"></i>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".minister-page-modal-lg">
+                                    {{ __('description')}} <i class="fa fa-plus"></i>
                                 </button>
 
                                 <!-- call members registrion model -->
-                                @include('admin.anouncement.create')
+                                @include('admin.minister.create')
 
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -48,37 +48,41 @@
                                             <thead>
                                                 <tr>
                                                     <th>S/No</th>
-                                                    <th>Title</th>
-                                                    <th>File Name</th>
+                                                    <th>Name</th>
+                                                    <th>Tittle</th>
+                                                    <th>Description</th>
+                                                    <th>Image</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if(count([$anouncementInfos]) > 0)
-                                                @foreach($anouncementInfos as $anouncementInfo)
+                                                @if(count([$ministerInfos]) > 0)
+                                                @foreach($ministerInfos as $ministerInfo)
                                                 <tr>
                                                     <td>{{$loop->index + 1}}</td>
-                                                    <td>{{$anouncementInfo->tittle}}</td>
+                                                    <td>{{$ministerInfo->minister_name}}</td>
+                                                    <td>{{$ministerInfo->minister_title}}</td>
+                                                    <td>{{$ministerInfo->description}}</td>
                                                     <td>
-                                                       {{$anouncementInfo->file_name}}
+                                                        <img src="{{ asset('storage/uploads/minister_images/'.$ministerInfo->minister_image)}}" alt="" width="50px" height="50px;">
                                                     </td>
 
                                                     <td>
-                                                        <input type="checkbox" data-id="{{ $anouncementInfo->id }}" name="status" class="switch" {{ $anouncementInfo->status == 1 ? 'checked' : '' }}>
-                                                        {{$anouncementInfo->status? 'Active' : 'Inactive'}}
+                                                        <input type="checkbox" data-id="{{ $ministerInfo->id }}" name="status" class="switch" {{ $ministerInfo->status == 1 ? 'checked' : '' }}>
+                                                        {{$ministerInfo->status? 'Active' : 'Inactive'}}
                                                     </td>
 
                                                     <td>
                                                         <a href="#" title="view"><span class="fa fa-eye"></span></a>
                                                         &nbsp;&nbsp;
 
-                                                        <a href="" class="anouncement_Edit" data-id="{{$anouncementInfo->id}}" data-toggle="modal" data-target=".anouncement-modal-lg" title="edit"><span class="fa fa-pencil-square" style="color:cornflowerblue;"></span></a>
-                                                        @include('admin.anouncement.edit')
+                                                        <a href="" class="minister_Edit" data-id="{{$ministerInfo->id}}" data-toggle="modal" data-target=".minister-modal-lg" title="edit"><span class="fa fa-pencil-square" style="color:cornflowerblue;"></span></a>
+                                                        @include('admin.minister.edit')
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$anouncementInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$ministerInfo->id}}" action="#" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 
@@ -87,7 +91,7 @@
 
                                                         <a href="" onclick="if(confirm('Are you sure,You want to delete this?')){
                                                                 event.preventDefault();
-                                                                document.getElementById('delete-form-{{$anouncementInfo->id}}').submit();
+                                                                document.getElementById('delete-form-{{$ministerInfo->id}}').submit();
                                                                 
                                                             }else{
                                                                 event.preventDefault();
@@ -102,8 +106,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>S/No</th>
-                                                    <th>Title</th>
-                                                    <th>File Name</th>
+                                                    <th>Name</th>
+                                                    <th>Tittle</th>
+                                                    <th>Description</th>
+                                                    <th>Image</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -122,9 +128,7 @@
 <!-- /page content -->
 
 <script src="{{ asset('assets_admin/js/jquery.js')}}"></script>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> -->
 <link rel="stylesheet" href="{{asset('assets_admin/css/customtoastr.css')}}">
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
 <script src="{{ asset('assets_admin/js/customtoastr.js')}}"></script>
 
 <script type="text/javascript">
@@ -137,7 +141,7 @@
         });
     });
 
-    // Ajax for update anouncement status only
+    // Ajax for update minister description status only
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
@@ -146,14 +150,14 @@
         });
         $('.switch').change(function() {
             let status = $(this).prop('checked') === true ? 1 : 0;
-            let anouncement_id = $(this).data('id');
+            let descriptionId = $(this).data('id');
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "{{Route('update_anouncement_status')}}",
+                url: "{{Route('update_minister_status')}}",
                 data: {
                     'status': status,
-                    'anouncement_id': anouncement_id
+                    'descriptionId': descriptionId
                 },
                 success: function(data) {
                     toastr.options.closeButton = true;
@@ -170,21 +174,21 @@
 
     });
 
-    // Ajax for add anouncement data to the db
+    // Ajax for add minister data to the db
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#anouncementCreateForm').on('submit', function(e) {
+        $('#descriptionCreateForm').on('submit', function(e) {
             e.preventDefault();
 
             if (confirm('Are you sure want to save it??')) {
                 $.ajax({
-                    type: "post",
+                    type: "POST",
                     dataType: "json",
-                    url: "{{Route('admin-anouncement.store')}}", //For using Resource Controller only.
+                    url: "{{Route('minister-description.store')}}", //For using Resource Controller
                     data: new FormData(this),
                     cache: false,
                     processData: false,
@@ -195,6 +199,7 @@
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
+                        //$('#postmodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
@@ -206,51 +211,52 @@
         });
     });
 
-    // Ajax for featching anouncement data from the db to the form
+    // Ajax for featching minister description data from the db to the user-page form
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('.anouncement_Edit').click(function(e) {
+        $('.minister_Edit').click(function(e) {
             e.preventDefault();
-            let anoucementId = $(this).data('id');
+            let descriptionId = $(this).data('id');
 
             $.ajax({
                 type: "get",
                 dataType: "json",
-                url: "{{Route('admin-anouncement.index')}}" + "/" + anoucementId + "/edit", //For using Rsource controller 
+                url: "{{Route('minister-description.index')}}" + "/" + descriptionId + "/edit", //For using Rsource controller
                 data: {
-                    'anoucementId': anoucementId
+                    'descriptionId': descriptionId
                 },
                 success: function(data) {
-                    $('#anoucementId').val(data.anouncementInfo.id);
-                    $('#tittlee').val(data.anouncementInfo.tittle);
-                    $('#status').val(data.anouncementInfo.status);
-                    $('#file_namee').val(data.anouncementInfo.file_name);
-                    
+                    $('#descriptionid').val(data.ministerInfo.id);
+                    $('#minister_namee').val(data.ministerInfo.minister_name);
+                    $('#minister_titlee').val(data.ministerInfo.minister_title);
+                    $('#descriptionn').val(data.ministerInfo.description);
+                    $('#status').val(data.ministerInfo.status);
+                    $('#minister_imagee').val(data.ministerInfo.minister_image);
 
                 }
             });
         });
     });
 
-    // Ajax for Update Anouncement info to the db
+    // Ajax for Update minister description info to the db
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#anouncementUpdateForm').on('submit', function(e) {
+        $('#descriptionUpdateForm').on('submit', function(e) {
             //e.preventDefault();
 
             if (confirm('Are you sure want to update??')) {
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "{{Route('update_anouncement')}}",
+                    url: "{{Route('update_minister_description')}}",
                     data: new FormData(this),
                     cache: false,
                     processData: false,
@@ -261,7 +267,7 @@
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
-                        $('#anouncementmodal').modal('hide');
+                        $('#miniisterModal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();

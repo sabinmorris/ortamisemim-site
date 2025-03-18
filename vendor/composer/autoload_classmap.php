@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Admin\\AnouncementController' => $baseDir . '/app/Http/Controllers/Admin/AnouncementController.php',
     'App\\Http\\Controllers\\Admin\\GeneralUpdateController' => $baseDir . '/app/Http/Controllers/Admin/GeneralUpdateController.php',
     'App\\Http\\Controllers\\Admin\\PostController' => $baseDir . '/app/Http/Controllers/Admin/PostController.php',
     'App\\Http\\Controllers\\Admin\\SlideController' => $baseDir . '/app/Http/Controllers/Admin/SlideController.php',
@@ -32,6 +33,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\Anouncement' => $baseDir . '/app/Models/Anouncement.php',
+    'App\\Models\\MinisterComment' => $baseDir . '/app/Models/MinisterComment.php',
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\Slide' => $baseDir . '/app/Models/Slide.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

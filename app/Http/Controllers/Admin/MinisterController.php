@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Anouncement;
-use Dom\Attr;
+use App\Models\MinisterComment;
 use Illuminate\Http\Request;
 
-class AnouncementController extends Controller
+class MinisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class AnouncementController extends Controller
      */
     public function index()
     {
-        $anouncementInfos = Anouncement::all();
-        return view('admin.anouncement.index', compact(['anouncementInfos']));
-        
+        $ministerInfos =  MinisterComment::all();
+        return view('admin.minister.index', compact(['ministerInfos']));
     }
 
     /**
@@ -40,38 +38,42 @@ class AnouncementController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'tittle' => ['required', 'string', 'max:255'],
-            'file_name' => 'mimes:pdf|required|max:5120', // max 5120kb
+            'minister_name' => 'required',
+            'minister_title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:500'],
+            'minister_image' => 'mimes:webp|required|max:5120', // max 5120kb
             
         ]);
 
-        if (request()->hasFile('file_name')) {
+        if (request()->hasFile('minister_image')) {
             
             $request =request(); 
-            $file = $request->file('file_name');
+            $file = $request->file('minister_image');
             //Get filename with extension
-            $filenameWithExt = $request->file('file_name')->getClientOriginalName();
+            $filenameWithExt = $request->file('minister_image')->getClientOriginalName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
             $extension = $file->getClientOriginalExtension();
             
             $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
-            $file->move('storage/uploads/anouncement_docs', $fileNamestoStore);
+            $file->move('storage/uploads/minister_images', $fileNamestoStore);
 
         }else{
-            $fileNamestoStore = 'noFile.pdf';
+            $fileNamestoStore = 'noImage.webp';
         }
 
-        $anouncementInfos = new Anouncement();
-        $anouncementInfos->tittle = $request->input('tittle');
-        $anouncementInfos->file_name = $fileNamestoStore;
+        $ministerInfos = new MinisterComment();
+        $ministerInfos->minister_name = $request->input('minister_name');
+        $ministerInfos->minister_title = $request->input('minister_title');
+        $ministerInfos->description = $request->input('description');
+        $ministerInfos->minister_image = $fileNamestoStore;
         
-        $anouncementInfos->save();
+        $ministerInfos->save();
 
-        if ($anouncementInfos) {
+        if ($ministerInfos) {
             return response()->json([
-                'message' => 'Successifully Anouncement Info Saved',
+                'message' => 'successifully Slide image info saved',
                 'code' => 200
             ]);
         }else{
@@ -101,9 +103,9 @@ class AnouncementController extends Controller
      */
     public function edit($id)
     {
-        $anouncementInfos = Anouncement::findOrFail($id);
+        $ministerInfos = MinisterComment::findOrFail($id);
         return response()->json([
-            'anouncementInfo' => $anouncementInfos
+            'ministerInfo' => $ministerInfos
         ]);
     }
 

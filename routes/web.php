@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AnouncementController;
 use App\Http\Controllers\Admin\GeneralUpdateController;
+use App\Http\Controllers\Admin\MinisterController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Auth\ChangePasswordController;
@@ -60,4 +61,9 @@ Route::post('post-upadte', [GeneralUpdateController::class, 'updatepost'])->name
 //Route for Special Anouncement
 Route::resource('admin-anouncement', AnouncementController::class);
 Route::post('anouncement-status', [GeneralUpdateController::class, 'updateanouncementstatus'])->name('update_anouncement_status');
-Route::post('anouncement-update', [GeneralUpdateController::class, 'updateanounce'])->name('update_anaouncement');
+Route::post('anouncement-update', [GeneralUpdateController::class, 'updateanounce'])->name('update_anouncement');
+
+//Route for Minister Description
+Route::resource('minister-description', MinisterController::class);
+Route::post('minister-status', [GeneralUpdateController::class, 'updateministerstatus'])->name('update_minister_status');
+Route::post('minister-update', [GeneralUpdateController::class, 'updateministerdescription'])->name('update_minister_description');

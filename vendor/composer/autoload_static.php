@@ -513,6 +513,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\AnouncementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AnouncementController.php',
         'App\\Http\\Controllers\\Admin\\GeneralUpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/GeneralUpdateController.php',
         'App\\Http\\Controllers\\Admin\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PostController.php',
         'App\\Http\\Controllers\\Admin\\SlideController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SlideController.php',
@@ -537,6 +538,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Anouncement' => __DIR__ . '/../..' . '/app/Models/Anouncement.php',
+        'App\\Models\\MinisterComment' => __DIR__ . '/../..' . '/app/Models/MinisterComment.php',
         'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\Slide' => __DIR__ . '/../..' . '/app/Models/Slide.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
