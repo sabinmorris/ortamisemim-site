@@ -337,8 +337,35 @@ class GeneralUpdateController extends Controller
                 'message' => 'Internal Server Error',
                 'code' => 500
             ]);
+        }     
+    }
+
+    //Function to update about us Info
+    public function updateboutus(Request $request){
+         
+        $this->validate($request, [
+            'titlee' => ['required', 'string', 'max:255'],
+            'descriptionn' => ['required', 'string', 'max:500'],
+            'status' => 'required',
+        ]);
+
+        $aboutUsInfo = AboutUs::findOrFail($request->aboutId);
+        $aboutUsInfo->title = $request->input('titlee');
+        $aboutUsInfo->description = $request->input('descriptionn');
+        $aboutUsInfo->status = $request->input('status');
+
+        $aboutUsInfo->update();
+
+        if ($aboutUsInfo) {
+            return response()->json([
+                'message' => 'Successifully about us info Updated',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Interna Server Error',
+                'code' => 500
+            ]);
         }
-        
-        
     }
 }

@@ -81,7 +81,10 @@ class AboutUsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $aboutInfos =  AboutUs::findOrFail($id);
+        return response()->json([
+            'aboutInfos' => $aboutInfos
+        ]);
     }
 
     /**

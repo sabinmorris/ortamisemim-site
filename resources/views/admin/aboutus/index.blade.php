@@ -122,9 +122,6 @@
 <!-- /page content -->
 
 <script src="{{ asset('assets_admin/js/jquery.js')}}"></script>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> -->
-<link rel="stylesheet" href="{{asset('assets_admin/css/customtoastr.css')}}">
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
 <script src="{{ asset('assets_admin/js/customtoastr.js')}}"></script>
 
 <script type="text/javascript">
@@ -213,23 +210,22 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('.anouncement_Edit').click(function(e) {
+        $('.about_Edit').click(function(e) {
             e.preventDefault();
-            let anoucementId = $(this).data('id');
+            let aboutId = $(this).data('id');
 
             $.ajax({
                 type: "get",
                 dataType: "json",
-                url: "{{Route('admin-anouncement.index')}}" + "/" + anoucementId + "/edit", //For using Rsource controller 
+                url: "{{Route('about-us.index')}}" + "/" + aboutId + "/edit", //For using Rsource controller 
                 data: {
-                    'anoucementId': anoucementId
+                    'aboutId': aboutId
                 },
                 success: function(data) {
-                    $('#anoucementId').val(data.anouncementInfo.id);
-                    $('#tittlee').val(data.anouncementInfo.tittle);
-                    $('#status').val(data.anouncementInfo.status);
-                    $('#file_namee').val(data.anouncementInfo.file_name);
-                    
+                    $('#aboutId').val(data.aboutInfos.id);
+                    $('#titlee').val(data.aboutInfos.title);
+                    $('#descriptionn').val(data.aboutInfos.description);
+                    $('#status').val(data.aboutInfos.status);   
 
                 }
             });
@@ -243,14 +239,14 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#anouncementUpdateForm').on('submit', function(e) {
+        $('#aboutUpdateForm').on('submit', function(e) {
             //e.preventDefault();
 
             if (confirm('Are you sure want to update??')) {
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "{{Route('update_anouncement')}}",
+                    url: "{{Route('update_about_us')}}",
                     data: new FormData(this),
                     cache: false,
                     processData: false,
@@ -261,7 +257,7 @@
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
-                        $('#anouncementmodal').modal('hide');
+                        $('#aboutmodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
