@@ -52,7 +52,8 @@ class PagesController extends Controller
     }
 
     public function readmoreabout(){
-        return view('pages.readmoreabout');
+        $aboutusInfos = AboutUs::all();
+        return view('pages.readmoreabout',compact(['aboutusInfos']));
     }
 
     public function leadership(){

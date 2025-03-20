@@ -34,8 +34,6 @@
         @endif
         @endforeach
         @endif
-
-
         <h3>HUDUMA ZINAZOTOLEWA</h3>
         <ul>
           <li><i class="bi bi-check-circle"></i> <span>Kusimamia Sera, Sheria na Kanuni mbali mbali za Ofisi.</span></li>
