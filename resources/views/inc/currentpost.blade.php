@@ -11,9 +11,11 @@
             <h4><a href="{{Route('read_more', $postInfo->id)}}">{{$postInfo->post_tittle}}</a></h4>
             <time datetime="2020-01-01">{{ $postInfo->created_at->diffForHumans() }}</time>
         </div>
+        
     </div><!-- End recent post item-->
+    
     @endif
     @endforeach
     @endif
-
+    
 </div>
