@@ -75,7 +75,8 @@
     </div>
 
   </div>
-</section><!-- /About Section -->
+</section>
+<!-- /End About Section -->
 
 <!-- Team Section -->
 <section id="team" class="team section">
@@ -84,7 +85,7 @@
   <div class="container section-title" data-aos="fade-up">
     <div class="section-title-container d-flex align-items-center justify-content-between">
       <h2>Viongozi</h2>
-      <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
     </div>
   </div><!-- End Section Title -->
 
@@ -92,7 +93,7 @@
 
     <div class="row gy-4">
 
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-6 offset-3" data-aos="fade-up" data-aos-delay="100">
         <div class="team-member d-flex align-items-start">
           <div class="pic"><img src="assets/img/team/waziri-masoud.webp" class="img-fluid" alt=""></div>
           <div class="member-info">
@@ -143,26 +144,10 @@
         </div>
       </div><!-- End Team Member -->
 
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-        <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="assets/img/team/mratibu.webp" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Haji Sheha Khamis</h4>
-            <span>Mratibu Idara Maalum</span>
-            <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-            <div class="social">
-              <a href=""><i class="bi bi-twitter-x"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""> <i class="bi bi-linkedin"></i> </a>
-            </div>
-          </div>
-        </div>
-      </div><!-- End Team Member -->
-
     </div>
 
   </div>
 
-</section><!-- /Team Section -->
+</section>
+<!-- /End Team Section -->
 @endsection
