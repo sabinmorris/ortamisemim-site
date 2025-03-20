@@ -78,7 +78,7 @@
             <img src="{{ asset('storage/uploads/post_images/' .$postInfo->post_image)}}" alt="" class="img-fluid">
           </a>
           <div>
-            <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>Jul 5th '22</span></div>
+            <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$postInfo->created_at->diffForHumans()}}</span></div>
             <h3><a href="single-post.html#">{{$postInfo->post_tittle}}</a></h3>
             @if(substr($postInfo->post_description, 0,200))
             <p>
@@ -105,22 +105,29 @@
         @endforeach
         @endif
 
+        @if(count([$ministerInfos]) > 0)
+        @foreach($ministerInfos as $ministerInfo)
+        @if($ministerInfo->status == 1)
         <div class="row">
           <div class="col-lg-4">
             <div class="post-list border-bottom">
-              <a href="single-post.html#"><img src="assets/img/team/waziri-masoud.webp" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html#">Minister of OR-Tamisemim Zanzibar</a></h2>
-              <span class="author mb-3 d-block">Masoud Ali Moh'd</span>
+              <a href="single-post.html#"><img src="{{ asset('storage/uploads/minister_images/' .$ministerInfo->minister_image)}}" alt="" class="img-fluid"></a>
+              <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$ministerInfo->created_at->diffForHumans()}}</span></div>
+              <h2 class="mb-2"><a href="single-post.html#">{{$ministerInfo->minister_title}}</a></h2>
+              <span class="author mb-3 d-block">{{$ministerInfo->minister_name}}</span>
             </div>
           </div>
 
-          <div class="col-lg-8" style="margin-top: 100px;">
+          <div class="col-lg-8" style ="margin-top: 100px;">
             <div class="post-list">
-              <p class="mb-4 d-block">Post Description</p>
+              <p class="mb-4 d-block">{{$ministerInfo->description}}</p>
             </div>
           </div>
         </div>
+        @endif
+        @endforeach
+        @endif
+
       </div>
 
       <div class="col-md-4">

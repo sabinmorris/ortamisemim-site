@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutUs;
 use App\Models\Anouncement;
+use App\Models\MinisterComment;
 use App\Models\Post;
 use App\Models\Slide;
 use Illuminate\Http\Request;
@@ -16,11 +18,13 @@ class PagesController extends Controller
         $postInfos = Post::orderBy('id', 'desc')->paginate(3);
         $postInfos1 = Post::orderBy('created_at', 'desc')->limit(1)->get();
         $anouncementInfos = Anouncement::all();
-        return view('index', compact(['slideInfos', 'postInfos', 'postInfos1', 'anouncementInfos']));
+        $ministerInfos = MinisterComment::all();
+        return view('index', compact(['slideInfos', 'postInfos', 'postInfos1', 'anouncementInfos','ministerInfos']));
     }
     
     public function aboutUs(){
-        return view('pages.about');
+        $aboutusInfos = AboutUs::all();
+        return view('pages.about', compact(['aboutusInfos']));
     }
 
     public function newsevents(){

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\AnouncementController;
 use App\Http\Controllers\Admin\GeneralUpdateController;
 use App\Http\Controllers\Admin\MinisterController;
@@ -67,6 +68,11 @@ Route::post('anouncement-update', [GeneralUpdateController::class, 'updateanounc
 Route::resource('minister-description', MinisterController::class);
 Route::post('minister-status', [GeneralUpdateController::class, 'updateministerstatus'])->name('update_minister_status');
 Route::post('minister-update', [GeneralUpdateController::class, 'updateministerdescription'])->name('update_minister_description');
+
+//Route for About us info
+Route::resource('about-us', AboutUsController::class);
+Route::post('aboutus-status', [GeneralUpdateController::class, 'updateaboutstatus'])->name('update_about_staus');
+Route::post('about-us-update', [GeneralUpdateController::class, 'updateboutus'])->name('update_about_us');
 
 // Route::get('/storage-link', function(){
 //     $storagFolder = storage_path('app/public');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\Anouncement;
 use App\Models\MinisterComment;
 use App\Models\Post;
@@ -317,5 +318,27 @@ class GeneralUpdateController extends Controller
                 'code' => 500
             ]);
         }
+    }
+
+    // functin to update about us status only
+    public function updateaboutstatus(Request $request){
+
+        $aboutUsInfo = AboutUs::findOrFail($request->about_id);
+        $aboutUsInfo->status = $request->status;
+
+        $aboutUsInfo->save();
+        if ($aboutUsInfo) {
+            return response()->json([
+                'message' => 'Status updated successfully.',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Internal Server Error',
+                'code' => 500
+            ]);
+        }
+        
+        
     }
 }

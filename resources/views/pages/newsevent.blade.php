@@ -88,7 +88,7 @@
 
                       <hr>
 
-                      <a href="{{Route('read_More')}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                      <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                     </div>
 
@@ -123,7 +123,7 @@
 
                       <hr>
 
-                      <a href="{{Route('read_More')}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                      <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                     </div>
 
@@ -158,7 +158,7 @@
 
                       <hr>
 
-                      <a href="{{Route('read_More')}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                      <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                     </div>
 
@@ -193,7 +193,7 @@
 
                       <hr>
 
-                      <a href="{{Route('read_More')}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                      <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                     </div>
 
@@ -228,7 +228,7 @@
 
                       <hr>
 
-                      <a href="{{Route('read_More')}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                      <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
                     </div>
 

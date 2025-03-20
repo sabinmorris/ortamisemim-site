@@ -30,6 +30,7 @@
           <li><a href="{{url('admin-post')}}"><i class="fa fa-pencil-square-o"></i> Posts <span class="fa fa-chevron-right"></span></a></li>
           <li><a href="{{url('admin-anouncement')}}"><i class="fa fa-bullhorn"></i> Special Anouncement <span class="fa fa-chevron-right"></span></a></li>
           <li><a href="{{url('minister-description')}}"><i class="fa fa-comment"></i> Minister Description <span class="fa fa-chevron-right"></span></a></li>
+          <li><a href="{{url('about-us')}}"><i class="fa fa-comment"></i> About Us<span class="fa fa-chevron-right"></span></a></li>
           <li><a href="{{Route('user_view')}}"><i class="fa fa-users"></i> User <span class="fa fa-chevron-right"></span></a></li>
         </ul>
       </div>
