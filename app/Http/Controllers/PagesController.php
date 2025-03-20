@@ -29,7 +29,7 @@ class PagesController extends Controller
 
     public function newsevents(){
         //$postInfos = Post::where('post_status', 1)->get();
-        $postInfos = Post::orderBy('id', 'desc')->paginate(2);
+        $postInfos = Post::orderBy('id', 'desc')->paginate(6);
         return view('pages.newsevent', compact(['postInfos']));
     }
 
