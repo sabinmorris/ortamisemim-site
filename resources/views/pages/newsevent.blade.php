@@ -32,7 +32,7 @@
               <article class="position-relative h-100">
 
                 <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
+                  <img src="{{ asset('storage/uploads/post_images/'.$postInfo->post_image)}}" class="img-fluid" alt="">
                   <span class="post-date">{{$postInfo->created_at->diffForHumans()}}</span>
                 </div>
 
