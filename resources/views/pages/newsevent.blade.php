@@ -60,18 +60,7 @@
         </div>
 
       </section><!-- /Blog Posts Section -->
-      <!-- <div class="row">
-        <div class="col-lg-4">
-          //Showing {{ $postInfos->firstItem() }} - {{ $postInfos->lastItem() }} of {{ $postInfos->total() }}
-        </div>
-        <div class="col-lg-8">
-          <div class="float-end">
-            {{$postInfos->links()}}
-          </div>
-        </div>
-      </div> -->
-
-
+      
       <!-- Blog Pagination Section -->
       <section id="blog-pagination" class="blog-pagination section">
 

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Video;
+use App\Models\Leadership;
 use Illuminate\Http\Request;
 
-class VideoController extends Controller
+class LeadershipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videoInfos = Video::all();
-        return view('admin.videos.index', compact(['videoInfos']));
+        $leaderInfos = Leadership::all();
+        return view('admin.leaders.index', compact(['leaderInfos']));
     }
 
     /**
@@ -38,19 +38,44 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'tittle' => ['required', 'string', 'max:255'],
-            'link' => ['required', 'string', 'max:500'],
+            'name' => ['required', 'string', 'max:255'],
+            'role' => 'required',
+            'designation' => 'required',
+            'description' => ['required', 'string', 'max:500'],
+            'leader_image' => 'mimes:webp|nullable|max:5120', // max 5120kb
+            
         ]);
 
-        $videoInfos = new Video();
-        $videoInfos->tittle = $request->input('tittle');
-        $videoInfos->link = $request->input('link');
-        
-        $videoInfos->save();
+        if (request()->hasFile('leader_image')) {
+            
+            $request =request(); 
+            $file = $request->file('leader_image');
+            //Get filename with extension
+            $filenameWithExt = $request->file('leader_image')->getClientOriginalName();
+            //Get file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //File Extension
+            $extension = $file->getClientOriginalExtension();
+            
+            $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
+            $file->move('storage/uploads/leader_images', $fileNamestoStore);
 
-        if ($videoInfos) {
+        }else{
+            $fileNamestoStore = 'noImage.webp';
+        }
+
+        $leaderInfos = new Leadership();
+        $leaderInfos->name = $request->input('name');
+        $leaderInfos->role = $request->input('role');
+        $leaderInfos->designation = $request->input('designation');
+        $leaderInfos->description = $request->input('description');
+        $leaderInfos->leader_image = $fileNamestoStore;
+        
+        $leaderInfos->save();
+
+        if ($leaderInfos) {
             return response()->json([
-                'message' => 'successifully link info saved',
+                'message' => 'successifully leader info saved',
                 'code' => 200
             ]);
         }else{
@@ -80,11 +105,10 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        $videoInfos = Video::findOrFail($id);
+        $leaderInfos =  Leadership::findOrFail($id);
         return response()->json([
-            'videoInfo' => $videoInfos
+            'leaderInfo' => $leaderInfos
         ]);
-
     }
 
     /**

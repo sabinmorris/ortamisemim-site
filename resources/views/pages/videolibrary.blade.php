@@ -25,121 +25,47 @@
                 <div class="container">
                     <div class="row gy-4">
 
+                        @if(count([$videoInfos]) > 0)
+                        @foreach($videoInfos as $videoInfo)
+                        @if($videoInfo->status == 1)
                         <div class="col-lg-6">
                             <article class="position-relative h-100">
 
                                 <div class="post-img position-relative overflow-hidden">
-                                    <iframe class="col-lg-12 img-fluid" src="https://www.youtube.com/embed/K7h06JegpoU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <!-- <img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt=""> -->
-                                    <span class="post-date">December 12 2025</span>
+                                    <iframe class="col-lg-12 img-fluid" src="{{$videoInfo->link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <span class="post-date">{{$videoInfo->created_at->diffForHumans()}}</span>
                                 </div>
 
                                 <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</h3>
-
-                                    <!-- <div class="meta d-flex align-items-center">
-                        <div class="d-flex align-items-center">
-                          <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
-                        </div>
-                        <span class="px-3 text-black-50">/</span>
-                        <div class="d-flex align-items-center">
-                          <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                        </div>
-                      </div> -->
+                                    <h3 class="post-title">{{$videoInfo->tittle}}</h3>
                                 </div>
                             </article>
                         </div><!-- End post list item -->
-
-                        <div class="col-lg-6">
-                            <article class="position-relative h-100">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <iframe class="col-lg-12 img-fluid" src="https://www.youtube.com/embed/K7h06JegpoU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <span class="post-date">March 19 2025</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Nisi magni odit consequatur autem nulla dolorem</h3>
-                                </div>
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-6">
-                            <article class="position-relative h-100">
-
-                                <div class="post-img position-relative overflow-hidden h-50">
-                                    <iframe class="col-lg-12 img-fluid" src="https://www.youtube.com/embed/K7h06JegpoU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <span class="post-date">June 24</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Possimus soluta ut id suscipit ea ut. In quo quia et soluta libero sit sint.</h3>
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-6">
-                            <article class="position-relative h100">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <iframe class="col-lg-12 img-fluid" src="https://www.youtube.com/embed/K7h06JegpoU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <span class="post-date">August 05</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Non rem rerum nam cum quo minus. Dolor distinctio deleniti explicabo eius exercitationem.</h3>
-
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-6">
-                            <article class="position-relative">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <iframe class="col-lg-12 img-fluid" src="https://www.youtube.com/embed/K7h06JegpoU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <span class="post-date">September 17</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Accusamus quaerat aliquam qui debitis facilis consequatur</h3>
-
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
-
-                        <div class="col-lg-6">
-                            <article class="position-relative h-100">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <iframe class="col-lg-12 img-fluid" src="https://www.youtube.com/embed/K7h06JegpoU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    <span class="post-date">December 07</span>
-                                </div>
-
-                                <div class="post-content d-flex flex-column">
-
-                                    <h3 class="post-title">Distinctio provident quibusdam numquam aperiam aut</h3>
-
-                                </div>
-
-                            </article>
-                        </div><!-- End post list item -->
+                        @endif
+                        @endforeach
+                        @endif
 
                     </div>
                 </div>
 
             </section><!-- /Blog Posts Section -->
-
             <!-- Blog Pagination Section -->
             <section id="blog-pagination" class="blog-pagination section">
+
+                <div class="container">
+                    <div class="d-flex justify-content-center">
+                        <ul>
+                            <li>{{$videoInfos->links()}}</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+            <!-- /End Blog Pagination Section -->
+
+            <!-- Blog Pagination Section -->
+            <!-- <section id="blog-pagination" class="blog-pagination section">
 
                 <div class="container">
                     <div class="d-flex justify-content-center">
@@ -156,7 +82,8 @@
                     </div>
                 </div>
 
-            </section><!-- /Blog Pagination Section -->
+            </section> -->
+            <!-- /Blog Pagination Section -->
 
         </div>
 
@@ -167,17 +94,6 @@
                 <!-- Blog Author Widget 2 -->
                 @include('inc.waziriwidget')
                 <!--/Blog Author Widget 2 -->
-
-                <!-- Search Widget -->
-                <div class="search-widget widget-item">
-
-                    <h3 class="widget-title">Search</h3>
-                    <form action="">
-                        <input type="text">
-                        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    </form>
-
-                </div><!--/Search Widget -->
 
                 <!-- Recent Video Widget -->
                 @include('inc.currentvideo')

@@ -3,9 +3,11 @@
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\AnouncementController;
 use App\Http\Controllers\Admin\GeneralUpdateController;
+use App\Http\Controllers\Admin\LeadershipController;
 use App\Http\Controllers\Admin\MinisterController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SlideController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +75,16 @@ Route::post('minister-update', [GeneralUpdateController::class, 'updateministerd
 Route::resource('about-us', AboutUsController::class);
 Route::post('aboutus-status', [GeneralUpdateController::class, 'updateaboutstatus'])->name('update_about_staus');
 Route::post('about-us-update', [GeneralUpdateController::class, 'updateboutus'])->name('update_about_us');
+
+//Route for Leadership info
+Route::resource('manage-leader', LeadershipController::class);
+Route::post('leader-status', [GeneralUpdateController::class, 'updateleaderstatus'])->name('update_leader_status');
+Route::post('leader-update', [GeneralUpdateController::class, 'updateleader'])->name('update_leader');
+
+//Route fof Video Library
+Route::resource('manage-video', VideoController::class);
+Route::post('video-statud', [GeneralUpdateController::class, 'updatevideostatus'])->name('update_video_status');
+Route::post('video-update',[GeneralUpdateController::class, 'updatevideo'])->name('update_video');
 
 // Route::get('/storage-link', function(){
 //     $storagFolder = storage_path('app/public');

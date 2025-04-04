@@ -85,12 +85,15 @@
     <div class="row gy-4">
 
       <div class="col-lg-6 offset-3" data-aos="fade-up" data-aos-delay="100">
+        @if(count([$leaderInfos]) > 0)
+        @foreach($leaderInfos as $leaderInfo)
+        @if($leaderInfo->role == 'waziri')
         <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="assets/img/team/waziri-masoud.webp" class="img-fluid" alt=""></div>
+          <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
           <div class="member-info">
-            <h4>Masoud Ali Suleiman</h4>
-            <span>Waziri Or-tamisemim</span>
-            <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+            <h4>{{$leaderInfo->name}}</h4>
+            <span>{{$leaderInfo->designation}}</span>
+            <p>{{$leaderInfo->description}}</p>
             <div class="social">
               <a href=""><i class="bi bi-twitter-x"></i></a>
               <a href=""><i class="bi bi-facebook"></i></a>
@@ -99,15 +102,21 @@
             </div>
           </div>
         </div>
+        @endif
+        @endforeach
+        @endif
       </div><!-- End Team Member -->
 
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        @if(count([$leaderInfos]) > 0)
+        @foreach($leaderInfos as $leaderInfo)
+        @if($leaderInfo->role == 'katibu')
         <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="assets/img/team/katibu-mkuu-issa.webp" class="img-fluid" alt=""></div>
+          <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
           <div class="member-info">
-            <h4>Issa Mahafoudh</h4>
-            <span>Katibu Mkuu</span>
-            <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+            <h4>{{$leaderInfo->name}}</h4>
+            <span>{{$leaderInfo->designation}}</span>
+            <p>{{$leaderInfo->description}}</p>
             <div class="social">
               <a href=""><i class="bi bi-twitter-x"></i></a>
               <a href=""><i class="bi bi-facebook"></i></a>
@@ -116,15 +125,21 @@
             </div>
           </div>
         </div>
+        @endif
+        @endforeach
+        @endif
       </div><!-- End Team Member -->
 
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+        @if(count([$leaderInfos]) > 0)
+        @foreach($leaderInfos as $leaderInfo)
+        @if($leaderInfo->role == 'naibu')
         <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="assets/img/team/naibu-katibu-mikidadi.webp" class="img-fluid" alt=""></div>
+          <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
           <div class="member-info">
-            <h4>Mikidadi Mbarouk Mzee</h4>
-            <span>Naibu Katibu</span>
-            <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
+            <h4>{{$leaderInfo->name}}</h4>
+            <span>{{$leaderInfo->designation}}</span>
+            <p>{{$leaderInfo->description}}</p>
             <div class="social">
               <a href=""><i class="bi bi-twitter-x"></i></a>
               <a href=""><i class="bi bi-facebook"></i></a>
@@ -133,6 +148,9 @@
             </div>
           </div>
         </div>
+        @endif
+        @endforeach
+        @endif
       </div><!-- End Team Member -->
 
       <!-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">

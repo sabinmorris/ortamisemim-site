@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
 use App\Models\Anouncement;
+use App\Models\Leadership;
 use App\Models\MinisterComment;
 use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Support\Facades\File;
 
 class GeneralUpdateController extends Controller
@@ -367,5 +369,128 @@ class GeneralUpdateController extends Controller
                 'code' => 500
             ]);
         }
+    }
+
+    //function to update leader status only
+    public function updateleaderstatus(Request $request){
+
+        $leaderInfo = Leadership::findOrFail($request->leaderId);
+        $leaderInfo->status = $request->status;
+        $leaderInfo->save();
+        if ($leaderInfo) {
+            return response()->json([
+                'message' => 'Status updated successfully.',
+                'code' => 200
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Internal server Error',
+                'code' => 500
+            ]);
+        }
+
+    }
+
+    //Function to update leaders info to the Db
+    public function updateleader(Request $request){
+        $this->validate($request, [
+            'namee' => ['required', 'string', 'max:255'],
+            'rolee' => 'required',
+            'designationn' => 'required',
+            'descriptionn' => ['required', 'string', 'max:500'],
+            'leader_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
+            'status' => 'required',
+            
+        ]);
+
+        $leaderInfo = Leadership::findOrFail($request->leaderId);
+        $leaderInfo->name = $request->input('namee');
+        $leaderInfo->role = $request->input('rolee');
+        $leaderInfo->designation = $request->input('designationn');
+        $leaderInfo->description = $request->input('descriptionn');
+        $leaderInfo->status = $request->input('status');
+
+        if ($request->hasFile('leader_imagee')) {
+            $destination_path = 'storage/uploads/leader_images/' . $leaderInfo->leader_image;
+            if (File::exists($destination_path)) {
+                File::delete($destination_path);
+            }
+            //$request =request(); 
+            $file = $request->file('leader_imagee');
+            //Get filename with extension
+            $filenameWithExt = $request->file('leader_imagee')->getClientOriginalName();
+            //Get file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //File Extension
+            $extension = $file->getClientOriginalExtension();
+
+            $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
+            $file->move('storage/uploads/leader_images', $fileNamestoStore);
+        } else {
+            $fileNamestoStore = 'noImage.webp';
+        }
+
+        if ($request->hasFile('leader_imagee')) {
+
+            $leaderInfo->leader_image = $fileNamestoStore;
+        }
+
+        $leaderInfo->update();
+
+        if ($leaderInfo) {
+            return response()->json([
+                'message' => 'Successifully leader info Updated',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Interna Server Error',
+                'code' => 500
+            ]);
+        }
+    }
+
+    //Function to update videos status only
+    public function updatevideostatus(Request $request){
+        
+        $videoInfo = Video::findOrFail($request->videoid);
+        $videoInfo->status = $request->status;
+        $videoInfo->save();
+        if ($videoInfo) {
+            return response()->json([
+                'message' => 'Status updated successfully.',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Internal Server Error',
+                'code' => 500
+            ]);
+        }
+        
+    }
+
+    //Function to update Video info from db.
+    public function updatevideo(Request $request){
+
+        $videoInfo = Video::findOrFail($request->videoId);
+        $videoInfo->tittle = $request->input('tittlee');
+        $videoInfo->link = $request->input('linkk');
+        $videoInfo->status = $request->input('status');
+
+        $videoInfo->update();
+        if ($videoInfo) {
+            return response()->json([
+                'message' => 'Successifully video info Updated',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Internal Server Error',
+                'code' => 500
+            ]);
+        }
+        
+
     }
 }
