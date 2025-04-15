@@ -22,11 +22,11 @@
                         <div class="x_title">
                             <h2>Posts Info</h2>
                             <ul class="nav navbar-right panel_toolbox">
-
+                                
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".post-page-modal-lg">
                                     {{ __('Post')}} <i class="fa fa-plus"></i>
                                 </button>
-
+                                
                                 <!-- call members registrion model -->
                                 @include('admin.posts.create')
 

@@ -35,8 +35,14 @@
         @endforeach
         @endif
         <h3>HUDUMA ZINAZOTOLEWA</h3>
+        
+        @if(count([$departmentInfos]) > 0 )
+        @foreach($departmentInfos as $departmentInfo)
+        @if($departmentInfo->status == 1 )
+
         <ul>
-          <li><i class="bi bi-check-circle"></i> <span>Kusimamia Sera, Sheria na Kanuni mbali mbali za Ofisi.</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>{{$departmentInfo->service}}</span></li>
+          <!-- <li><i class="bi bi-check-circle"></i> <span>Kusimamia Sera, Sheria na Kanuni mbali mbali za Ofisi.</span></li>
           <li><i class="bi bi-check-circle"></i> <span>Kubuni na kusimamia utekelezaji wa miradi ya maendeleo.</span></li>
           <li><i class="bi bi-check-circle"></i> <span>Kudumisha Amani, Ulinzi na Usalama katika Mikoa na Wilaya hadi Shehia.</span></li>
           <li><i class="bi bi-check-circle"></i> <span>Kulinda mali za Taifa na za watu binafsi zisiharibiwe, kuzuia uingizaji au utoaji nje ya nchi kimagendo, pamoja na kusimamia kazi za uzimaji moto na uokozi.</span></li>
@@ -48,28 +54,41 @@
           <li><i class="bi bi-check-circle"></i> <span>Kuimarisha Utawala Bora na kuimarisha uwezo wa Serikali za Mitaa na mamlaka zake.</span></li>
           <li><i class="bi bi-check-circle"></i> <span>Kufuatilia na kukagua utendaji wa mamlaka za Mikoa, Serikali za Mitaa na Idara Maalum za SMZ katika utoaji wa huduma.</span></li>
           <li><i class="bi bi-check-circle"></i> <span>Kuendeleza michezo katika Idara na Taasisi zetu.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kuimarisha uhusiano baina ya taasisi za Ofisi ya Raisi Tawala za Mikoa, Serikali za Mitaa na Idara maalum za SMZ. Na taasisi nyengine.</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Kuimarisha uhusiano baina ya taasisi za Ofisi ya Raisi Tawala za Mikoa, Serikali za Mitaa na Idara maalum za SMZ. Na taasisi nyengine.</span></li> -->
         </ul>
+        @endif
+        @endforeach
+        @endif
 
       </div>
 
       <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
+      @if(count([$pictureInfos]) > 0)
+        @foreach($pictureInfos as $pictureInfo)
+        @if($pictureInfo->status == 1)
         <div class="row gy-4">
+        @if($pictureInfo->position == 'left')
           <div class="col-lg-6">
-            <img src="assets/img/team-tawala.webp" class="img-fluid" alt="">
+          <img src="{{ asset('storage/uploads/aboutpictures/' .$pictureInfo->picture)}}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6">
             <div class="row gy-4">
+            @elseif($pictureInfo->position == 'top')
               <div class="col-lg-12">
-                <img src="assets/img/team-maonesho.webp" class="img-fluid" alt="">
+                <img src="{{ asset('storage/uploads/aboutpictures/' .$pictureInfo->picture)}}" class="img-fluid" alt="">
               </div>
+              @elseif($pictureInfo->position == 'down')
               <div class="col-lg-12">
-                <img src="assets/img/miaka-4-mwinyi.webp" class="img-fluid" alt="">
+                <img src="{{ asset('storage/uploads/aboutpictures/' .$pictureInfo->picture)}}" class="img-fluid" alt="">
               </div>
             </div>
           </div>
+          @else
+          @endif
         </div>
-
+        @endif
+        @endforeach
+        @endif
       </div>
 
     </div>

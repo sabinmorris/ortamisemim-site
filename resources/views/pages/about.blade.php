@@ -35,32 +35,54 @@
         @endforeach
         @endif
         <h3>HUDUMA ZINAZOTOLEWA</h3>
+        @if(count([$departmentInfos]) > 0)
+        @foreach($departmentInfos as $departmentInfo)
+        @if($departmentInfo->status ==1 )
+
         <ul>
-          <li><i class="bi bi-check-circle"></i> <span>Kusimamia Sera, Sheria na Kanuni mbali mbali za Ofisi.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kubuni na kusimamia utekelezaji wa miradi ya maendeleo.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kudumisha Amani, Ulinzi na Usalama katika Mikoa na Wilaya hadi Shehia.</span></li>
-          <hr>
-          <a href="{{Route('read_more_about')}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          <li><i class="bi bi-check-circle"></i> <span>{{ $departmentInfo->service }}.</span></li>
         </ul>
+
+        @endif
+        @endforeach
+        @endif
+
+        <hr>
+        @if(count($departmentInform) > 3)
+
+        <a href="{{Route('read_more_about')}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+
+        @endif
 
       </div>
 
       <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
+        @if(count([$pictureInfos]) > 0)
+        @foreach($pictureInfos as $pictureInfo)
+        @if($pictureInfo->status == 1)
         <div class="row gy-4">
+          @if($pictureInfo->position == 'left')
           <div class="col-lg-6">
-            <img src="assets/img/team-tawala.webp" class="img-fluid" alt="">
+            <img src="{{ asset('storage/uploads/aboutpictures/' .$pictureInfo->picture)}}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6">
             <div class="row gy-4">
+              @elseif($pictureInfo->position == 'top')
               <div class="col-lg-12">
-                <img src="assets/img/team-maonesho.webp" class="img-fluid" alt="">
+                <img src="{{ asset('storage/uploads/aboutpictures/' .$pictureInfo->picture)}}" class="img-fluid" alt="">
               </div>
+              @elseif($pictureInfo->position == 'down')
               <div class="col-lg-12">
-                <img src="assets/img/miaka-4-mwinyi.webp" class="img-fluid" alt="">
+                <img src="{{ asset('storage/uploads/aboutpictures/' .$pictureInfo->picture)}}" class="img-fluid" alt="">
               </div>
             </div>
           </div>
+          @else
+          @endif
         </div>
+        @endif
+        @endforeach
+        @endif
 
       </div>
 

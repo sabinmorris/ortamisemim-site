@@ -23,20 +23,66 @@
 
             <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
                 <h3>HUDUMA ZINAZOTOLEWA</h3>
-                <ul>
-                    <li><i class="bi bi-check-circle"></i> <span>Kusimamia Sera, Sheria na Kanuni mbali mbali za Ofisi.</span></li>
-                    <li><i class="bi bi-check-circle"></i> <span>Kubuni na kusimamia utekelezaji wa miradi ya maendeleo.</span></li>
-                    <li><i class="bi bi-check-circle"></i> <span>Kudumisha Amani, Ulinzi na Usalama katika Mikoa na Wilaya hadi Shehia.</span></li>
 
+                @if($departmentInfo->status == 1)
+                @if($departmentInfo->departmentName == 'utumishi')
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> <span>{{$departmentInfo->service}}</span></li>
                 </ul>
+                @elseif($departmentInfo->departmentName == 'mipango')
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> <span>{{$departmentInfo->service}}</span></li>
+                </ul>
+                @elseif($departmentInfo->departmentName == 'uratibu')
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> <span>{{$departmentInfo->service}}</span></li>
+                </ul>
+                @elseif($departmentInfo->departmentName == 'idara maalum')
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> <span>{{$departmentInfo->service}}</span></li>
+                </ul>
+                @elseif($departmentInfo->departmentName == 'mrajis')
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> <span>{{$departmentInfo->service}}</span></li>
+                </ul>
+                @else
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> <span>No Data</span></li>
+                </ul>
+                @endif
+                @endif
 
                 <h3>Nyaraka</h3>
-                <ul>
-                    <li><a href="#" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> Description</a></li>
-                    <li><a href="#" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> Description</a></li>
-                    <li><a href="#" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> Description</a></li>
+                @if($docInfo->status == 1)
 
+                @if($docInfo->departmentName == 'utumishi')
+                <ul>
+                    <li><a href="{{ asset('storage/uploads/document_files/'.$docInfo->document)}}" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> {{$docInfo->fileName}}</a></li>
                 </ul>
+                @elseif($docInfo->departmentName == 'mipango')
+                <ul>
+                    <li><a href="{{ asset('storage/uploads/document_files/'.$docInfo->document)}}" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> {{$docInfo->fileName}}</a></li>
+                </ul>
+                @elseif($docInfo->departmentName == 'uratibu')
+                <ul>
+                    <li><a href="{{ asset('storage/uploads/document_files/'.$docInfo->document)}}" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> {{$docInfo->fileName}}</a></li>
+                </ul>
+                @elseif($docInfo->departmentName == 'idara maalum')
+                <ul>
+                    <li><a href="{{ asset('storage/uploads/document_files/'.$docInfo->document)}}" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> {{$docInfo->fileName}}</a></li>
+                </ul>
+                @elseif($docInfo->departmentName == 'mrajis')
+                <ul>
+                    <li><a href="{{ asset('storage/uploads/document_files/'.$docInfo->document)}}" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> {{$docInfo->fileName}}</a></li>
+                </ul>
+                @else
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> <span>No Data</span></li>
+                </ul>
+                @endif
+
+                @endif
+
 
             </div>
 

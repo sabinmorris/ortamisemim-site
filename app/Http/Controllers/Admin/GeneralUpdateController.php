@@ -7,14 +7,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
 use App\Models\Anouncement;
+use App\Models\DepartmentService;
 use App\Models\Leadership;
 use App\Models\MinisterComment;
+use App\Models\PictureCollection;
 use App\Models\Post;
+use App\Models\UploadedDocs;
 use App\Models\Video;
 use Illuminate\Support\Facades\File;
 
 class GeneralUpdateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //Update slide status only
     public function updateslidestatus(Request $request)
     {
@@ -493,4 +500,199 @@ class GeneralUpdateController extends Controller
         
 
     }
+
+    //Function for updating department service status only.
+    public function updatedepartmentservicestatus(Request $request){
+        $departmentInfo = DepartmentService::findOrFail($request->dptserviceId);
+        $departmentInfo->status = $request->status;
+        $departmentInfo->save();
+        if ($departmentInfo) {
+            return response()->json([
+                'message' => 'Status Updated Successfully',
+                'code' => 200,
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Internal Server Error',
+                'code' => 500,
+            ]);
+        }
+        
+    }
+
+    //Function for Updating Deaprtment services.
+    public function updatedepartmentservice(Request $request){
+
+        $departmentInfo = DepartmentService::findOrFail($request->dptmntId);
+        $departmentInfo->departmentName = $request->input('departmentNamee');
+        $departmentInfo->service = $request->input('servicee');
+        $departmentInfo->status = $request->input('status');
+
+        $departmentInfo->update();
+        if ($departmentInfo) {
+            return response()->json([
+                'message' => 'Successfull Department Service Info Updated',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Internal Server Error',
+                'code' => 500
+            ]);
+        }
+        
+
+    }
+
+    //Function for updating upload document status only
+    public function updatedocumentstatus(Request $request){
+
+        $docsInfo = UploadedDocs::findOrFail($request->docsId);
+        $docsInfo->status = $request->status;
+        $docsInfo->save();
+        if ($docsInfo) {
+            return response()->json([
+                'message' => 'Status Updated Successfully',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Internal Server Error',
+                'code' => 500
+            ]);
+        }
+        
+    }
+
+    //Function for Updating uplpoad documents
+    public function updatedocument(Request $request){
+
+        $this->validate($request, [
+            'fileNamee' => ['required', 'string', 'max:255'],
+            'departmentNamee' => ['required'],
+            'documentt' => 'mimes:pdf|max:5120', // max 5120kb
+            
+        ]);
+
+        $docsInfo = UploadedDocs::findOrFail($request->docId);
+        $docsInfo->fileName = $request->input('fileNamee');
+        $docsInfo->departmentName = $request->input('departmentNamee');
+        $docsInfo->status = $request->input('status');
+
+        if ($request->hasFile('documentt')) {
+            $destination_path = 'storage/uploads/document_files/' . $docsInfo->document;
+            if (File::exists($destination_path)) {
+                File::delete($destination_path);
+            }
+            //$request =request(); 
+            $file = $request->file('documentt');
+            //Get filename with extension
+            $filenameWithExt = $request->file('documentt')->getClientOriginalName();
+            //Get file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //File Extension
+            $extension = $file->getClientOriginalExtension();
+
+            $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
+            $file->move('storage/uploads/document_files', $fileNamestoStore);
+        } else {
+            $fileNamestoStore = 'noFile.pdf';
+        }
+
+        if ($request->hasFile('documentt')) {
+
+            $docsInfo->document = $fileNamestoStore;
+        }
+
+        $docsInfo->update();
+
+        if ($docsInfo) {
+            return response()->json([
+                'message' => 'Successifully document info Updated',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Interna Server Error',
+                'code' => 500
+            ]);
+        }
+    }
+
+    //Fuction for updating picture status only.
+    public function updatepicturestatus(Request $request){
+
+        $pictureInfo = PictureCollection::findOrFail($request->picId);
+        $pictureInfo->status = $request->status;
+        $pictureInfo->save();
+        if ($pictureInfo) {
+            return response()->json([
+                'message' => 'Status Updated Successfully',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Internal Server Error',
+                'code' => 500
+            ]);
+        }
+        
+    }
+
+    //Function to update picture for about us page
+    public function updatepicture(Request $request){
+
+        $this->validate($request, [
+            'pictureNamee' => ['required', 'string', 'max:255'],
+            'positionn' => ['required'],
+            'picturee' => 'mimes:webp|nullable|max:5120', // max 5120kb
+            
+        ]);
+
+        $pictureInfo = PictureCollection::findOrFail($request->pictureId);
+        $pictureInfo->pictureName = $request->input('pictureNamee');
+        $pictureInfo->position = $request->input('positionn');
+        $pictureInfo->status = $request->input('status');
+
+        if ($request->hasFile('picturee')) {
+            $destination_path = 'storage/uploads/aboutpictures/' . $pictureInfo->picture;
+            if (File::exists($destination_path)) {
+                File::delete($destination_path);
+            }
+            //$request =request(); 
+            $file = $request->file('picturee');
+            //Get filename with extension
+            $filenameWithExt = $request->file('picturee')->getClientOriginalName();
+            //Get file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //File Extension
+            $extension = $file->getClientOriginalExtension();
+
+            $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
+            $file->move('storage/uploads/aboutpictures', $fileNamestoStore);
+        } else {
+            $fileNamestoStore = 'noImage.webp';
+        }
+
+        if ($request->hasFile('picturee')) {
+
+            $pictureInfo->picture = $fileNamestoStore;
+        }
+
+        $pictureInfo->update();
+
+        if ($pictureInfo) {
+            return response()->json([
+                'message' => 'Successifully picture info Updated',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Interna Server Error',
+                'code' => 500
+            ]);
+        }
+
+    }
+
 }
