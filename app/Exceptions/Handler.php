@@ -45,13 +45,13 @@ class Handler extends ExceptionHandler
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function render($request, Throwable $e)
-    // {
-    //     if ($this->isHttpException($e)) {
-    //         return response()->view('errors.404');
-    //     } else {
-    //         return response()->view('errors.500');
-    //     }
+    public function render($request, Throwable $e)
+    {
+        if ($this->isHttpException($e)) {
+            return response()->view('errors.404');
+        } else {
+            return response()->view('errors.500');
+        }
         
-    // }
+    }
 }
