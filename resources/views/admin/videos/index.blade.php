@@ -75,7 +75,7 @@
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$videoInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$videoInfo->id}}" action="{{Route('manage-video.destroy', $videoInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 

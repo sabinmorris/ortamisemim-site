@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\MinisterComment;
 use Illuminate\Http\Request;
+use App\Models\MinisterComment;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class MinisterController extends Controller
 {
@@ -133,6 +134,15 @@ class MinisterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ministerInfos = MinisterComment::findorFail($id);
+        
+        if ($ministerInfos->minister_image !== 'noImage.webp') {
+
+            //delete image
+            Storage::delete('storage/uploads/minister_images/' . $ministerInfos->minister_image);
+        }
+
+        $ministerInfos->delete();
+        return redirect()->back()->with('message', 'data successfull deleted');
     }
 }

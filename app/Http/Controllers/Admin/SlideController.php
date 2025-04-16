@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Slide;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class SlideController extends Controller
 {
@@ -131,6 +132,15 @@ class SlideController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $slideinfos = Slide::findorFail($id);
+        
+        if ($slideinfos->slide_image !== 'noImage.webp') {
+
+            //delete image
+            Storage::delete('storage/uploads/slide_images/' . $slideinfos->slide_image);
+        }
+
+        $slideinfos->delete();
+        return redirect()->back()->with('message', 'data successfull deleted');
     }
 }

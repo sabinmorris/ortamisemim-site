@@ -111,6 +111,8 @@ class DepartmentServiceConrtoller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $departmentInfos = DepartmentService::findorFail($id);
+        $departmentInfos->delete();
+        return redirect()->back()->with('message', 'data successfull deleted');
     }
 }

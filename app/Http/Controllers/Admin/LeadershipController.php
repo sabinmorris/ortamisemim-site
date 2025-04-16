@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Leadership;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class LeadershipController extends Controller
 {
@@ -135,6 +136,15 @@ class LeadershipController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $leaderInfos = Leadership::findorFail($id);
+        
+        if ($leaderInfos->leader_image !== 'noImage.webp') {
+
+            //delete image
+            Storage::delete('storage/uploads/leader_images/' . $leaderInfos->leader_image);
+        }
+
+        $leaderInfos->delete();
+        return redirect()->back()->with('message', 'data successfull deleted');
     }
 }

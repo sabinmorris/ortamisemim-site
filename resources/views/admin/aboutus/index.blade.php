@@ -78,7 +78,7 @@
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$aboutusInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$aboutusInfo->id}}" action="{{Route('about-us.destroy', $aboutusInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 

@@ -78,7 +78,7 @@
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$anouncementInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$anouncementInfo->id}}" action="{{Route('admin-anouncement.destroy', $anouncementInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 

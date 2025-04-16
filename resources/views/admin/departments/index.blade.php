@@ -76,7 +76,7 @@
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$departmentInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$departmentInfo->id}}" action="{{Route('manage-department.destroy', $departmentInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 

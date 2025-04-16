@@ -111,6 +111,8 @@ class AboutUsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $aboutInfos = AboutUs::findorFail($id);
+        $aboutInfos->delete();
+        return redirect()->back()->with('message', 'data successfull deleted');
     }
 }

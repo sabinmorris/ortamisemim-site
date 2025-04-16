@@ -111,6 +111,8 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $videoInfos = Video::findorFail($id);
+        $videoInfos->delete();
+        return redirect()->back()->with('message', 'data successfull deleted');
     }
 }

@@ -82,7 +82,7 @@
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$ministerInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$ministerInfo->id}}" action="{{Route('minister-description.destroy', $ministerInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 

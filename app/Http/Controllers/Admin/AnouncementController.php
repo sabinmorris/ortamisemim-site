@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Anouncement;
 use Dom\Attr;
+use App\Models\Anouncement;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AnouncementController extends Controller
 {
@@ -131,6 +132,15 @@ class AnouncementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $anouncementInfos = Anouncement::findorFail($id);
+        
+        if ($anouncementInfos->file_name !== 'nofile.pdf') {
+
+            //delete file
+            Storage::delete('storage/uploads/anouncement_docs/' . $anouncementInfos->file_name);
+        }
+
+        $anouncementInfos->delete();
+        return redirect()->back()->with('message', 'data successfull deleted');
     }
 }

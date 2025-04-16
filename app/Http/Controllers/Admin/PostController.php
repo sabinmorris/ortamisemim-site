@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -131,6 +132,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $postinfos = Post::findorFail($id);
+        
+        if ($postinfos->post_image !== 'noImage.webp') {
+
+            //delete image
+            Storage::delete('storage/uploads/post_images/' . $postinfos->post_image);
+        }
+
+        $postinfos->delete();
+        return redirect()->back()->with('message', 'data successfull deleted');
     }
 }

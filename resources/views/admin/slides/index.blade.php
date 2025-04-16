@@ -80,7 +80,7 @@
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$slideInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$slideInfo->id}}" action="{{Route('image-slide.destroy', $slideInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 

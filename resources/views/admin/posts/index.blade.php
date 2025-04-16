@@ -80,7 +80,7 @@
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$postInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$postInfo->id}}" action="{{Route('admin-post.destroy', $postInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 

@@ -84,7 +84,7 @@
 
                                                         &nbsp;&nbsp;
 
-                                                        <form id="delete-form-{{$leaderInfo->id}}" action="#" method="POST" style="display: none">
+                                                        <form id="delete-form-{{$leaderInfo->id}}" action="{{Route('manage-leader.destroy', $leaderInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
 
