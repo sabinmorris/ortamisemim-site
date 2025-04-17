@@ -77,7 +77,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Save') }}
+                                    {{ __('Update') }}
                                 </button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
