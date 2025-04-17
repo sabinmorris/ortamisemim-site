@@ -2,10 +2,11 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -66,4 +67,14 @@ class Handler extends ExceptionHandler
     //     }
         
     // }
+
+    public function render($request, Throwable $e)
+{
+    if ($e instanceof \ErrorException) {
+        $response = response()->view('errors.500', [], 500);
+        return  $this->toIlluminateResponse($response,$e);
+    }
+
+    return parent::render($request, $e);
+}
 }
