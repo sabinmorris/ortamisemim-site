@@ -76,7 +76,7 @@
                                                         &nbsp;&nbsp;
 
                                                         <a href="" class="slide_Edit" data-id="{{$postInfo->id}}" data-toggle="modal" data-target=".post-modal-lg" title="edit"><span class="fa fa-pencil-square" style="color:cornflowerblue;"></span></a>
-                                                        @include('admin.post.edit')
+                                                        @include('admin.posts.edit')
 
                                                         &nbsp;&nbsp;
 
