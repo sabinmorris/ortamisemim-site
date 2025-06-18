@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
@@ -52,13 +53,15 @@ class HomeController extends Controller
             'namee' => ['required', 'string', 'max:255'],
             'emaill' => ['required', 'string', 'email', 'max:255'],
             'phonee' => ['required'],
-            'rolee' => ['required'],
+            //'rolee' => 'required',
             'user_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
-            'statuss' => ['required'],
+            //'status' => 'required'
+            
             
         ]);
 
-        $userinfos = User::findOrFail($request->user_id);
+        if (Auth::user()->role == 'admin') {
+            $userinfos = User::findOrFail($request->user_id);
         $userinfos->name = $request->input('namee');
         $userinfos->email = $request->input('emaill');
         $userinfos->phone = $request->input('phonee');
@@ -103,6 +106,56 @@ class HomeController extends Controller
                 'code' => 500
             ]);
         }
+        } else {
+            $userinfos = User::findOrFail($request->user_id);
+        $userinfos->name = $request->input('namee');
+        $userinfos->email = $request->input('emaill');
+        $userinfos->phone = $request->input('phonee');
+        //$userinfos->role = $request->input('rolee');
+        //$userinfos->status = $request->input('statuss');
+
+        if ($request->hasFile('user_imagee')) {
+            $destination_path = 'storage/uploads/user_images/' .$userinfos->user_image;
+            if (File::exists($destination_path)) {
+                File::delete($destination_path);
+            }
+            //$request =request(); 
+            $file = $request->file('user_imagee');
+            //Get filename with extension
+            $filenameWithExt = $request->file('user_imagee')->getClientOriginalName();
+            //Get file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //File Extension
+            $extension = $file->getClientOriginalExtension();
+
+            $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
+            $file->move('storage/uploads/user_images', $fileNamestoStore);
+        } else {
+            $fileNamestoStore = 'noImage.webp';
+        }
+
+        if ($request->hasFile('user_imagee')) {
+
+            $userinfos->user_image = $fileNamestoStore;
+        }
+
+        $userinfos->update();
+
+        if ($userinfos) {
+            return response()->json([
+                'message' => 'Successifully member info Updated',
+                'code' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Interna Server Error',
+                'code' => 500
+            ]);
+        }
+        }
+        
+
+        
     }
 
     public function updateuserstatus(Request $request)

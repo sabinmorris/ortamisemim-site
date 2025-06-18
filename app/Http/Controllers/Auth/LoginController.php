@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -26,7 +27,30 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    protected function authenticated(Request $request)
+    {
+        
+        
+            if (Auth::user()->role == 'admin') {
+                return redirect('/admin-dashboard')->with('status','Welcome Admin');
+            } elseif (Auth::user()->role == 'editor') {
+                return redirect('/admin-dashboard')->with('status','Welcome Admin');
+            }elseif (Auth::user()->role == 'writer') {
+                return redirect('/admin-dashboard')->with('status','Welcome Admin');
+            }else {
+                return redirect()->back()->with('message', 'Please Login First');
+            }
+        
+        
+        
+    }
+
+    protected function credentials(Request $request)
+    {
+        
+        return ['email' => $request->{$this->username()}, 'password' => $request->password, 'status' => '1'];
+    }
 
     /**
      * Create a new controller instance.

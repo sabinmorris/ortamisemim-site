@@ -22,14 +22,14 @@
                         <div class="x_title">
                             <h2>Users Info</h2>
                             <ul class="nav navbar-right panel_toolbox">
-
+                                @can('isAdmin')
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".member-page-modal-lg">
                                     {{ __('User')}} <i class="fa fa-plus"></i>
                                 </button>
-
+                                @endcan
                                 <!-- call members registrion model -->
                                 @include('auth.register')
-                                
+
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
 
@@ -67,9 +67,11 @@
                                                     <td>
                                                         <img src="{{ asset('storage/uploads/user_images/'.$user->user_image)}}" alt="" width="50px" height="50px;">
                                                     </td>
-                                                    
+
                                                     <td>
+                                                        @can('isAdmin')
                                                         <input type="checkbox" data-id="{{ $user->id }}" name="status" class="switch" {{ $user->status == 1 ? 'checked' : '' }}>
+                                                        @endcan
                                                         {{$user->status? 'Active' : 'Inactive'}}
                                                     </td>
 
@@ -88,7 +90,7 @@
 
 
                                                         </form>
-
+                                                        @can('isAdmin')
                                                         <a href="" onclick="if(confirm('Are you sure,You want to delete this?')){
                                                                 event.preventDefault();
                                                                 document.getElementById('delete-form-{{$user->id}}').submit();
@@ -97,7 +99,7 @@
                                                                 event.preventDefault();
                                                             }" title="delete"><span class="fa fa-trash" style="color:red;"></span>
                                                         </a>
-
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -202,7 +204,7 @@
                     $('#phonee').val(data.userinfo.phone);
                     $('#statuss').val(data.userinfo.status);
                     $('#rolee').val(data.userinfo.role);
-                    $('#user_imagee').val(data.userinfo.user_image);   
+                    $('#user_imagee').val(data.userinfo.user_image);
 
                 }
             });

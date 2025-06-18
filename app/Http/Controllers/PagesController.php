@@ -21,6 +21,7 @@ class PagesController extends Controller
 {
     public function homePage()
     {
+        
         $slideInfos = Slide::all();
         $postInfos = Post::where('post_status', 1)->get();
         $postInfos = Post::orderBy('id', 'desc')->paginate(3);
@@ -78,9 +79,11 @@ class PagesController extends Controller
     public function readmorepost($id)
     {
         $postInfos = Post::orderBy('id', 'desc')->paginate(4);
+        Post::find($id)->increment('view_count');
         $postInfo = Post::find($id);
         $departmentInfos = DepartmentService::all();
-        return view('readmore', compact(['postInfos', 'postInfo', 'departmentInfos']));
+        $videoInfos1 = Video::orderBy('id', 'desc')->paginate(2);
+        return view('readmore', compact(['postInfos', 'postInfo', 'departmentInfos', 'videoInfos1']));
     }
 
     public function readmoreabout()

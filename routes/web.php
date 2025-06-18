@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +41,7 @@ Route::get('maktaba-ya-picha', [PagesController::class, 'photoLibrary'])->name('
 Route::get('soma-zaidi/{id}', [PagesController::class, 'readmorepost'])->name('read_more');
 Route::get('kuhusu-sisi-zaidi', [PagesController::class, 'readmoreabout'])->name('read_more_about');
 Route::get('uongozi', [PagesController::class, 'leadership'])->name('our_leadership');
-Route::get('utumishi-uendeshaji/{departmentName}', [PagesController::class, 'utumishidepartment'])->name('utumishi_department');
+Route::get('idara/{departmentName}', [PagesController::class, 'utumishidepartment'])->name('utumishi_department');
 Route::post('mawasiliano', [PagesController::class, 'sendmessage'])->name('send_message');
 Route::get('sendmail', [PagesController::class, 'sendmail']);
 
@@ -49,8 +50,10 @@ Auth::routes();
 Route::get('/admin-dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('admin-dashboard');
 
 //Middleware Implimentation
-Route::middleware(['isAdmin'])->group(function () {
+Route::middleware(['auth'])->group(function() {
 
+    //Route::get('verifyEmailFirst', [RegisterController::class, 'verifyMailFirst'])->name('verifyEmailFirst');
+    //Route::get('verify/{email}/{verifyToken}', [RegisterController::class, 'sendEmailDone'])->name('sendMailDone');
     Route::get('users', [HomeController::class, 'viewusers'])->name('user_view');
     Route::get('user-profile/{id}', [HomeController::class, 'showuser'])->name('show_user');
     Route::get('edit-user', [HomeController::class, 'edituser'])->name('user_edit');

@@ -22,11 +22,11 @@
                         <div class="x_title">
                             <h2>Posts Info</h2>
                             <ul class="nav navbar-right panel_toolbox">
-                                
+                                @canany(['isAdmin', 'isEditor'])
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".post-page-modal-lg">
                                     {{ __('Post')}} <i class="fa fa-plus"></i>
                                 </button>
-                                
+                                @endcanany
                                 <!-- call members registrion model -->
                                 @include('admin.posts.create')
 
@@ -65,7 +65,7 @@
                                                     <td>
                                                         <img src="{{ asset('storage/uploads/post_images/'.$postInfo->post_image)}}" alt="" width="50px" height="50px;">
                                                     </td>
-
+                                                    
                                                     <td>
                                                         <input type="checkbox" data-id="{{ $postInfo->id }}" name="status" class="switch" {{ $postInfo->post_status == 1 ? 'checked' : '' }}>
                                                         {{$postInfo->post_status? 'Active' : 'Inactive'}}
@@ -222,7 +222,7 @@
             $.ajax({
                 type: "get",
                 dataType: "json",
-                url: "{{Route('admin-post.index')}}"+ "/"+postId+"/edit", //For using Rsource controller
+                url: "{{Route('admin-post.index')}}" + "/" + postId + "/edit", //For using Rsource controller
                 data: {
                     'postId': postId
                 },

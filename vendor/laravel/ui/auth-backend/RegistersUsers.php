@@ -34,7 +34,9 @@ trait RegistersUsers
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        //$this->guard()->login($user);
+        return redirect(url('users'));
+        //return redirect(Route('verifyEmailFirst'));
 
         if ($response = $this->registered($request, $user)) {
             return $response;

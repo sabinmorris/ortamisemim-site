@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <form method="PUT" id="updateuserForm" enctype="multipart/form-data">
                         @csrf
-                        
+
                         <input type="hidden" name="user_id" id="user_id">
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -70,7 +70,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        @can('isAdmin')
                         <div class="row mb-3">
                             <label for="user_role" class="col-md-4 col-form-label text-md-end">{{ __('User Role') }}</label>
                             <div class="col-md-6">
@@ -103,6 +103,7 @@
                                 @enderror
                             </div>
                         </div>
+                        @endcan
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

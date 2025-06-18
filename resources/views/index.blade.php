@@ -78,7 +78,7 @@
             <img src="{{ asset('storage/uploads/post_images/' .$postInfo->post_image)}}" alt="" class="img-fluid">
           </a>
           <div>
-            <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$postInfo->created_at->diffForHumans()}}</span></div>
+            <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$postInfo->created_at->diffForHumans()}}</span> <span style="float: right;"><i class="bi bi-people"></i>{{$postInfo->view_count}}</span></div>
             <h3><a href="single-post.html#">{{$postInfo->post_tittle}}</a></h3>
             @if(substr($postInfo->post_description, 0,200))
             <p>
@@ -132,9 +132,10 @@
 
       <div class="col-md-4">
         <!-- Recent Posts Widget -->
-        <div class="recent-posts-widget widget-item">
+         @include('inc.currentpost')
+        <!-- <div class="recent-posts-widget widget-item"> -->
 
-          <a href="{{Route('events')}}">
+          <!-- <a href="{{Route('events')}}">
             <h3 class="widget-title">Habari Matukio</h3>
           </a>
           @if(count([$postInfos]) > 0)
@@ -146,12 +147,15 @@
               <h4><a href="{{Route('read_more', $postInfo->id)}}">{{$postInfo->post_tittle}}</a></h4>
               <time datetime="2020-01-01">{{ $postInfo->created_at->diffForHumans() }}</time>
             </div>
-          </div><!-- End recent post item-->
-          @endif
+            <span style="float: right;"><i class="bi bi-people"></i>{{$postInfo->view_count}}</span>
+          </div>
+          End recent post item-->
+          <!-- @endif
           @endforeach
-          @endif
+          @endif --> 
 
-        </div><!--/Recent Posts Widget -->
+        <!-- </div> -->
+        <!--/Recent Posts Widget -->
 
         <!-- Recent Video Widget -->
         @include('inc.currentvideo')

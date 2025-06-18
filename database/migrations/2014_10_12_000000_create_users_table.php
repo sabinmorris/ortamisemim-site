@@ -20,9 +20,10 @@ class CreateUsersTable extends Migration
             $table->integer('phone');
             $table->string('role');
             $table->string('user_image');
-            $table->integer('status');
+            $table->boolean('status')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('verifyToken');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -96,6 +96,14 @@ trait AuthenticatesUsers
      */
     protected function credentials(Request $request)
     {
+        // $admin = User::where('email', $request->email)->first();
+        // if (count($admin)) {
+        //     if ($admin->status == 0) {
+        //         return ['email' => 'Inactive', 'password' => 'You are not active user please contact with admin'];
+        //     } else {
+        //         return ['email' => $request->email, 'password' => $request->password, 'status' => 1];
+        //     }
+        // }
         return $request->only($this->username(), 'password');
     }
 
@@ -177,7 +185,7 @@ trait AuthenticatesUsers
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/');
+            : redirect('/admin-login');
     }
 
     /**

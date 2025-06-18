@@ -21,7 +21,7 @@
       <!-- Blog Details Section -->
       <section id="blog-details" class="blog-details section">
         <div class="container">
-
+          
           <article class="article">
 
             <div class="post-img">
@@ -38,7 +38,9 @@
             <div class="meta-top">
               <ul>
                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time datetime="2020-01-01">{{ $postInfo->created_at->diffForHumans() }}</time></li>
+              <li><span style="float: right;"><i class="bi bi-people"></i>{{$postInfo->view_count}}</span></li>
               </ul>
+              
             </div>
             <!-- End meta top -->
           </article>
@@ -51,9 +53,6 @@
     <div class="col-lg-4 sidebar">
 
       <div class="widgets-container">
-        <!-- Blog Author Widget -->
-        <!-- @include('inc.waziriwidget') -->
-        <!--/Blog Author Widget -->
 
         <!-- Recent Posts Widget -->
         @include('inc.currentpost')

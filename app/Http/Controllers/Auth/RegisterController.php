@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Mail\verifyEmail;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\contracts\Mail\Mailable;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -55,7 +59,6 @@ class RegisterController extends Controller
             'phone' => ['required'],
             'role' => ['required'],
             'user_image' => 'mimes:webp|required|max:5120', // max 5120kb
-            'status' => ['required'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -92,9 +95,27 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'role' => $data['role'],
             'user_image' => $fileNamestoStore,
-            'status' => $data['status'],
+            'verifyToken' => Str::random(40),
             // 'password' => Hash::make($data['password']),
         ]);
+
+        // $thisUser = User::findOrFail($user->id);
+        // $this->sendEmail($thisUser);
+        // return $user;
     }
+
+    // public function sendEmail($thisUser){
+    //     Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
+    // }
+
+    // public function verifyMailFirst(){
+    //     return view('auth.verifyEmail');
+    // }
+
+    // public function sendEmailDone($email, $verifyToken){
+    //     return $email;
+    // }
+
+    
     
 }

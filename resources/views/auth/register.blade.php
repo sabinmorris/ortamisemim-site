@@ -87,7 +87,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                             <label for="user_status" class="col-md-4 col-form-label text-md-end">{{ __('Status') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control" name="status" id="status">
@@ -101,7 +101,7 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

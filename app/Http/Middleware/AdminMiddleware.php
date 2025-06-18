@@ -20,11 +20,11 @@ class AdminMiddleware
 
         if (Auth::check()) {
             
-            if (Auth::user()->role == 'admin') {
+            if (Auth::user()->role == 'admin' || 'writer' || 'editor') {
 
                 return $next($request);
             }else{
-                return redirect('/dashboard')->with('message','Access Dinied you are not authorized user');
+                return redirect('/admin-dashboard')->with('message','Access Dinied you are not authorized user');
             }
         }else{
             return redirect()->back()->with('message', 'Please Login First');
