@@ -3,6 +3,12 @@
   <title>{{ config('app.name', 'Or-tamisemim') }}</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
+  <!-- Hidding of google translate banner -->
+  <!-- <style>
+    body > .skiptranslate {
+    display: none;
+}
+  </style> -->
 
   <!-- Favicons -->
   <link href="{{ asset('assets/img/smz_logo.png')}}" rel="icon">

@@ -22,7 +22,7 @@ class PagesController extends Controller
     public function homePage()
     {
         
-        $slideInfos = Slide::all();
+        $slideInfos = Slide::where('status', 1)->orderBy('id', 'desc')->get();
         $postInfos = Post::where('post_status', 1)->get();
         $postInfos = Post::orderBy('id', 'desc')->paginate(3);
         $postInfos1 = Post::orderBy('created_at', 'desc')->limit(1)->get();

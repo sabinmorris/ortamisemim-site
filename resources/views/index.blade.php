@@ -5,7 +5,7 @@
 
 <section id="slider" class="slider section dark-background">
 
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
 
     <div class="swiper init-swiper">
 
@@ -33,7 +33,7 @@
       <div class="swiper-wrapper">
         @if(count([$slideInfos]) > 0)
         @foreach($slideInfos as $slideInfo )
-        <div class="swiper-slide" style="background-image: url('{{ asset("storage/uploads/slide_images/" .$slideInfo->slide_image)}}');">
+        <div class="swiper-slide" style=" background-image: url('{{ asset("storage/uploads/slide_images/" .$slideInfo->slide_image)}}');">
           <div class="content">
             <h2><a href="#">{{$slideInfo->tittle}}</a></h2>
             <p>{{$slideInfo->caption}}.</p>
@@ -50,7 +50,90 @@
 
     </div>
 
+  </div> -->
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    
+    .swiper {
+      width: 69%;
+      height: 75vh; /* Fullscreen slider */
+    }
+    .swiper-slide {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #fff;
+    }
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Auto crop images */
+    }
+    /* Navigation buttons */
+    .swiper-button-next, .swiper-button-prev {
+      color: #fff;
+    }
+    /* Pagination */
+    .swiper-pagination-bullet {
+      background: #fff;
+      opacity: 0.7;
+    }
+    .swiper-pagination-bullet-active {
+      background: #007aff;
+      opacity: 1;
+    }
+  </style>
+
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+  
+    <div class="swiper-wrapper">
+    @if(count([$slideInfos]) > 0)
+    @foreach($slideInfos as $slideInfo )
+      <div class="swiper-slide"><img src="{{ asset('storage/uploads/slide_images/' .$slideInfo->slide_image)}}" alt="Slide 1"></div>
+      @endforeach
+        @endif
+    </div>
+    
+
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Config -->
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      speed: 800,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true // ✅ Pause on hover
+      },
+      slidesPerView: 1,
+      centeredSlides: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      }
+    });
+  </script>
 
 </section><!-- /Slider Section -->
 
@@ -79,12 +162,13 @@
           </a>
           <div>
             <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$postInfo->created_at->diffForHumans()}}</span> <span style="float: right;"><i class="bi bi-people"></i>{{$postInfo->view_count}}</span></div>
-            <h3><a href="single-post.html#">{{$postInfo->post_tittle}}</a></h3>
+            <h3><a href="{{Route('read_more', $postInfo->id)}}">{{$postInfo->post_tittle}}</a></h3>
             @if(substr($postInfo->post_description, 0,200))
             <p>
               {!! htmlspecialchars_decode(substr($postInfo->post_description, 0,255)) !!}
               <hr>
-              <a href="{{Route('read_more', $postInfo->id)}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <!-- class="stretched-link" this class used to keep all page linke with one linke addres define within -->
+              <a href="{{Route('read_more', $postInfo->id)}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
             </p>
             @else
@@ -135,24 +219,7 @@
          @include('inc.currentpost')
         <!-- <div class="recent-posts-widget widget-item"> -->
 
-          <!-- <a href="{{Route('events')}}">
-            <h3 class="widget-title">Habari Matukio</h3>
-          </a>
-          @if(count([$postInfos]) > 0)
-          @foreach($postInfos as $postInfo)
-          @if ($postInfo->post_status == 1)
-          <div class="post-item">
-            <img src="{{ asset('storage/uploads/post_images/' .$postInfo->post_image)}}" alt="" class="flex-shrink-0">
-            <div>
-              <h4><a href="{{Route('read_more', $postInfo->id)}}">{{$postInfo->post_tittle}}</a></h4>
-              <time datetime="2020-01-01">{{ $postInfo->created_at->diffForHumans() }}</time>
-            </div>
-            <span style="float: right;"><i class="bi bi-people"></i>{{$postInfo->view_count}}</span>
-          </div>
-          End recent post item-->
-          <!-- @endif
-          @endforeach
-          @endif --> 
+         
 
         <!-- </div> -->
         <!--/Recent Posts Widget -->

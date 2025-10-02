@@ -3,9 +3,11 @@
 
 <head>
     @include('inc.headerLink')
+    
 </head>
 
 <body class="index-page">
+    
 @include('inc.header')
     <main class="main">
             @yield('content')
