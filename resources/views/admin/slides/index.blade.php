@@ -185,9 +185,9 @@
 
             if (confirm('Are you sure want to save it??')) {
                 $.ajax({
-                    type: "post",
+                    type: "POST",
                     dataType: "json",
-                    url: "{{ route('image-slide.store')}}", //For using Resource Controller
+                    url: "{{Route('image-slide.store')}}", //For using Resource Controller
                     data: new FormData(this),
                     cache: false,
                     processData: false,
@@ -202,7 +202,7 @@
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
-                        }, 3000); // 3000 milliseconds = 3 seconds
+                        }, 2000); // 3000 milliseconds = 3 seconds
 
                     }
                 });
