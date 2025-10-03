@@ -193,7 +193,7 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-
+                        
                         toastr.options.closeButton = true;
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
@@ -218,13 +218,13 @@
             }
         });
         $('.slide_Edit').click(function(e) {
-            // e.preventDefault();
+            e.preventDefault();
             let slideId = $(this).data('id');
 
             $.ajax({
                 type: "get",
                 dataType: "json",
-                url: "{{Route('image-slide.index')}}" + "/" + slideId + "/edit", //For using Rsource controller
+                url: "{{Route('image-slide.index')}}"+ "/"+slideId+"/edit", //For using Rsource controller
                 data: {
                     'slideId': slideId
                 },
@@ -233,7 +233,7 @@
                     $('#tittlee').val(data.slideinfo.tittle);
                     $('#captionn').val(data.slideinfo.caption);
                     $('#statuss').val(data.slideinfo.status);
-                    $('#slide_imagee').val(data.slideinfo.slide_image);
+                    $('#slide_imagee').val(data.slideinfo.slide_image);  
 
                 }
             });
@@ -259,19 +259,17 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        console.log(response);
                         toastr.options.closeButton = true;
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
-                        $('#slidemodal1').modal('hide');
+                        //$('#slidemodal1').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
                         }, 2000); // 2000 milliseconds = 2 seconds
 
-                    },
-                    
+                    }
                 });
             }
         });
