@@ -50,7 +50,7 @@ class SlideController extends Controller
 
         if (request()->hasFile('slide_image')) {
             
-            $request =request(); 
+            //$request =request(); 
             $file = $request->file('slide_image');
             //Get filename with extension
             $filenameWithExt = $request->file('slide_image')->getClientOriginalName();
@@ -60,7 +60,7 @@ class SlideController extends Controller
             $extension = $file->getClientOriginalExtension();
             
             $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
-            $file->move('storage/uploads/slide_images', $fileNamestoStore);
+            $file->storeAs('storage/uploads/slide_images', $fileNamestoStore);
 
         }else{
             $fileNamestoStore = 'noImage.webp';
