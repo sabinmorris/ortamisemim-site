@@ -5,88 +5,101 @@
 
 <section id="slider" class="slider section dark-background">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<style>
-  
-  .swiper {
-    width: 69%;
-    height: 75vh; /* Fullscreen slider */
-  }
-  .swiper-slide {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    color: #fff;
-  }
-  .swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Auto crop images */
-  }
-  /* Navigation buttons */
-  .swiper-button-next, .swiper-button-prev {
-    color: #fff;
-  }
-  /* Pagination */
-  .swiper-pagination-bullet {
-    background: #fff;
-    opacity: 0.7;
-  }
-  .swiper-pagination-bullet-active {
-    background: #007aff;
-    opacity: 1;
-  }
-</style>
-
-
-<!-- Swiper -->
-<div class="swiper mySwiper">
-
-  <div class="swiper-wrapper">
-  @if(count([$slideInfos]) > 0)
-  @foreach($slideInfos as $slideInfo )
-    <div class="swiper-slide"><img src="{{ asset('storage/uploads/slide_images/' .$slideInfo->slide_image)}}" alt="Slide 1"></div>
-    @endforeach
-      @endif
-  </div>
-  
-
-  <!-- Pagination -->
-  <div class="swiper-pagination"></div>
-  
-  <!-- Navigation buttons -->
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-</div>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<!-- Config -->
-<script>
-  const swiper = new Swiper(".mySwiper", {
-    loop: true,
-    speed: 800,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true // ✅ Pause on hover
-    },
-    slidesPerView: 1,
-    centeredSlides: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
+  <style>
+    .swiper {
+      width: 69%;
+      height: 75vh;
+      /* Fullscreen slider */
     }
-  });
-</script>
+
+    .swiper-slide {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Auto crop images */
+    }
+
+    /* Navigation buttons */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #fff;
+    }
+
+    /* Pagination */
+    .swiper-pagination-bullet {
+      background: #fff;
+      opacity: 0.7;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #007aff;
+      opacity: 1;
+    }
+  </style>
+
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+
+    <div class="swiper-wrapper">
+      @if(count([$slideInfos]) > 0)
+      @foreach($slideInfos as $slideInfo )
+      <div class="swiper-slide"><img src="{{ asset('storage/uploads/slide_images/' .$slideInfo->slide_image)}}" alt="Slide 1">
+      
+    </div>
+    <div class="content">
+        <h2><a href="#">{{$slideInfo->tittle}}</a></h2>
+        <p>{{$slideInfo->caption}}.</p>
+      </div>
+      @endforeach
+      @endif
+    </div>
+
+
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Config -->
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      speed: 800,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true // ✅ Pause on hover
+      },
+      slidesPerView: 1,
+      centeredSlides: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      }
+    });
+  </script>
 
 </section><!-- /Slider Section -->
 
@@ -155,7 +168,7 @@
             </div>
           </div>
 
-          <div class="col-lg-8" style ="margin-top: 100px;">
+          <div class="col-lg-8" style="margin-top: 100px;">
             <div class="post-list">
               <p class="mb-4 d-block">{{$ministerInfo->description}}</p>
             </div>
@@ -169,10 +182,10 @@
 
       <div class="col-md-4">
         <!-- Recent Posts Widget -->
-         @include('inc.currentpost')
+        @include('inc.currentpost')
         <!-- <div class="recent-posts-widget widget-item"> -->
 
-         
+
 
         <!-- </div> -->
         <!--/Recent Posts Widget -->
