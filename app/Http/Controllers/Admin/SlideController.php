@@ -45,7 +45,7 @@ class SlideController extends Controller
         $this->validate($request, [
             'tittle' => ['required', 'string', 'max:255'],
             'caption' => ['required', 'string', 'max:255'],
-            'slide_image' => 'mimes:webp|required|max:5120', // max 5120kb
+            //'slide_image' => 'mimes:webp|required|max:5120', // max 5120kb
             
         ]);
 
