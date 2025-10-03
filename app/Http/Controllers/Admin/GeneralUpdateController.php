@@ -98,7 +98,7 @@ class GeneralUpdateController extends Controller
 
         if ($slideInfo) {
             return response()->json([
-                'message' => 'Successifully member info Updated',
+                'message' => 'Successifully slide info Updated',
                 'code' => 200
             ]);
         } else {

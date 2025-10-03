@@ -16,9 +16,9 @@
                             <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('Tittle') }}</label>
 
                             <div class="col-md-6">
-                                <input id="tittlee" name="tittlee" type="text" class="form-control @error('tittle') is-invalid @enderror" value="{{ old('tittle') }}" required autocomplete="tittle" autofocus>
+                                <input id="tittlee" name="tittlee" type="text" class="form-control @error('tittlee') is-invalid @enderror" value="{{ old('tittlee') }}" required autocomplete="tittlee" autofocus>
 
-                                @error('tittle')
+                                @error('tittlee')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -31,7 +31,7 @@
 
                             <div class="col-md-6">
                                 <textarea id="captionn" name="captionn" class="textarea" placeholder="Enter Caption" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                @error('caption')
+                                @error('captionn')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -42,10 +42,10 @@
                             <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('Slide image') }}</label>
 
                             <div class="col-md-6">
-                                <input type="file" id="slide_imagee" name="slide_imagee" class="form-control @error('slide_image') is-invalid @enderror"
-                                     value="" autocomplete="slide_image" autofocus>
+                                <input type="file" id="slide_imagee" name="slide_imagee" class="form-control @error('slide_imagee') is-invalid @enderror"
+                                     value="" autocomplete="slide_imagee" autofocus>
 
-                                @error('slide_image')
+                                @error('slide_imagee')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -60,7 +60,7 @@
                                     <option value="1">{{ __('Active')}}</option>
                                     <option value="0">{{ __('In Active')}}</option>
                                 </select>
-                                @error('user_status')
+                                @error('statuss')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
