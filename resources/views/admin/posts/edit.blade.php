@@ -43,7 +43,7 @@
 
                             <div class="col-md-6">
                                 <input type="file" id="post_imagee" name="post_imagee" class="form-control @error('post_imagee') is-invalid @enderror"
-                                     value=""autocomple te="post_imagee" autofocus>
+                                     value=""autocomplete="post_imagee" autofocus>
 
                                 @error('post_imagee')
                                 <span class="invalid-feedback" role="alert">

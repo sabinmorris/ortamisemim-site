@@ -249,7 +249,6 @@
         });
         $('#updateSlideForm').on('submit', function(e) {
             //e.preventDefault();
-
             if (confirm('Are you sure want to update??')) {
                 $.ajax({
                     type: "POST",
@@ -260,7 +259,7 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-
+                        console.log(response);
                         toastr.options.closeButton = true;
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
@@ -271,7 +270,10 @@
                             document.location.reload();
                         }, 2000); // 2000 milliseconds = 2 seconds
 
-                    }
+                    },
+                    error: function(xhr) {
+        console.log(xhr.responseJSON.errors); // Shows validation errors
+    }
                 });
             }
         });

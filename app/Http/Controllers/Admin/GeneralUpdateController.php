@@ -86,7 +86,9 @@ class GeneralUpdateController extends Controller
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/slide_images', $fileNamestoStore);
-        } 
+        } else {
+            $fileNamestoStore = 'noImage.webp';
+        }
 
         if ($request->hasFile('slide_imagee')) {
 
