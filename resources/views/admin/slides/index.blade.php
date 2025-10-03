@@ -271,9 +271,7 @@
                         }, 2000); // 2000 milliseconds = 2 seconds
 
                     },
-                    error: function(xhr) {
-                        console.log(xhr.responseJSON.errors); // Shows validation errors
-                    }
+                    
                 });
             }
         });
