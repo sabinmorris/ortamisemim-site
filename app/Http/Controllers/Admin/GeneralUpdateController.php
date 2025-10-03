@@ -62,7 +62,7 @@ class GeneralUpdateController extends Controller
             'tittlee' => ['required', 'string', 'max:255'],
             'captionn' => ['required', 'string', 'max:255'],
             'slide_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
-            // 'statuss' => 'required'
+            // 'statuss' => 'required',
 
         ]);
 
@@ -177,7 +177,7 @@ class GeneralUpdateController extends Controller
 
         if ($postInfo) {
             return response()->json([
-                'message' => 'Successifully member info Updated',
+                'message' => 'Successifully post info Updated',
                 'code' => 200
             ]);
         } else {

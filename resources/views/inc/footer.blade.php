@@ -4,7 +4,7 @@
 <div class="container footer-top">
   <div class="row gy-4">
     <div class="col-lg-4 col-md-6 footer-about">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center" translate="no">
       <img src="assets/img/smz_logo.png" alt="">
         <span class="sitename">Or-Tamisemim</span>
       </a>
@@ -68,7 +68,7 @@
 </div>
 
 <div class="container copyright text-center mt-4">
-  <p>© <span>Copyright</span> <strong class="px-1 sitename">Or-Tamisemim</strong> <span>All Rights Reserved</span></p>
+  <p>© <span>Copyright</span> <strong class="px-1 sitename" translate="no">Or-Tamisemim</strong> <span>All Rights Reserved</span></p>
   <div class="credits">
     Designed by <a href="{{Route('/')}}">Or-Tamisemim</a> Distributed by  <a href="https://tamisemim.go.tz">ThemeTawala</a>
   </div>

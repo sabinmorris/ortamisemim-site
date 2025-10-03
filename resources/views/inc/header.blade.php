@@ -1,7 +1,7 @@
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container position-relative d-flex align-items-center justify-content-between">
 
-    <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0">
+    <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
       <!-- Uncomment the line below if you also wish to use an image logo -->
       <img src="assets/img/zanzibar-flag.webp" alt="">
       <h1 id="title" class="sitename">Or-Tamisemim</h1>
@@ -40,7 +40,7 @@
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
-    <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0">
+    <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
       <!-- Uncomment the line below if you also wish to use an image logo -->
       <img src="assets/img/smz_logo.png" alt="">
       <h1 id="title" class="sitename">Or-Tamisemim</h1>
