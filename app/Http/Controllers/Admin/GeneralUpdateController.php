@@ -60,7 +60,7 @@ class GeneralUpdateController extends Controller
         $this->validate($request, [
             'tittlee' => ['required', 'string', 'max:255'],
             'captionn' => ['required', 'string', 'max:255'],
-            'slide_imagee' => 'mimes:webp|nullable|max:5120',
+            //'slide_imagee' => 'mimes:webp|nullable|max:5120',
              'statuss' => 'required',
             //  'slide_imagee' => 'nullable|mimes:webp|max:5120' // max 5120kb
         ]);
@@ -86,9 +86,7 @@ class GeneralUpdateController extends Controller
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/slide_images', $fileNamestoStore);
-        } else {
-            $fileNamestoStore = 'noImage.webp';
-        }
+        } 
 
         if ($request->hasFile('slide_imagee')) {
 
