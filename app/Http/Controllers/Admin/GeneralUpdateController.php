@@ -58,13 +58,13 @@ class GeneralUpdateController extends Controller
     public function updateslide(Request $request)
     {
 
-        $this->validate($request, [
-            //'tittlee' => ['required', 'string', 'max:255'],
-            //'captionn' => ['required', 'string', 'max:255'],
-            'slide_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
-            // 'statuss' => 'required',
+        // $this->validate($request, [
+        //     //'tittlee' => ['required', 'string', 'max:255'],
+        //     //'captionn' => ['required', 'string', 'max:255'],
+        //     'slide_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
+        //     // 'statuss' => 'required',
 
-        ]);
+        // ]);
 
         $slideInfo = Slide::findOrFail($request->slideid);
         $slideInfo->tittle = $request->input('tittlee');
