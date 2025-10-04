@@ -42,7 +42,7 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $this->validate($request, [
             'tittle' => ['required', 'string', 'max:255'],
             'caption' => ['required', 'string', 'max:255'],
             'slide_image' => 'mimes:webp|required|max:5120', // max 5120kb
