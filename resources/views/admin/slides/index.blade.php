@@ -205,7 +205,7 @@
 
                     },
                     error: function(response) {
-                        //console.log(xhr.responseJSON.errors); // Shows validation errors
+                        console.log(response); // Shows validation errors
                         toastr.options.closeButton = true;
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
