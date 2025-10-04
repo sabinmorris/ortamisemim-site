@@ -6,6 +6,7 @@ use App\Models\Slide;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class SlideController extends Controller
 {
@@ -42,15 +43,28 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'tittle' => ['required', 'string', 'max:255'],
             'caption' => ['required', 'string', 'max:255'],
-            'slide_image' => 'mimes:webp|required|max:5120', // max 5120kb
-            
+            'slide_image' => 'required|mimes:webp|max:5120', // Only allow webp files
+        ], [
+            'slide_image.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'slide_image.required' => 'Please upload an image before submitting.',
+            'slide_image.max' => 'Image size must not exceed 5MB.',
         ]);
 
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
+
         if (request()->hasFile('slide_image')) {
-            
+
             //$request =request(); 
             $file = $request->file('slide_image');
             //Get filename with extension
@@ -59,11 +73,10 @@ class SlideController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
             $extension = $file->getClientOriginalExtension();
-            
-            $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
-            $file->move('storage/uploads/slide_images', $fileNamestoStore);
 
-        }else{
+            $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
+            $file->move('storage/uploads/slide_images', $fileNamestoStore);
+        } else {
             $fileNamestoStore = 'noImage.webp';
         }
 
@@ -74,17 +87,17 @@ class SlideController extends Controller
 
         $slideInfo->save();
 
-        if ($slideInfo) {
+        if ($slideInfo->save()) {
             return response()->json([
                 'message' => 'successifully Slide image info saved',
                 'data' => $slideInfo,
                 'code' => 200
-            ]);
-        }else{
+            ], 200);
+        } else {
             return response()->json([
                 'message' => 'Interna Server Error',
                 'code' => 500
-            ]);
+            ], 500);
         }
     }
 
@@ -109,8 +122,8 @@ class SlideController extends Controller
     {
         $slideinfos = Slide::findOrFail($id);
         return response()->json([
-        'slideinfo'=> $slideinfos
-     ]);
+            'slideinfo' => $slideinfos
+        ]);
     }
 
     /**
@@ -134,7 +147,7 @@ class SlideController extends Controller
     public function destroy($id)
     {
         $slideinfos = Slide::findorFail($id);
-        
+
         if ($slideinfos->slide_image !== 'noImage.webp') {
 
             //delete image

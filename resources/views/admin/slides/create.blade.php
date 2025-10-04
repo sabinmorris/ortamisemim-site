@@ -47,7 +47,7 @@
                             <div class="col-md-6">
                                 <input id="slide_image" type="file" class="form-control @error('slide_image') is-invalid @enderror"
                                     name="slide_image" value="" required autocomplete="slide_image" autofocus>
-
+                                    <span class="text-danger" id="tittle_error"></span>
                                 @error('slide_image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

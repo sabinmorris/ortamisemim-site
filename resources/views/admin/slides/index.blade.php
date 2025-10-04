@@ -204,13 +204,18 @@
                         }, 2000); // 3000 milliseconds = 3 seconds
 
                     },
-                    error: function(response) {
-                        //console.log(xhr.responseJSON.errors); // Shows validation errors
-                        toastr.options.closeButton = true;
-                        toastr.options.closeMethod = 'fadeOut';
-                        toastr.options.closeDuration = 100;
-                        toastr.error(response.message);
-                        $('#slidemodal').modal('hide');
+                    error: function(xhr) {
+
+                        if (xhr.status === 422) {
+                            // Laravel validation errors
+                            let errors = xhr.responseJSON.errors;
+                            $.each(errors, function(field, messages) {
+                                toastr.error(messages[0], field.toUpperCase() + ' Error');
+                            });
+                        } else {
+                            toastr.error(xhr.responseJSON?.message || 'Unexpected error occurred.');
+                        }
+
                     }
                 });
             }
