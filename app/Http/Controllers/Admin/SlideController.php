@@ -20,7 +20,7 @@ class SlideController extends Controller
      */
     public function index()
     {
-        $slideInfos = Slide::all();
+        $slideInfos = Slide::orderBy('id', 'desc')->get();
         return view('admin.slides.index', compact(['slideInfos']));
     }
 
@@ -45,12 +45,13 @@ class SlideController extends Controller
         $this->validate($request, [
             'tittle' => ['required', 'string', 'max:255'],
             'caption' => ['required', 'string', 'max:255'],
-            //'slide_image' => 'nullable|image|mimes:webp|max:5120',//'mimes:webp|required|max:5120', // max 5120kb 
+            'slide_image' => 'mimes:webp|required|max:5120', // max 5120kb
+            
         ]);
 
         if (request()->hasFile('slide_image')) {
             
-            //$request =request(); 
+            $request =request(); 
             $file = $request->file('slide_image');
             //Get filename with extension
             $filenameWithExt = $request->file('slide_image')->getClientOriginalName();
@@ -60,7 +61,7 @@ class SlideController extends Controller
             $extension = $file->getClientOriginalExtension();
             
             $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
-            $file->storeAs('storage/uploads/slide_images', $fileNamestoStore);
+            $file->move('storage/uploads/slide_images', $fileNamestoStore);
 
         }else{
             $fileNamestoStore = 'noImage.webp';

@@ -181,7 +181,7 @@
             }
         });
         $('#slideCreateForm').on('submit', function(e) {
-            //e.preventDefault();
+            e.preventDefault();
 
             if (confirm('Are you sure want to save it??')) {
                 $.ajax({
@@ -193,12 +193,11 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        
                         toastr.options.closeButton = true;
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
-                        $('#slidemodal').modal('hide');
+                        //$('#slidemodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
