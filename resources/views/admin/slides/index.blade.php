@@ -197,7 +197,7 @@
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
-                        //$('#slidemodal').modal('hide');
+                        $('#slidemodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
@@ -205,11 +205,12 @@
 
                     },
                     error: function(response) {
-                        console.log(response); // Shows validation errors
+                        //console.log(xhr.responseJSON.errors); // Shows validation errors
                         toastr.options.closeButton = true;
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.error(response.message);
+                        $('#slidemodal').modal('hide');
                     }
                 });
             }
