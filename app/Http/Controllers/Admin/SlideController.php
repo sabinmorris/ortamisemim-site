@@ -51,7 +51,7 @@ class SlideController extends Controller
 
         if (request()->hasFile('slide_image')) {
             
-            $request =request(); 
+            //$request =request(); 
             $file = $request->file('slide_image');
             //Get filename with extension
             $filenameWithExt = $request->file('slide_image')->getClientOriginalName();

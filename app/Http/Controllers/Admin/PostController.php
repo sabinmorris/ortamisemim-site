@@ -51,7 +51,7 @@ class PostController extends Controller
 
         if (request()->hasFile('post_image')) {
             
-            $request =request(); 
+            //$request =request(); 
             $file = $request->file('post_image');
             //Get filename with extension
             $filenameWithExt = $request->file('post_image')->getClientOriginalName();
