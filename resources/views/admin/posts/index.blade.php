@@ -179,7 +179,7 @@
             }
         });
         $('#postCreateForm').on('submit', function(e) {
-            //e.preventDefault();
+            e.preventDefault();
 
             if (confirm('Are you sure want to save it??')) {
                 $.ajax({
