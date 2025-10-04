@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Slide;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\AboutUs;
-use App\Models\Anouncement;
-use App\Models\DepartmentService;
-use App\Models\Leadership;
-use App\Models\MinisterComment;
-use App\Models\PictureCollection;
 use App\Models\Post;
-use App\Models\UploadedDocs;
+use App\Models\Slide;
 use App\Models\Video;
+use App\Models\AboutUs;
+use App\Models\Leadership;
+use App\Models\Anouncement;
+use App\Models\UploadedDocs;
+use Illuminate\Http\Request;
+use App\Models\MinisterComment;
+use App\Models\DepartmentService;
+use App\Models\PictureCollection;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class GeneralUpdateController extends Controller
 {
@@ -57,13 +58,33 @@ class GeneralUpdateController extends Controller
     //Update slides info
     public function updateslide(Request $request)
     {
-        $this->validate($request, [
+
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'tittlee' => ['required', 'string', 'max:255'],
             'captionn' => ['required', 'string', 'max:255'],
-            'slide_imagee' => 'mimes:webp|nullable|max:5120',
-             'statuss' => 'required'
-            
+            'slide_imagee' => 'nullable|mimes:webp|max:5120', // Only allow webp files
+            'statuss' => 'required',
+        ], [
+            'slide_imagee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'slide_imagee.required' => 'Please upload an image before submitting.',
+            'slide_imagee.max' => 'Image size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
+        // $this->validate($request, [
+        //     'tittlee' => ['required', 'string', 'max:255'],
+        //     'captionn' => ['required', 'string', 'max:255'],
+        //     'slide_imagee' => 'mimes:webp|nullable|max:5120',
+        //      'statuss' => 'required'
+            
+        // ]);
 
         $slideInfo = Slide::findOrFail($request->slideid);
         $slideInfo->tittle = $request->input('tittlee');
