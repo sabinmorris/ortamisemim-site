@@ -260,7 +260,7 @@
             }
         });
         $('#updateSlideForm').on('submit', function(e) {
-            //e.preventDefault();
+            e.preventDefault();
             if (confirm('Are you sure want to update??')) {
                 $.ajax({
                     type: "POST",
