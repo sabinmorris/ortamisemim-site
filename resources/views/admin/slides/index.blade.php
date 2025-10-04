@@ -203,6 +203,13 @@
                             document.location.reload();
                         }, 2000); // 3000 milliseconds = 3 seconds
 
+                    },
+                    error: function(response) {
+                        //console.log(xhr.responseJSON.errors); // Shows validation errors
+                        toastr.options.closeButton = true;
+                        toastr.options.closeMethod = 'fadeOut';
+                        toastr.options.closeDuration = 100;
+                        toastr.error(response.message);
                     }
                 });
             }
@@ -223,7 +230,7 @@
             $.ajax({
                 type: "get",
                 dataType: "json",
-                url: "{{Route('image-slide.index')}}"+ "/"+slideId+"/edit", //For using Rsource controller
+                url: "{{Route('image-slide.index')}}" + "/" + slideId + "/edit", //For using Rsource controller
                 data: {
                     'slideId': slideId
                 },
@@ -232,7 +239,7 @@
                     $('#tittlee').val(data.slideinfo.tittle);
                     $('#captionn').val(data.slideinfo.caption);
                     $('#statuss').val(data.slideinfo.status);
-                    $('#slide_imagee').val(data.slideinfo.slide_image);  
+                    $('#slide_imagee').val(data.slideinfo.slide_image);
 
                 }
             });
