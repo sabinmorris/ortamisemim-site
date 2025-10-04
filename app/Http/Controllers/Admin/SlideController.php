@@ -48,7 +48,6 @@ class SlideController extends Controller
             'slide_image' => 'mimes:webp|required|max:5120', // max 5120kb
             
         ]);
-
         if (request()->hasFile('slide_image')) {
             
             //$request =request(); 
@@ -67,24 +66,54 @@ class SlideController extends Controller
             $fileNamestoStore = 'noImage.webp';
         }
 
-        $slideInfo = new Slide();
-        $slideInfo->tittle = $request->input('tittle');
-        $slideInfo->caption = $request->input('caption');
-        $slideInfo->slide_image = $fileNamestoStore;
+        $slideInfo = Slide::create([
+            'tittle' => $request->tittle,
+            'caption' => $request->caption,
+            'slide_image' => $fileNamestoStore,
+        ]);
+    
+        return response()->json([
+            'message' => 'Slide saved successfully',
+            'data' => $slideInfo,
+            'code' => 200
+        ]);
 
-        $slideInfo->save();
+        // if (request()->hasFile('slide_image')) {
+            
+        //     //$request =request(); 
+        //     $file = $request->file('slide_image');
+        //     //Get filename with extension
+        //     $filenameWithExt = $request->file('slide_image')->getClientOriginalName();
+        //     //Get file name
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     //File Extension
+        //     $extension = $file->getClientOriginalExtension();
+            
+        //     $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
+        //     $file->move('storage/uploads/slide_images', $fileNamestoStore);
 
-        if ($slideInfo) {
-            return response()->json([
-                'message' => 'successifully Slide image info saved',
-                'code' => 200
-            ]);
-        }else{
-            return response()->json([
-                'message' => 'Interna Server Error',
-                'code' => 500
-            ]);
-        }
+        // }else{
+        //     $fileNamestoStore = 'noImage.webp';
+        // }
+
+        // $slideInfo = new Slide();
+        // $slideInfo->tittle = $request->input('tittle');
+        // $slideInfo->caption = $request->input('caption');
+        // $slideInfo->slide_image = $fileNamestoStore;
+
+        // $slideInfo->save();
+
+        // if ($slideInfo) {
+        //     return response()->json([
+        //         'message' => 'successifully Slide image info saved',
+        //         'code' => 200
+        //     ]);
+        // }else{
+        //     return response()->json([
+        //         'message' => 'Interna Server Error',
+        //         'code' => 500
+        //     ]);
+        // }
     }
 
     /**
