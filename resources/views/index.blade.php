@@ -56,11 +56,10 @@
       @if(count([$slideInfos]) > 0)
       @foreach($slideInfos as $slideInfo )
       <div class="swiper-slide"><img src="{{ asset('storage/uploads/slide_images/' .$slideInfo->slide_image)}}" alt="Slide 1">
-      
-    </div>
-    <div class="content">
-        <h2><a href="#">{{$slideInfo->tittle}}</a></h2>
-        <p>{{$slideInfo->caption}}.</p>
+        <div class="content">
+          <h2><a href="#">{{$slideInfo->tittle}}</a></h2>
+          <p>{{$slideInfo->caption}}.</p>
+        </div>
       </div>
       @endforeach
       @endif
