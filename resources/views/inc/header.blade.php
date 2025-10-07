@@ -72,13 +72,6 @@
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
-    <!-- Search Widget -->
-    <div class="search-widget">
-      <form action="">
-        <input type="text">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!--/Search Widget -->
 
     <!-- <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
       <img src="assets/img/smz_logo.png" alt="">
@@ -95,6 +88,12 @@
         </select>
       </div>
     </div>
-
+    <!-- Search Widget -->
+    <div class="search-widget">
+      <form action="">
+        <input type="text">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!--/Search Widget -->
   </div>
 </header>
