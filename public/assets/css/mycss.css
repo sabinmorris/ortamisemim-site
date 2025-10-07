@@ -1,0 +1,121 @@
+.neon-mirror-blue {
+    background: radial-gradient(circle at top left, #00bfff, #003cff 80%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    /* text-align: center; */
+    box-shadow:
+      0 0 20px #00bfff,
+      0 0 40px #0099ff,
+      inset 0 0 10px rgba(0, 204, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .neon-mirror-blue::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent 70%);
+    transform: rotate(25deg);
+    animation: neonMirrorShine 6s linear infinite;
+  }
+  
+  @keyframes neonMirrorShine {
+    0% { transform: translateX(-100%) rotate(25deg); }
+    100% { transform: translateX(100%) rotate(25deg); }
+  }
+  
+
+.blue-background {
+    /* background-color: #0F70E7; */
+    --background-color: blue;
+    --default-color: #ffffff;
+    --heading-color: #ffffff;
+    --surface-color: #252525;
+    --contrast-color: #ffffff;
+}
+
+.align-items-center {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+  }
+
+  #header {
+    position: sticky;
+    top: 100px;
+    /* Height of your image banner */
+    z-index: 1000;
+  }
+
+  ul li a:hover {
+    background-color: #0d6efd;
+    color: #fff;
+  }
+
+  /* === Submenu Hover === */
+  ul li ul li a:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  /* === RIGHT-SIDE SUBMENU === */
+  #navmenu ul li ul li ul {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    /* ✅ opens submenu to the right */
+    margin-left: 2px;
+    display: none;
+    /* background: #0059b3; */
+  }
+
+  #navmenu ul li ul li:hover>ul {
+    display: block;
+  }
+
+  /* Optional transitions for smooth appearance */
+  #navmenu ul ul {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(5px);
+    transition: all 0.25s ease;
+  }
+
+  #navmenu ul li:hover>ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  #navmenu ul li ul li:hover>ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Mobile support (optional) */
+  @media (max-width: 992px) {
+    #navmenu ul li {
+      display: block;
+    }
+
+    #navmenu ul li ul {
+      position: static;
+    }
+
+    #navmenu ul li ul li ul {
+      position: static;
+    }
+    
+    

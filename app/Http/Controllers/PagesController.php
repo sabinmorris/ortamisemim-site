@@ -107,9 +107,23 @@ class PagesController extends Controller
         $postInfos = Post::orderBy('id', 'desc')->paginate(3);
         $anouncementInfos = Anouncement::all();
         $departmentInfos = DepartmentService::all();
+        $depInfos = DepartmentService::where('departmentName', $departmentName)->where('status', 1)->get();
+        $docInfos = UploadedDocs::where('departmentName', $departmentName)->where('status', 1)->get();
         $departmentInfo = DepartmentService::orWhere('departmentName', $departmentName)->first();
-        $docInfo = UploadedDocs::orWhere('departmentName', $departmentName)->first();
-        return view('pages.utumishi', compact(['postInfos', 'anouncementInfos', 'departmentInfos', 'departmentInfo', 'docInfo']));
+        return view('pages.serviceinfo', compact(['postInfos', 'anouncementInfos', 'departmentInfos', 'depInfos', 'docInfos','departmentInfo']));
+        
+    }
+
+    //Function to show the uploaded document of some department
+    public function showdepartmentdocx($departmentName)
+    {
+        $postInfos = Post::where('post_status', 1)->get();
+        $postInfos = Post::orderBy('id', 'desc')->paginate(3);
+        $anouncementInfos = Anouncement::all();
+        $departmentInfos = DepartmentService::all();
+        $uplodedDocx =  UploadedDocs::where('departmentName', $departmentName)->where('status', 1)->get();
+        $departmentInfo = DepartmentService::orWhere('departmentName', $departmentName)->first();
+        return view('pages.docinfo', compact(['postInfos','postInfos','anouncementInfos','departmentInfos','uplodedDocx','departmentInfo']));
     }
 
     //Function to send message 

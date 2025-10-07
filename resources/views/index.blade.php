@@ -5,101 +5,32 @@
 
 <section id="slider" class="slider section dark-background">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+  <div id="wowslider-container1">
 
-  <style>
-    .swiper {
-      width: 69%;
-      height: 75vh;
-      /* Fullscreen slider */
-    }
-
-    .swiper-slide {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2rem;
-      color: #fff;
-    }
-
-    .swiper-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      /* Auto crop images */
-    }
-
-    /* Navigation buttons */
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #fff;
-    }
-
-    /* Pagination */
-    .swiper-pagination-bullet {
-      background: #fff;
-      opacity: 0.7;
-    }
-
-    .swiper-pagination-bullet-active {
-      background: #007aff;
-      opacity: 1;
-    }
-  </style>
-
-
-  <!-- Swiper -->
-  <div class="swiper mySwiper">
-
-    <div class="swiper-wrapper">
-      @if(count([$slideInfos]) > 0)
+    <div class="ws_images">
+      @if(count($slideInfos) > 0)
       @foreach($slideInfos as $slideInfo )
-      <div class="swiper-slide"><img src="{{ asset('storage/uploads/slide_images/' .$slideInfo->slide_image)}}" alt="Slide 1">
-        <div class="content">
-          <h2><a href="#">{{$slideInfo->tittle}}</a></h2>
-          <p>{{$slideInfo->caption}}.</p>
-        </div>
-      </div>
+      <ul>
+        <li><img src="{{ asset('storage/uploads/slide_images/' .$slideInfo->slide_image)}}" alt="{{$slideInfo->tittle}}" title="{{$slideInfo->tittle}}"
+            id="wows1_0" />{{$slideInfo->caption}}.
+        </li>
+      </ul>
       @endforeach
       @endif
     </div>
 
-
-    <!-- Pagination -->
-    <div class="swiper-pagination"></div>
-
-    <!-- Navigation buttons -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <div class="ws_bullets">
+      <div>
+        @if(count($slideInfos) > 0)
+        @foreach($slideInfos as $slideInfo )
+        <a href="#" title="{{$slideInfo->tittle}}"></a>
+        @endforeach
+        @endif
+      </div>
+    </div>
+    <div class="ws_shadow"></div>
   </div>
-
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <!-- Config -->
-  <script>
-    const swiper = new Swiper(".mySwiper", {
-      loop: true,
-      speed: 800,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true // ✅ Pause on hover
-      },
-      slidesPerView: 1,
-      centeredSlides: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      }
-    });
-  </script>
-
 </section><!-- /Slider Section -->
 
 

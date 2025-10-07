@@ -1,12 +1,17 @@
+<div class=" align-items-center" style="position: sticky;
+  top: 0;
+  z-index: 900;">
+  <img src="{{asset('assets/img/BURNNER.webp')}}" style="width: 100%; display: block;">
+</div>
+
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container position-relative d-flex align-items-center justify-content-between">
 
     <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
       <!-- Uncomment the line below if you also wish to use an image logo -->
-      <img src="assets/img/zanzibar-flag.webp" alt="">
-      <h1 id="title" class="sitename">Or-Tamisemim</h1>
+      <img src="{{asset('assets/img/zanzibar-flag.webp')}}" alt="">
+      <!-- <h1 id="title" class="sitename">Or-Tamisemim</h1> -->
     </a>
-
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="{{Route('/')}}" class="active">Home</a></li>
@@ -17,7 +22,34 @@
           <ul>
             <li><a href="{{Route('video_Lebo')}}">Video</a></li>
             <li><a href="{{Route('photo_Lebo')}}">Picha</a></li>
+            <li class="dropdown">
+              <a class="dropdown-item" href="#"> Nyaraka &raquo; </a>
+              @if(count([$departmentInfos]) > 0)
+              @foreach($departmentInfos as $departmentInfo)
+              <ul class="dropdown-menu dropdown-submenu">
+                <li>
+                  <a class="dropdown-item" href="{{Route('show_document', ['departmentName' => 'uratibu'])}}">Tawala za Mikoa</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{Route('show_document', ['departmentName' => 'mipango'])}}">Sera & Mipango</a>
+                </li>
+                <!-- <li>
+            <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+            <ul class="dropdown-menu dropdown-submenu">
+              <li>
+                <a class="dropdown-item" href="#">Multi level 1</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Multi level 2</a>
+              </li>
+            </ul>
+          </li> -->
+              </ul>
+              @endforeach
+              @endif
+            </li>
           </ul>
+
         </li>
         <li class="dropdown"><a href="#"><span>Idara</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           @if(count([$departmentInfos]) > 0)
@@ -25,11 +57,11 @@
 
 
           <ul>
-            <li><a href="{{Route('utumishi_department', $departmentInfo->departmentName ='utumishi')}}">Utumishi na Uendeshaji</a></li>
-            <li><a href="{{Route('utumishi_department', $departmentInfo->departmentName ='mipango')}}">Mipango Sera na Utafiti</a></li>
-            <li><a href="{{Route('utumishi_department', $departmentInfo->departmentName ='uratibu')}}">Tawala za Mikoa na Serikali za Mitaa</a></li>
-            <li><a href="{{Route('utumishi_department', $departmentInfo->departmentName ='idara maalum')}}">Idara Maalum</a></li>
-            <li><a href="{{Route('utumishi_department', $departmentInfo->departmentName ='mrajis')}}">Mrajis</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'utumishi'])}}">Utumishi na Uendeshaji</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'mipango'])}}">Mipango Sera na Utafiti</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'uratibu'])}}">Tawala za Mikoa na Serikali za Mitaa</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'idara maalum'])}}">Idara Maalum</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'mrajis'])}}">Mrajis</a></li>
           </ul>
 
 
@@ -40,11 +72,18 @@
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
-    <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
+    <!-- Search Widget -->
+    <div class="search-widget">
+      <form action="">
+        <input type="text">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!--/Search Widget -->
+
+    <!-- <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
       <img src="assets/img/smz_logo.png" alt="">
       <h1 id="title" class="sitename">Or-Tamisemim</h1>
-    </a>
+    </a> -->
 
     <!-- Simple language switcher -->
     <div class="language-switcher me-3">

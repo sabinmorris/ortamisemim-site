@@ -3,17 +3,8 @@
   <title>{{ config('app.name', 'Or-tamisemim') }}</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
-  <!-- Hidding of google translate banner -->
-  <!-- <style>
-    body > .skiptranslate {
-    display: none;
-}
-  </style> -->
-
   <!-- Favicons -->
   <link href="{{ asset('assets/img/smz_logo.png')}}" rel="icon">
-  <!-- <link href="{{ asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon"> -->
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="">
@@ -27,6 +18,13 @@
 
   <!-- Main CSS File -->
   <link href="{{ asset('assets/css/main.css')}}" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{asset('assets/css/mycss.css')}}" >
+
+  <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/engine1/style.css')}}" />
+	<script type="text/javascript" src="{{ asset('assets/engine1/jquery.js')}}"></script>
+	<!-- End WOWSlider.com HEAD section -->
 
   <!-- =======================================================
   * Template Name: ZenBlog

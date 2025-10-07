@@ -24,7 +24,7 @@ body > .skiptranslate {
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
+  /* --default-color: #212529;  */ /* Default color used for the majority of the text content across the entire website */
   --heading-color: #535353; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #465367; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
@@ -230,7 +230,7 @@ h6 {
   .navmenu a:focus {
     color: var(--nav-color);
     padding: 18px 15px;
-    font-size: 14px;
+    font-size: 20px;
     font-family: var(--nav-font);
     font-weight: 400;
     display: flex;
@@ -280,7 +280,7 @@ h6 {
 
   .navmenu .dropdown ul a {
     padding: 10px 20px;
-    font-size: 15px;
+    font-size: 20px;
     text-transform: none;
     color: var(--nav-dropdown-color);
   }
@@ -448,7 +448,7 @@ h6 {
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
-  font-size: 14px;
+  font-size: 18px;
   position: relative;
 }
 
@@ -468,7 +468,8 @@ h6 {
 }
 
 .footer .footer-about .logo span {
-  color: var(--heading-color);
+  /* color: var(--heading-color); */
+  color: #ffffff;
   font-family: var(--heading-font);
   font-size: 26px;
   font-weight: 700;
@@ -500,10 +501,11 @@ h6 {
 }
 
 .footer h4 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   position: relative;
   padding-bottom: 12px;
+  color: #ffffff;
 }
 
 .footer .footer-links {

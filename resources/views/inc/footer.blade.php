@@ -1,5 +1,6 @@
 
-<footer id="footer" class="footer dark-background">
+<!-- <footer id="footer" class="footer dark-background"> -->
+<footer id="footer" class="footer neon-mirror-blue">
 
 <div class="container footer-top">
   <div class="row gy-4">
@@ -90,6 +91,11 @@
 <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script>
 <script src="{{ asset('assets/vendor/aos/aos.js')}}"></script>
 <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+
+
+<script type="text/javascript" src="{{ asset('assets/engine1/wowslider.js')}}"></script>
+	<script type="text/javascript" src="{{ asset('assets/engine1/script.js')}}"></script>
+	<!-- End WOWSlider.com BODY section -->
 
 
 <!-- Main JS File -->

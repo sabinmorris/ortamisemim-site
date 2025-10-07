@@ -34,7 +34,7 @@
           <li><a href="{{url('minister-description')}}"><i class="fa fa-comment"></i> Minister Description <span class="fa fa-chevron-right"></span></a></li>
           <li><a href="{{url('about-us')}}"><i class="fa fa-comment"></i> About Us<span class="fa fa-chevron-right"></span></a></li>
           <li><a href="{{url('manage-leader')}}"><i class="fa fa-comment"></i> Manage Leaders<span class="fa fa-chevron-right"></span></a></li>
-          <li><a href="{{url('manage-department')}}"><i class="fa fa-institution"></i> Manage Department<span class="fa fa-chevron-right"></span></a></li>
+          <li><a href="{{url('manage-department')}}"><i class="fa fa-institution"></i> Manage Service Department<span class="fa fa-chevron-right"></span></a></li>
           <li><a href="{{url('manage-document')}}"><i class="fa fa-folder-open-o"></i> Manage Documents<span class="fa fa-chevron-right"></span></a></li>
           <li><a href="{{Route('user_view')}}"><i class="fa fa-users"></i> User <span class="fa fa-chevron-right"></span></a></li>
         </ul>
