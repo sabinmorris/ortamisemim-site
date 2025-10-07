@@ -1,3 +1,7 @@
+.footer .footer-links ul a {
+  color: #ffffff;
+}
+
 .neon-mirror-blue {
     background: radial-gradient(circle at top left, #00bfff, #003cff 80%);
     color: #fff;
@@ -13,6 +17,7 @@
   }
   
   .neon-mirror-blue::after {
+    color:#ffffff;
     content: "";
     position: absolute;
     top: -50%;
@@ -28,7 +33,6 @@
     0% { transform: translateX(-100%) rotate(25deg); }
     100% { transform: translateX(100%) rotate(25deg); }
   }
-  
 
 .blue-background {
     /* background-color: #0F70E7; */
