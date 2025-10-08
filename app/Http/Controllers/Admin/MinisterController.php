@@ -20,7 +20,7 @@ class MinisterController extends Controller
      */
     public function index()
     {
-        $ministerInfos =  MinisterComment::all();
+        $ministerInfos =  MinisterComment::orderBy('id', 'desc')->get();
         return view('admin.minister.index', compact(['ministerInfos']));
     }
 

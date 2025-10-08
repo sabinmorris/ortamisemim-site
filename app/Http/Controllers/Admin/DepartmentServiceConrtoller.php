@@ -19,7 +19,7 @@ class DepartmentServiceConrtoller extends Controller
      */
     public function index()
     {
-        $departmentInfos = DepartmentService::all();
+        $departmentInfos = DepartmentService::orderBy('id', 'desc')->get();
         return view('admin.departments.index', compact(['departmentInfos']));
     }
 

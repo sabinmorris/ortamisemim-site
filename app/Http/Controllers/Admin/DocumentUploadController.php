@@ -20,7 +20,7 @@ class DocumentUploadController extends Controller
      */
     public function index()
     {
-        $docsInfos = UploadedDocs::all();
+        $docsInfos = UploadedDocs::orderBy('id', 'desc')->get();
         return view('admin.docs.index', compact(['docsInfos']));
     }
 

@@ -23,8 +23,7 @@ class PagesController extends Controller
     {
         
         $slideInfos = Slide::where('status', 1)->orderBy('id', 'desc')->get();
-        $postInfos = Post::where('post_status', 1)->get();
-        $postInfos = Post::orderBy('id', 'desc')->paginate(3);
+        $postInfos = Post::where('post_status', 1)->orderBy('id', 'desc')->paginate(3);
         $postInfos1 = Post::orderBy('created_at', 'desc')->limit(1)->get();
         $anouncementInfos = Anouncement::all();
         $ministerInfos = MinisterComment::all();
@@ -47,7 +46,7 @@ class PagesController extends Controller
     {
         //$postInfos = Post::where('post_status', 1)->get();
         //$postInfos = Post::orderBy('id', 'desc')->simplePaginate(2);
-        $postInfos = Post::orderBy('id', 'desc')->paginate(4);
+        $postInfos = Post::where('post_status', 1)->orderBy('id', 'desc')->paginate(4);
         $videoInfos1 = Video::orderBy('id', 'desc')->paginate(1);
         $departmentInfos = DepartmentService::all();
         return view('pages.newsevent', compact(['postInfos', 'videoInfos1', 'departmentInfos']));

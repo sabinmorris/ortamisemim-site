@@ -2,9 +2,9 @@
     <a href="{{Route('events')}}">
         <h3 class="widget-title">Habari Matukio</h3>
     </a>
-    @if(count([$postInfos]) > 0)
+    @if(count($postInfos) > 0)
     @foreach($postInfos as $postInfo)
-    @if ($postInfo->post_status == 1)
+    
     <div class="post-item">
         <img src="{{ asset('storage/uploads/post_images/' .$postInfo->post_image)}}" alt="" class="flex-shrink-0">
         <div>
@@ -15,7 +15,7 @@
         
     </div><!-- End recent post item-->
     
-    @endif
+    
     @endforeach
     @endif
     

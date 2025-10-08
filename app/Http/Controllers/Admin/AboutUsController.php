@@ -19,7 +19,7 @@ class AboutUsController extends Controller
      */
     public function index()
     {
-        $aboutusInfos = AboutUs::all();
+        $aboutusInfos = AboutUs::orderBy('id', 'desc')->get();
         return view('admin.aboutus.index', compact('aboutusInfos'));
     }
 

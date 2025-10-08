@@ -32,7 +32,7 @@ class LeadershipController extends Controller
      */
     public function index()
     {
-        $leaderInfos = Leadership::all();
+        $leaderInfos = Leadership::orderBy('id', 'desc')->get();
         return view('admin.leaders.index', compact(['leaderInfos']));
     }
 

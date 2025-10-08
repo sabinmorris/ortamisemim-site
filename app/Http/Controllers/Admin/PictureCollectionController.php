@@ -16,7 +16,7 @@ class PictureCollectionController extends Controller
      */
     public function index()
     {
-        $pictureInfos = PictureCollection::all();
+        $pictureInfos = PictureCollection::orderBy('id', 'desc')->get();
         return view('admin.pictures.index', compact(['pictureInfos']));
     }
 

@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $postInfos = Post::all();
+        $postInfos = Post::orderBy('id', 'desc')->get();
         return view('admin.posts.index', compact(['postInfos']));
     }
 

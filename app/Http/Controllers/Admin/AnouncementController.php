@@ -21,7 +21,7 @@ class AnouncementController extends Controller
      */
     public function index()
     {
-        $anouncementInfos = Anouncement::all();
+        $anouncementInfos = Anouncement::orderBy('id', 'desc')->get();
         return view('admin.anouncement.index', compact(['anouncementInfos']));
         
     }
