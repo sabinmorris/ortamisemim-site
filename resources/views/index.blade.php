@@ -113,11 +113,7 @@
       <div class="col-md-4">
         <!-- Recent Posts Widget -->
         @include('inc.currentpost')
-        <!-- <div class="recent-posts-widget widget-item"> -->
-
-
-
-        <!-- </div> -->
+        
         <!--/Recent Posts Widget -->
 
         <!-- Recent Video Widget -->

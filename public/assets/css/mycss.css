@@ -13,8 +13,9 @@
 }
 
 .neon-mirror-blue {
-  /* background: linear-gradient(135deg, #1a2980, #26d0ce); */
-    background: linear-gradient(135deg, #1a2980, #1a2980);
+  /* background: linear-gradient(135deg, #1a2980, #26d0ce); */ 
+    /* background: linear-gradient(135deg, #1a2980, #1a2980); */
+    background: linear-gradient(135deg, #00A2F4, #00A2F4);
     color: #fff;
     padding: 25px;
     /* box-shadow:
@@ -44,6 +45,13 @@
     100% { transform: translateX(100%) rotate(25deg); }
   }
 
+  .widget-item {
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    background-color: #F2F2F2;
+    padding: 30px 30px 30px 25px;
+    border-radius: 5px 5px 5px 5px
+  }
+
 
 .align-items-center {
     position: sticky;
@@ -53,7 +61,7 @@
 
   #header {
     position: sticky;
-    top: 100px;
+    top: 105px;
     /* Height of your image banner */
     z-index: 1000;
   }
