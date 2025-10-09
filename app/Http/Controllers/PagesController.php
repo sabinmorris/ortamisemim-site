@@ -27,7 +27,7 @@ class PagesController extends Controller
         $postInfos1 = Post::orderBy('created_at', 'desc')->limit(1)->get();
         $anouncementInfos = Anouncement::all();
         $ministerInfos = MinisterComment::all();
-        $videoInfos1 = Video::orderBy('id', 'desc')->paginate(1);
+        $videoInfos1 = Video::orderBy('id', 'desc')->paginate(2);
         $departmentInfos = DepartmentService::all();
         return view('index', compact(['slideInfos', 'postInfos', 'postInfos1', 'anouncementInfos', 'ministerInfos', 'videoInfos1', 'departmentInfos']));
     }
