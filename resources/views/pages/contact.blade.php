@@ -43,7 +43,7 @@
           <i class="bi bi-telephone flex-shrink-0"></i>
           <div>
             <h3>Call Us</h3>
-            <p>+255 7170 357 82</p>
+            <p>+255 7799 925 22</p>
           </div>
         </div><!-- End Info Item -->
 
