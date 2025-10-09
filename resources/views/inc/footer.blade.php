@@ -12,7 +12,7 @@
       <div class="footer-contact pt-3">
         <p>Vuga Street</p>
         <p>Unguja</p>
-        <p class="mt-3"><strong>Phone:</strong> <span>+255 717 035 783</span></p>
+        <p class="mt-3"><strong>Phone:</strong> <span>+255 779 992 522</span></p>
         <p><strong>Email:</strong> <span>info@tamisemim.go.tz</span></p>
       </div>
       <div class="social-links d-flex mt-4">

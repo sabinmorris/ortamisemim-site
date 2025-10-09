@@ -4,6 +4,34 @@
   margin-bottom:25px;
 }
 
+.recent-posts-widget .post-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.recent-posts-widget .post-item img {
+  width: 100px;              /* you can adjust width */
+  height: 80px;              /* or set auto for dynamic */
+  object-fit: cover;         /* prevents distortion */
+  border-radius: 6px;        /* smooth edges */
+  flex-shrink: 0;            /* prevent squishing */
+}
+
+.recent-posts-widget .post-item div {
+  flex: 1;
+}
+
+.recent-posts-widget h4 a {
+  color: #003366;
+  text-decoration: none;
+}
+
+.recent-posts-widget h4 a:hover {
+  text-decoration: underline;
+}
+
 .search-widget {
   --default-color: #212529;
 }
@@ -47,9 +75,11 @@
 
   .widget-item {
     /* background-color: rgba(0, 0, 0, 0.1); */
+    width: 400px;
     background-color: #F2F2F2;
     padding: 30px 30px 30px 25px;
     border-radius: 5px 5px 5px 5px
+    
   }
 
 

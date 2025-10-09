@@ -1,3 +1,8 @@
+<style>
+    
+
+</style>
+
 <div class="recent-posts-widget widget-item">
     <a href="{{Route('events')}}">
         <h3 class="widget-title">Habari Matukio</h3>
@@ -11,7 +16,7 @@
             <h4><a href="{{Route('read_more', $postInfo->id)}}">{{$postInfo->post_tittle}}</a></h4>
             <time datetime="2020-01-01">{{ $postInfo->created_at->diffForHumans() }}</time>
         </div>
-        <div style="float: right; margin-left: 100px;"><span style="float: right;"><i class="bi bi-eye"> views:</i> {{$postInfo->view_count}}</span></div>
+        <div style="float: right;"><span style="float: right;"><i class="bi bi-eye"> views:</i> {{$postInfo->view_count}}</span></div>
         
     </div><!-- End recent post item-->
     
