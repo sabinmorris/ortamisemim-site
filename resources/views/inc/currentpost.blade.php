@@ -1,7 +1,4 @@
-<style>
-    
 
-</style>
 
 <div class="recent-posts-widget widget-item">
     <a href="{{Route('events')}}">
