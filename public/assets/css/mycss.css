@@ -7,8 +7,8 @@
 .recent-posts-widget .post-item {
   display: flex;
   align-items: flex-start;
-  gap: 10x;
-  margin-bottom: 30px;
+  gap: 15x;
+  margin-bottom: 15px;
 }
 
 .recent-posts-widget .post-item img {
