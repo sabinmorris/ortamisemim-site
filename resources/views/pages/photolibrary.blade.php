@@ -25,9 +25,8 @@
                 <div class="container">
                     <div class="row gy-4">
 
-                        @if(count([$postInfos1]) > 0)
+                        @if(count($postInfos1) > 0)
                         @foreach($postInfos1 as $postInfo)
-                        @if($postInfo->post_status == 1)
                         <div class="col-lg-6">
                             <article class="position-relative h-100">
 
@@ -35,16 +34,13 @@
                                     <img src="{{ asset('storage/uploads/post_images/'.$postInfo->post_image)}}" class="img-fluid" alt="">
                                     <span class="post-date">{{$postInfo->created_at->diffForHumans()}}</span>
                                 </div>
-
                             </article>
                         </div><!-- End post list item -->
-                        @endif
                         @endforeach
                         @endif
 
-                        @if(count([$slideInfos]) > 0)
+                        @if(count($slideInfos) > 0)
                         @foreach($slideInfos as $slideInfo)
-                        @if($slideInfo->status == 1)
                         <div class="col-lg-6">
                             <article class="position-relative h-100">
 
@@ -54,7 +50,6 @@
                                 </div>
                             </article>
                         </div><!-- End post list item -->
-                        @endif
                         @endforeach
                         @endif
 
@@ -71,17 +66,6 @@
                 <!-- Blog Author Widget 2 -->
                 @include('inc.waziriwidget')
                 <!--/Blog Author Widget 2 -->
-
-                <!-- Search Widget -->
-                <div class="search-widget widget-item">
-
-                    <h3 class="widget-title">Search</h3>
-                    <form action="">
-                        <input type="text">
-                        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    </form>
-
-                </div><!--/Search Widget -->
 
                 <!-- Recent Posts Widget -->
                 @include('inc.currentpost')

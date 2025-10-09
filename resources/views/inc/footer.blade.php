@@ -26,9 +26,9 @@
     <div class="col-lg-2 col-md-3 footer-links">
       <h4>Kurasa Zetu</h4>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Services</a></li>
+        <li><a href="{{Route('/')}}">Home</a></li>
+        <li><a href="{{Route('about_Us')}}">About us</a></li>
+        <li><a href="{{Route('utumishi_department', ['departmentName' => 'uratibu'])}}">Services</a></li>
         <li><a href="#">Terms of service</a></li>
         <li><a href="#">Privacy policy</a></li>
       </ul>
@@ -37,9 +37,9 @@
     <div class="col-lg-2 col-md-3 footer-links">
       <h4>Our Services</h4>
       <ul>
-        <li><a href="#">Ulizi na Usalama</a></li>
-        <li><a href="#">local Government</a></li>
-        <li><a href="#">NG'Os</a></li>
+        <li><a href="{{Route('utumishi_department', ['departmentName' => 'idara maalum'])}}">Ulizi na Usalama</a></li>
+        <li><a href="{{Route('utumishi_department', ['departmentName' => 'uratibu'])}}">local Government</a></li>
+        <li><a href="{{Route('utumishi_department', ['departmentName' => 'mrajis'])}}">NG'Os</a></li>
       </ul>
     </div>
 
@@ -49,7 +49,7 @@
         <li><a href="#">KMKM</a></li>
         <li><a href="#">JKUz</a></li>
         <li><a href="#">KVZ</a></li>
-        <li><a href="#">MF</a></li>
+        <li><a href="https://chuochamafunzohq.go.tz/" target="_blank">MF</a></li>
         <li><a href="#">Matukio ya Kijamii</a></li>
       </ul>
     </div>

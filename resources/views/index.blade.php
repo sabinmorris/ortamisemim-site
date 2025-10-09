@@ -40,8 +40,8 @@
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <div class="section-title-container d-flex align-items-center justify-content-between">
-      <h2>Or-tamisemim-Habari</h2>
-      <p><a href="{{Route('events')}}">Angali Habari Zote</a></p>
+      <h5 translate="no" style="font-weight: bold;">OR-TAMISEMIM-HABARI</h5>
+      <p><a href="{{Route('events')}}" style="font-weight: bold;">Angali Habari Zote</a></p>
     </div>
   </div><!-- End Section Title -->
 
@@ -49,9 +49,8 @@
 
     <div class="row">
       <div class="col-md-8">
-        @if(count([$postInfos1]) > 0)
+        @if(count($postInfos1) > 0)
         @foreach($postInfos1 as $postInfo)
-        @if($postInfo->post_status == 1)
         <div class="d-lg-flex post-entry">
           <a href="{{Route('read_more', $postInfo->id)}}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
             <img src="{{ asset('storage/uploads/post_images/' .$postInfo->post_image)}}" alt="" class="img-fluid">
@@ -81,7 +80,6 @@
             </div> -->
           </div>
         </div>
-        @endif
         @endforeach
         @endif
 
@@ -113,7 +111,7 @@
       <div class="col-md-4">
         <!-- Recent Posts Widget -->
         @include('inc.currentpost')
-        
+
         <!--/Recent Posts Widget -->
 
         <!-- Recent Video Widget -->

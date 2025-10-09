@@ -16,7 +16,7 @@
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="{{Route('/')}}">Mwanzo</a></li>
-                <li class="current"> 
+                <li class="current">
                     @if($departmentInfo)
                     {{$departmentInfo->departmentName}}
                     @endif
@@ -40,20 +40,6 @@
                 @foreach($depInfos as $depInfo)
                 <ul>
                     <li><i class="bi bi-check-circle"></i> <span>{{$depInfo->service}}</span></li>
-                </ul>
-                @endforeach
-                @else
-                <ul>
-                    <li><i class="bi bi-check-circle"></i> <span>No Data</span></li>
-                </ul>
-                @endif
-
-
-                <h3>Nyaraka</h3>
-                @if(count($docInfos) > 0)
-                @foreach($docInfos as $docInfo)
-                <ul>
-                    <li><a href="{{ asset('storage/uploads/document_files/'.$docInfo->document)}}" class="collapsed card-link" target="_blank" style="color:#000;"><span><img src="{{asset('assets/img/pdf-image1.webp')}}" style="width:35px;height:60px;"></span> {{$docInfo->fileName}}</a></li>
                 </ul>
                 @endforeach
                 @else
