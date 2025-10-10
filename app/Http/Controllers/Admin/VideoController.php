@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class VideoController extends Controller
 {
@@ -41,10 +42,22 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'tittle' => ['required', 'string', 'max:255'],
-            'link' => ['required', 'string', 'max:500'],
+            'link' => ['required', 'string', 'max:255'],
+        ], [
+            'tittle.required' => 'Tittle size must not exceeded 255 words.',
+            'link.required' => 'Link size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $videoInfos = new Video();
         $videoInfos->tittle = $request->input('tittle');

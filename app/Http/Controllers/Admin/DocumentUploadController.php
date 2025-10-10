@@ -6,6 +6,7 @@ use App\Models\UploadedDocs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class DocumentUploadController extends Controller
 {
@@ -42,12 +43,24 @@ class DocumentUploadController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'fileName' => ['required', 'string', 'max:255'],
             'departmentName' => ['required'],
-            'document' => 'mimes:pdf|required|max:5120', // max 5120kb
-            
+            'document' => 'mimes:pdf|required|max:5120', // Only allow max 5120kb pdf files
+        ], [
+            'document.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'document.required' => 'Please upload an image before submitting.',
+            'document.max' => 'Image size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         if (request()->hasFile('document')) {
             

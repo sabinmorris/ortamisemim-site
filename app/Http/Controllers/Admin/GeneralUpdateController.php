@@ -34,7 +34,7 @@ class GeneralUpdateController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    
+
     //Update slide status only
     public function updateslidestatus(Request $request)
     {
@@ -58,7 +58,6 @@ class GeneralUpdateController extends Controller
     //Update slides info
     public function updateslide(Request $request)
     {
-
         // ✅ Validation with custom messages
         $validator = Validator::make($request->all(), [
             'tittlee' => ['required', 'string', 'max:255'],
@@ -78,13 +77,6 @@ class GeneralUpdateController extends Controller
                 'code' => 422
             ], 422);
         }
-        // $this->validate($request, [
-        //     'tittlee' => ['required', 'string', 'max:255'],
-        //     'captionn' => ['required', 'string', 'max:255'],
-        //     'slide_imagee' => 'mimes:webp|nullable|max:5120',
-        //      'statuss' => 'required'
-            
-        // ]);
 
         $slideInfo = Slide::findOrFail($request->slideid);
         $slideInfo->tittle = $request->input('tittlee');
@@ -153,15 +145,28 @@ class GeneralUpdateController extends Controller
     }
 
     //Function to update post
-    public function updatepost(Request $request) {
+    public function updatepost(Request $request)
+    {
 
-        $this->validate($request, [
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'post_tittlee' => ['required', 'string', 'max:255'],
             'post_descriptionn' => ['required', 'string', 'max:500'],
             'post_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
             'post_status' => 'required',
-
+        ], [
+            'post_imagee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'post_imagee.required' => 'Please upload an image before submitting.',
+            'post_imagee.max' => 'Image size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $postInfo = Post::findOrFail($request->postid);
         $postInfo->post_tittle = $request->input('post_tittlee');
@@ -210,7 +215,8 @@ class GeneralUpdateController extends Controller
 
 
     //function to update anoucement status only
-    public function updateanouncementstatus(Request $request){
+    public function updateanouncementstatus(Request $request)
+    {
 
         $anouncementInfo = Anouncement::findOrFail($request->anouncement_id);
         $anouncementInfo->status = $request->status;
@@ -230,14 +236,27 @@ class GeneralUpdateController extends Controller
     }
 
     //function to update anouncement info from db
-    public function updateanounce(Request $request){
-        
-        $this->validate($request, [
+    public function updateanounce(Request $request)
+    {
+
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'tittlee' => ['required', 'string', 'max:255'],
             'file_namee' => 'mimes:pdf|nullable|max:5120', // max 5120kb
             'status' => 'required',
-
+        ], [
+            'file_namee.mimes' => 'Invalid file format! Only PDF file are allowed.',
+            'file_namee.required' => 'Please upload an image before submitting.',
+            'file_namee.max' => 'file size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $anouncementInfo = Anouncement::findOrFail($request->anoucementId);
         $anouncementInfo->tittle = $request->input('tittlee');
@@ -284,7 +303,8 @@ class GeneralUpdateController extends Controller
     }
 
     //Function to update minister description status only
-    public function updateministerstatus(Request $request){
+    public function updateministerstatus(Request $request)
+    {
 
         $anouncementInfos = MinisterComment::findOrFail($request->descriptionId);
         $anouncementInfos->status = $request->status;
@@ -294,7 +314,7 @@ class GeneralUpdateController extends Controller
                 'message' => 'Status updated successfully.',
                 'code' => 200
             ]);
-        }else{
+        } else {
             return response()->json([
                 'message' => 'Internal Server Error',
                 'code' => 500
@@ -303,17 +323,28 @@ class GeneralUpdateController extends Controller
     }
 
     //Function to update minister description
-    public function updateministerdescription(Request $request){
-
-        
-        $this->validate($request, [
+    public function updateministerdescription(Request $request)
+    {
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'minister_namee' => ['required', 'string', 'max:255'],
             'minister_titlee' => ['required', 'string', 'max:255'],
             'descriptionn' => ['required', 'string', 'max:500'],
             'minister_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
             'status' => 'required',
-
+        ], [
+            'minister_imagee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'minister_imagee.required' => 'Please upload an image before submitting.',
+            'minister_imagee.max' => 'Image size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $anouncementInfos = MinisterComment::findOrFail($request->descriptionid);
         $anouncementInfos->minister_name = $request->input('minister_namee');
@@ -362,7 +393,8 @@ class GeneralUpdateController extends Controller
     }
 
     // functin to update about us status only
-    public function updateaboutstatus(Request $request){
+    public function updateaboutstatus(Request $request)
+    {
 
         $aboutUsInfo = AboutUs::findOrFail($request->about_id);
         $aboutUsInfo->status = $request->status;
@@ -378,17 +410,31 @@ class GeneralUpdateController extends Controller
                 'message' => 'Internal Server Error',
                 'code' => 500
             ]);
-        }     
+        }
     }
 
     //Function to update about us Info
-    public function updateboutus(Request $request){
-         
-        $this->validate($request, [
+    public function updateboutus(Request $request)
+    {
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'titlee' => ['required', 'string', 'max:255'],
             'descriptionn' => ['required', 'string', 'max:500'],
             'status' => 'required',
+        ], [
+            'titlee.required' => 'Tittle required.',
+            'titlee.max' => 'Tittle must not exceed 255 words',
+            'descriptionn.required' => 'Description required.',
+            'descriptionn.max' => 'Description size must not exceed 500 words.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $aboutUsInfo = AboutUs::findOrFail($request->aboutId);
         $aboutUsInfo->title = $request->input('titlee');
@@ -411,7 +457,8 @@ class GeneralUpdateController extends Controller
     }
 
     //function to update leader status only
-    public function updateleaderstatus(Request $request){
+    public function updateleaderstatus(Request $request)
+    {
 
         $leaderInfo = Leadership::findOrFail($request->leaderId);
         $leaderInfo->status = $request->status;
@@ -421,26 +468,38 @@ class GeneralUpdateController extends Controller
                 'message' => 'Status updated successfully.',
                 'code' => 200
             ]);
-        }else{
+        } else {
             return response()->json([
                 'message' => 'Internal server Error',
                 'code' => 500
             ]);
         }
-
     }
 
     //Function to update leaders info to the Db
-    public function updateleader(Request $request){
-        $this->validate($request, [
+    public function updateleader(Request $request)
+    {
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'namee' => ['required', 'string', 'max:255'],
             'rolee' => 'required',
             'designationn' => 'required',
             'descriptionn' => ['required', 'string', 'max:500'],
             'leader_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
             'status' => 'required',
-            
+        ], [
+            'leader_imagee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'leader_imagee.required' => 'Please upload an image before submitting.',
+            'leader_imagee.max' => 'Image size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $leaderInfo = Leadership::findOrFail($request->leaderId);
         $leaderInfo->name = $request->input('namee');
@@ -490,8 +549,9 @@ class GeneralUpdateController extends Controller
     }
 
     //Function to update videos status only
-    public function updatevideostatus(Request $request){
-        
+    public function updatevideostatus(Request $request)
+    {
+
         $videoInfo = Video::findOrFail($request->videoid);
         $videoInfo->status = $request->status;
         $videoInfo->save();
@@ -506,11 +566,11 @@ class GeneralUpdateController extends Controller
                 'code' => 500
             ]);
         }
-        
     }
 
     //Function to update Video info from db.
-    public function updatevideo(Request $request){
+    public function updatevideo(Request $request)
+    {
 
         $videoInfo = Video::findOrFail($request->videoId);
         $videoInfo->tittle = $request->input('tittlee');
@@ -529,12 +589,11 @@ class GeneralUpdateController extends Controller
                 'code' => 500
             ]);
         }
-        
-
     }
 
     //Function for updating department service status only.
-    public function updatedepartmentservicestatus(Request $request){
+    public function updatedepartmentservicestatus(Request $request)
+    {
         $departmentInfo = DepartmentService::findOrFail($request->dptserviceId);
         $departmentInfo->status = $request->status;
         $departmentInfo->save();
@@ -549,11 +608,11 @@ class GeneralUpdateController extends Controller
                 'code' => 500,
             ]);
         }
-        
     }
 
     //Function for Updating Deaprtment services.
-    public function updatedepartmentservice(Request $request){
+    public function updatedepartmentservice(Request $request)
+    {
 
         $departmentInfo = DepartmentService::findOrFail($request->dptmntId);
         $departmentInfo->departmentName = $request->input('departmentNamee');
@@ -572,12 +631,11 @@ class GeneralUpdateController extends Controller
                 'code' => 500
             ]);
         }
-        
-
     }
 
     //Function for updating upload document status only
-    public function updatedocumentstatus(Request $request){
+    public function updatedocumentstatus(Request $request)
+    {
 
         $docsInfo = UploadedDocs::findOrFail($request->docsId);
         $docsInfo->status = $request->status;
@@ -593,18 +651,29 @@ class GeneralUpdateController extends Controller
                 'code' => 500
             ]);
         }
-        
     }
 
     //Function for Updating uplpoad documents
-    public function updatedocument(Request $request){
-
-        $this->validate($request, [
+    public function updatedocument(Request $request)
+    {
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'fileNamee' => ['required', 'string', 'max:255'],
             'departmentNamee' => ['required'],
-            'documentt' => 'mimes:pdf|max:5120', // max 5120kb
-            
+            'documentt' => 'mimes:pdf|nullable|max:5120', // max 5120kb
+        ], [
+            'documentt.mimes' => 'Invalid file format! Only PDF file are allowed.',
+            'documentt.required' => 'Please upload an file before submitting.',
+            'documentt.max' => 'file size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $docsInfo = UploadedDocs::findOrFail($request->docId);
         $docsInfo->fileName = $request->input('fileNamee');
@@ -652,7 +721,8 @@ class GeneralUpdateController extends Controller
     }
 
     //Fuction for updating picture status only.
-    public function updatepicturestatus(Request $request){
+    public function updatepicturestatus(Request $request)
+    {
 
         $pictureInfo = PictureCollection::findOrFail($request->picId);
         $pictureInfo->status = $request->status;
@@ -668,18 +738,29 @@ class GeneralUpdateController extends Controller
                 'code' => 500
             ]);
         }
-        
     }
 
     //Function to update picture for about us page
-    public function updatepicture(Request $request){
-
-        $this->validate($request, [
+    public function updatepicture(Request $request)
+    {
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'pictureNamee' => ['required', 'string', 'max:255'],
             'positionn' => ['required'],
             'picturee' => 'mimes:webp|nullable|max:5120', // max 5120kb
-            
+        ], [
+            'picturee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'picturee.required' => 'Please upload an image before submitting.',
+            'picturee.max' => 'Image size must not exceed 5MB.',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $pictureInfo = PictureCollection::findOrFail($request->pictureId);
         $pictureInfo->pictureName = $request->input('pictureNamee');
@@ -724,7 +805,5 @@ class GeneralUpdateController extends Controller
                 'code' => 500
             ]);
         }
-
     }
-
 }

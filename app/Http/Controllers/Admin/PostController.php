@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -42,12 +43,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+      
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'post_tittle' => ['required', 'string', 'max:255'],
-            'post_description' => ['required', 'string', 'max:500'],
-            'post_image' => 'mimes:webp|required|max:5120', // max 5120kb
-            
+            'post_description' => ['required', 'string', 'max:255'],
+            'post_image' => 'required|mimes:webp|max:5120', // Only allow webp files
+        ], [
+            'post_image.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'post_image.required' => 'Please upload an image before submitting.',
+            'post_image.max' => 'Image size must not exceed 5MB.',
+            'post_tittle' => 'Post tittle must not exceed 255 word',
+            'post_description' => 'Post description not exceeded 255 words',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         if (request()->hasFile('post_image')) {
             
