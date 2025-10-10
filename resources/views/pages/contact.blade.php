@@ -35,7 +35,9 @@
           <i class="bi bi-geo-alt flex-shrink-0"></i>
           <div>
             <h3>Address</h3>
-            <p>Mtaa wa Vuga, Unguja</p>
+            <p>2277 Barabara ya Vuga</p>
+            <p>70401 Mjini Magharibi </p>
+            <p>Unguja</p>
           </div>
         </div><!-- End Info Item -->
 
@@ -43,7 +45,7 @@
           <i class="bi bi-telephone flex-shrink-0"></i>
           <div>
             <h3>Call Us</h3>
-            <p>+255 7799 925 22</p>
+            <p>+255 7799 925 22 / +255 2422 300 34</p>
           </div>
         </div><!-- End Info Item -->
 

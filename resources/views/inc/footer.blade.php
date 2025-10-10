@@ -10,9 +10,10 @@
         <span class="sitename">Or-Tamisemim</span>
       </a>
       <div class="footer-contact pt-3">
-        <p>Vuga Street</p>
+        <p>2277 Barabara ya Vuga</p>
+        <p>70401 Mjini Maghararibi</p>
         <p>Unguja</p>
-        <p class="mt-3"><strong>Phone:</strong> <span>+255 7799 925 22</span></p>
+        <p class="mt-3"><strong>Phone:</strong> <span>+255 7799 925 22 / +255 2422 300 34 </span></p>
         <p><strong>Email:</strong> <span>info@tamisemim.go.tz</span></p>
       </div>
       <div class="social-links d-flex mt-4">
