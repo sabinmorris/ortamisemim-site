@@ -43,7 +43,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      
+        $this->validate($request, [
+            'post_tittle' => ['required', 'string', 'max:255'],
+            'post_description' => ['required', 'string', 'max:500'],
+            'post_image' => 'mimes:webp|required|max:5120', // max 5120kb
+            
+        ]);
+
         // ✅ Validation with custom messages
         $validator = Validator::make($request->all(), [
             'post_tittle' => ['required', 'string', 'max:255'],

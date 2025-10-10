@@ -147,25 +147,13 @@ class GeneralUpdateController extends Controller
     //Function to update post
     public function updatepost(Request $request) {
 
-        // ✅ Validation with custom messages
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'post_tittlee' => ['required', 'string', 'max:255'],
             'post_descriptionn' => ['required', 'string', 'max:500'],
             'post_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
             'post_status' => 'required',
-        ], [
-            'post_imagee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
-            'post_imagee.required' => 'Please upload an image before submitting.',
-            'post_imagee.max' => 'Image size must not exceed 5MB.',
-        ]);
 
-        // If validation fails, return JSON with field-specific errors
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors(),
-                'code' => 422
-            ], 422);
-        }
+        ]);
 
         $postInfo = Post::findOrFail($request->postid);
         $postInfo->post_tittle = $request->input('post_tittlee');
