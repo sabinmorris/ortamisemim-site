@@ -208,7 +208,7 @@
                             document.location.reload();
                         }, 3000); // 3000 milliseconds = 3 seconds
 
-                    },
+                    }
                     
                 });
             }
@@ -272,7 +272,7 @@
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
-                        $('#leadermodal').modal('hide');
+                        //$('#leadermodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
