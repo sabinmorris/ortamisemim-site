@@ -202,7 +202,7 @@
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
-                        //$('#postmodal').modal('hide');
+                        $('#postmodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
