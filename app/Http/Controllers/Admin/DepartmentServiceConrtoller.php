@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\DepartmentService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\Models\DepartmentService;
+use Illuminate\Http\Request;
 
 class DepartmentServiceConrtoller extends Controller
 {
@@ -42,22 +41,11 @@ class DepartmentServiceConrtoller extends Controller
      */
     public function store(Request $request)
     {
-        // ✅ Validation with custom messages
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'departmentName' => ['required', 'string', 'max:255'],
             'service' => ['required','string','max:500'],
-        ], [
-            'departmentName.required' => 'Department name size must not exceed 255 words.',
-            'service.required' => 'Service Info must not exceeded 500 words.',
+            
         ]);
-
-        // If validation fails, return JSON with field-specific errors
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors(),
-                'code' => 422
-            ], 422);
-        }
 
         $departmentInfos = new DepartmentService();
         $departmentInfos->departmentName = $request->input('departmentName');

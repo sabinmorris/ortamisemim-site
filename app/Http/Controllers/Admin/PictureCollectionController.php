@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\PictureCollection;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class PictureCollectionController extends Controller
 {
@@ -39,24 +38,12 @@ class PictureCollectionController extends Controller
      */
     public function store(Request $request)
     {
-        // ✅ Validation with custom messages
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'pictureName' => ['required', 'string', 'max:255'],
-            'position' => ['required', 'string', 'max:255'],
-            'picture' => 'required|mimes:webp|max:5120', // Only allow webp files
-        ], [
-            'picture.mimes' => 'Invalid image format! Only WEBP images are allowed.',
-            'picture.required' => 'Please upload an image before submitting.',
-            'picture.max' => 'Image size must not exceed 5MB.',
+            'position' => 'required',
+            'picture' => 'mimes:webp|required|max:5120', // max 5120kb
+            
         ]);
-
-        // If validation fails, return JSON with field-specific errors
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors(),
-                'code' => 422
-            ], 422);
-        }
 
         if (request()->hasFile('picture')) {
             

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 
 class AboutUsController extends Controller
 {
@@ -42,24 +41,11 @@ class AboutUsController extends Controller
      */
     public function store(Request $request)
     {
-        // ✅ Validation with custom messages
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:700'],
-        ], [
-            'title.required' => 'Tittle required.',
-            'title.max' => 'Tittle size must not exceeded 255 words.',
-            'description.required' => 'Description required',
-            'description.max' => 'Description size must not exceed 700 words.',
+            
         ]);
-
-        // If validation fails, return JSON with field-specific errors
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors(),
-                'code' => 422
-            ], 422);
-        }
 
         $aboutInfos = new AboutUs();
         $aboutInfos->title = $request->input('title');
