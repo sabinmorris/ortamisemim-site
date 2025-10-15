@@ -52,7 +52,7 @@
         @endif
 
         <hr>
-        @if(count($departmentInform) > 50)
+        @if(count($departmentInform) > 500)
 
         <a href="#" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
