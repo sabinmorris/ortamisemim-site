@@ -49,7 +49,7 @@
                 @endif
 
                 <hr>
-                @if(count($departmentInfos) > 10)
+                @if(count($departmentInfos) > 100)
 
                 <a href="{{Route('read_more_about')}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
