@@ -378,7 +378,7 @@ class GeneralUpdateController extends Controller
          
         $this->validate($request, [
             'titlee' => ['required', 'string', 'max:255'],
-            'descriptionn' => ['required', 'string', 'max:900'],
+            'descriptionn' => ['required', 'string', 'max:5000'],
             'status' => 'required',
         ]);
 
