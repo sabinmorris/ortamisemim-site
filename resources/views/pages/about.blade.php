@@ -22,7 +22,7 @@
     <div class="row gy-4">
 
       <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-        
+
         @if(count($aboutusInfos) > 0)
         @foreach($aboutusInfos as $aboutusInfo)
         <h3>{{ trans($aboutusInfo->title) }}</h3>
@@ -57,13 +57,12 @@
         <a href="{{Route('read_more_about')}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
         @endif
-
       </div>
 
       <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
         @if(count($pictureInfos) > 0)
         @foreach($pictureInfos as $pictureInfo)
-       
+
         <div class="row gy-4">
           @if($pictureInfo->position == 'left')
           <div class="col-lg-6">

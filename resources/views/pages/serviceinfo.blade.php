@@ -47,6 +47,13 @@
                     <li><i class="bi bi-check-circle"></i> <span>No Data</span></li>
                 </ul>
                 @endif
+
+                <hr>
+                @if(count($departmentInfos) > 10)
+
+                <a href="{{Route('read_more_about')}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+
+                @endif
             </div>
 
             <div class="col-lg-4 sidebar">
