@@ -28,7 +28,7 @@
         <h3>{{ trans($aboutusInfo->title) }}</h3>
         @if(str_word_count($aboutusInfo->description) > 510)
         <p class="fst-italic">
-          {!! htmlspecialchars_decode(substr($aboutusInfo->description, 0,510))..... !!}
+          {!! htmlspecialchars_decode(substr($aboutusInfo->description, 0,510)) !!} ....
           <br><br>
           <a href="{{Route('read_more_about', $aboutusInfo->id)}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
           <hr>
