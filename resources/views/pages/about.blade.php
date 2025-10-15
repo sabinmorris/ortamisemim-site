@@ -26,9 +26,9 @@
         @if(count($aboutusInfos) > 0)
         @foreach($aboutusInfos as $aboutusInfo)
         <h3>{{ trans($aboutusInfo->title) }}</h3>
-        @if(str_word_count($aboutusInfo->description) > 300)
+        @if(str_word_count($aboutusInfo->description) > 500)
         <p class="fst-italic">
-          {!! htmlspecialchars_decode(substr($aboutusInfo->description, 0,300)) !!}
+          {!! htmlspecialchars_decode(substr($aboutusInfo->description, 0,500)) !!}
           <br><br>
           <a href="{{Route('read_more_about', $aboutusInfo->id)}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
           <hr>
