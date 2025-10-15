@@ -105,7 +105,7 @@ class PagesController extends Controller
         // $postInfos = Post::where('post_status', 1)->get();
         $postInfos = Post::where('post_status', 1)->orderBy('id', 'desc')->paginate(3);
         $anouncementInfos = Anouncement::where('status', 1)->orderBy('id', 'desc')->get();
-        $departmentInfos = DepartmentService::where('status', 1)->get();
+        $departmentInfos = DepartmentService::where('status', 1)->orderBy('id', 'des')->paginate(10);
         $depInfos = DepartmentService::where('departmentName', $departmentName)->where('status', 1)->get();
         $docInfos = UploadedDocs::where('departmentName', $departmentName)->where('status', 1)->get();
         $departmentInfo = DepartmentService::orWhere('departmentName', $departmentName)->first();
