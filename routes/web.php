@@ -42,6 +42,7 @@ Route::get('soma-zaidi/{id}', [PagesController::class, 'readmorepost'])->name('r
 Route::get('kuhusu-sisi-zaidi', [PagesController::class, 'readmoreabout'])->name('read_more_about');
 Route::get('uongozi', [PagesController::class, 'leadership'])->name('our_leadership');
 Route::get('idara/{departmentName}', [PagesController::class, 'utumishidepartment'])->name('utumishi_department');
+// Route::get('idara', [PagesController::class, 'readmoreservice'])->name('read_more_service');
 Route::get('documents/{departmentName}', [PagesController::class, 'showdepartmentdocx'])->name('show_document');
 Route::post('mawasiliano', [PagesController::class, 'sendmessage'])->name('send_message');
 Route::get('sendmail', [PagesController::class, 'sendmail']);

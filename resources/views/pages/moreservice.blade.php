@@ -36,10 +36,10 @@
             <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
                 <h3>HUDUMA ZINAZOTOLEWA</h3>
 
-                @if(count($depInfos) > 0)
-                @foreach($depInfos as $depInfo)
+                @if(count($moreDeptInfos) > 0)
+                @foreach($moreDeptInfos as $moreDeptInfo)
                 <ul>
-                    <li><i class="bi bi-check-circle"></i> <span>{{$depInfo->service}}</span></li>
+                    <li><i class="bi bi-check-circle"></i> <span>{{$moreDeptInfo->service}}</span></li>
                 </ul>
                 @endforeach
                 @else
@@ -48,12 +48,6 @@
                 </ul>
                 @endif
 
-                <hr>
-                @if(count($departmentInfos) > 1)
-
-                <a href="#" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-
-                @endif
             </div>
 
             <div class="col-lg-4 sidebar">

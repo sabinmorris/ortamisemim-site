@@ -39,7 +39,7 @@
 
         </li>
         <li class="dropdown"><a href="#"><span>Idara</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          @if(count([$departmentInfos]) > 0)
+          @if(count($departmentInfos) > 0)
           @foreach($departmentInfos as $departmentInfo)
           <ul>
             <li><a href="{{Route('utumishi_department', ['departmentName' => 'utumishi'])}}">Utumishi na Uendeshaji</a></li>

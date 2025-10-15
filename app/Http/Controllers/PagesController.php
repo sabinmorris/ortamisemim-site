@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Mail\SendMail;
 use App\Models\Post;
 use App\Models\Slide;
@@ -21,7 +22,7 @@ class PagesController extends Controller
 {
     public function homePage()
     {
-        
+
         $slideInfos = Slide::where('status', 1)->orderBy('id', 'desc')->get();
         $postInfos = Post::where('post_status', 1)->orderBy('id', 'desc')->paginate(4);
         $postInfos1 = Post::where('post_status', 1)->orderBy('created_at', 'desc')->limit(1)->get();
@@ -90,7 +91,7 @@ class PagesController extends Controller
         $aboutusInfos = AboutUs::where('status', 1)->get();
         $departmentInfos = DepartmentService::where('status', 1)->get();
         $pictureInfos = PictureCollection::where('status', 1)->orderBy('created_at', 'desc')->limit(3)->get();
-        return view('pages.readmoreabout', compact(['aboutusInfos', 'departmentInfos','pictureInfos']));
+        return view('pages.readmoreabout', compact(['aboutusInfos', 'departmentInfos', 'pictureInfos']));
     }
 
     public function leadership()
@@ -109,9 +110,9 @@ class PagesController extends Controller
         $depInfos = DepartmentService::where('departmentName', $departmentName)->where('status', 1)->paginate(10);
         $docInfos = UploadedDocs::where('departmentName', $departmentName)->where('status', 1)->get();
         $departmentInfo = DepartmentService::orWhere('departmentName', $departmentName)->first();
-        return view('pages.serviceinfo', compact(['postInfos', 'anouncementInfos', 'departmentInfos', 'depInfos', 'docInfos','departmentInfo']));
-        
+        return view('pages.serviceinfo', compact(['postInfos', 'anouncementInfos', 'departmentInfos', 'depInfos', 'docInfos', 'departmentInfo']));
     }
+
 
     //Function to show the uploaded document of some department
     public function showdepartmentdocx($departmentName)
@@ -122,7 +123,7 @@ class PagesController extends Controller
         $departmentInfos = DepartmentService::where('status', 1)->get();
         $uplodedDocx =  UploadedDocs::where('departmentName', $departmentName)->where('status', 1)->get();
         $departmentInfo = DepartmentService::orWhere('departmentName', $departmentName)->first();
-        return view('pages.docinfo', compact(['postInfos','postInfos','anouncementInfos','departmentInfos','uplodedDocx','departmentInfo']));
+        return view('pages.docinfo', compact(['postInfos', 'postInfos', 'anouncementInfos', 'departmentInfos', 'uplodedDocx', 'departmentInfo']));
     }
 
     //Function to send message 
@@ -163,10 +164,11 @@ class PagesController extends Controller
         }
     }
 
-    public function isOnline($site = "https://www.youtube.com/"){
+    public function isOnline($site = "https://www.youtube.com/")
+    {
         if (@fopen($site, 'r')) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
