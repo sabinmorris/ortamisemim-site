@@ -43,7 +43,7 @@ class AboutUsController extends Controller
     {
         $this->validate($request, [
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:700'],
+            'description' => ['required', 'string', 'max:900'],
             
         ]);
 

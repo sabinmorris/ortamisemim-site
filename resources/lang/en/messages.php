@@ -6,6 +6,7 @@ return [
     'welcome' => 'Welcome to South Pemba Waste Portal',
     'home' => 'Home',
     'about' => 'About',
+    'They are' => 'Mission',
     'contact' => 'Contact',
     'news' => 'News',
     'resources' => 'Resources',

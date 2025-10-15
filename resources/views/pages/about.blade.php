@@ -4,7 +4,7 @@
 <!-- Page Title -->
 <div class="page-title">
   <div class="container d-lg-flex justify-content-between align-items-center">
-    <h1 class="mb-2 mb-lg-0">Kuhusu</h1>
+    <h1 class="mb-2 mb-lg-0">Kuhusu sisi</h1>
     <nav class="breadcrumbs">
       <ol>
         <li><a href="{{Route('/')}}">Mwanzo</a></li>
@@ -22,28 +22,32 @@
     <div class="row gy-4">
 
       <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-        <!-- <p class="who-we-are">Who We Are</p> -->
-        <p class="who-we-are">Sisi ni nani</p>
-        @if(count([$aboutusInfos]) > 0)
+        
+        @if(count($aboutusInfos) > 0)
         @foreach($aboutusInfos as $aboutusInfo)
-        @if($aboutusInfo->status == 1)
-        <h3>{{$aboutusInfo->title}}</h3>
+        <h3>{{ trans($aboutusInfo->title) }}</h3>
+        @if(strlen($aboutusInfo->description) > 500)
         <p class="fst-italic">
-          {{$aboutusInfo->description}}
+          {!! htmlspecialchars_decode(substr($aboutusInfo->description, 0,500)) !!}
+          <br><br>
+          <a href="{{Route('read_more_about', $aboutusInfo->id)}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          <hr>
+        </p>
+        @else
+
+        {!! htmlspecialchars_decode($aboutusInfo->description) !!}
         </p>
         @endif
         @endforeach
         @endif
-        <h3>HUDUMA ZINAZOTOLEWA</h3>
-        @if(count([$departmentInfos]) > 0)
-        @foreach($departmentInfos as $departmentInfo)
-        @if($departmentInfo->status ==1 )
 
+        <h3>HUDUMA ZINAZOTOLEWA</h3>
+        @if(count($departmentInfos) > 0)
+        @foreach($departmentInfos as $departmentInfo)
         <ul>
           <li><i class="bi bi-check-circle"></i> <span>{{ $departmentInfo->service }}.</span></li>
         </ul>
 
-        @endif
         @endforeach
         @endif
 
@@ -57,9 +61,9 @@
       </div>
 
       <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
-        @if(count([$pictureInfos]) > 0)
+        @if(count($pictureInfos) > 0)
         @foreach($pictureInfos as $pictureInfo)
-        @if($pictureInfo->status == 1)
+       
         <div class="row gy-4">
           @if($pictureInfo->position == 'left')
           <div class="col-lg-6">
@@ -80,7 +84,6 @@
           @else
           @endif
         </div>
-        @endif
         @endforeach
         @endif
 

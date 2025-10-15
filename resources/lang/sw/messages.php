@@ -3,8 +3,8 @@
 return [
     // General
     'or-tamisemim' => 'or-tamisemim',
-    'welcome' => 'Karibu kwenye Tovuti ya Taka South Pemba',
     'home' => 'Nyumbani',
+    'They are' => 'Dira',
     'about' => 'Kuhusu',
     'contact' => 'Wasiliana',
     'news' => 'Habari',

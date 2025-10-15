@@ -71,13 +71,6 @@
             <hr>
             </p>
             @endif
-
-            <!-- <div class="d-flex align-items-center author">
-              <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
-              <div class="name">
-                <h3 class="m-0 p-0">Wade Warren</h3>
-              </div>
-            </div> -->
           </div>
         </div>
         @endforeach

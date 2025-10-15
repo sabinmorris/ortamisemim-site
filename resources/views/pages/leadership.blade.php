@@ -19,7 +19,7 @@
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
         <div class="section-title-container d-flex align-items-center justify-content-between">
-            <h2>Or-Tamisemim</h2>
+            <h2 translate="no">Or-Tamisemim</h2>
             <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
         </div>
     </div><!-- End Section Title -->
