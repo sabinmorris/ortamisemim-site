@@ -2,41 +2,24 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
+use App\Models\Anouncement;
 use Illuminate\Console\Command;
 
 class AutoDeactivateStatus extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'command:name';
+    protected $signature = 'status:auto-deactivate';
+    protected $description = 'Automatically set status to 0 after one month';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
-        return 0;
+        $oneMonthAgo = Carbon::now()->subMonth();
+
+        // Update all records older than 1 month
+        $updated = Anouncement::where('status', 1)
+            ->where('created_at', '<=', $oneMonthAgo)
+            ->update(['status' => 0]);
+
+        $this->info(" {$updated} record(s) updated to inactive.");
     }
 }

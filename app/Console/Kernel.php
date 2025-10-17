@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // Run once every day at midnight
+        $schedule->command('status:auto-deactivate')->daily();
     }
 
     /**

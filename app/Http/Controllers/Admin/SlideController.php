@@ -44,7 +44,7 @@ class SlideController extends Controller
     public function store(Request $request)
     {
 
-        // ✅ Validation with custom messages
+        // Validation with custom messages
         $validator = Validator::make($request->all(), [
             'tittle' => ['required', 'string', 'max:255'],
             'caption' => ['required', 'string', 'max:255'],
