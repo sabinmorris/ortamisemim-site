@@ -677,13 +677,26 @@ class GeneralUpdateController extends Controller
 
     //Function to update picture for about us page
     public function updatepicture(Request $request){
-
-        $this->validate($request, [
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'pictureNamee' => ['required', 'string', 'max:255'],
-            'positionn' => ['required'],
-            'picturee' => 'mimes:webp|nullable|max:5120', // max 5120kb
-            
+            'positionn' => 'required',
+            'picturee' => 'nullable|mimes:webp|max:5120', // Only allow webp files
+        ], [
+            'picturee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'picturee.required' => 'Please upload an image before submitting.',
+            'picturee.max' => 'Image size must not exceed 5MB.',
+            'pictureNamee.max' => 'Name must not exceed 255 word',
+            'positionn.required' => 'Fill postion required',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $pictureInfo = PictureCollection::findOrFail($request->pictureId);
         $pictureInfo->pictureName = $request->input('pictureNamee');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\PictureCollection;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PictureCollectionController extends Controller
 {
@@ -38,16 +39,30 @@ class PictureCollectionController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'pictureName' => ['required', 'string', 'max:255'],
             'position' => 'required',
-            'picture' => 'mimes:webp|required|max:5120', // max 5120kb
-            
+            'picture' => 'required|mimes:webp|max:5120', // Only allow webp files
+        ], [
+            'picture.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'picture.required' => 'Please upload an image before submitting.',
+            'picture.max' => 'Image size must not exceed 5MB.',
+            'pictureName.max' => 'Name must not exceed 255 word',
+            'position.required' => 'Fill postion required',
         ]);
 
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
+
         if (request()->hasFile('picture')) {
-            
-            $request =request(); 
+
+            $request = request();
             $file = $request->file('picture');
             //Get filename with extension
             $filenameWithExt = $request->file('picture')->getClientOriginalName();
@@ -55,11 +70,10 @@ class PictureCollectionController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
             $extension = $file->getClientOriginalExtension();
-            
-            $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
-            $file->move('storage/uploads/aboutpictures', $fileNamestoStore);
 
-        }else{
+            $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
+            $file->move('storage/uploads/aboutpictures', $fileNamestoStore);
+        } else {
             $fileNamestoStore = 'noImage.webp';
         }
 
@@ -67,7 +81,7 @@ class PictureCollectionController extends Controller
         $pictureInfos->pictureName = $request->input('pictureName');
         $pictureInfos->position = $request->input('position');
         $pictureInfos->picture = $fileNamestoStore;
-        
+
         $pictureInfos->save();
 
         if ($pictureInfos) {
@@ -75,7 +89,7 @@ class PictureCollectionController extends Controller
                 'message' => 'successifully about us image info saved',
                 'code' => 200
             ]);
-        }else{
+        } else {
             return response()->json([
                 'message' => 'Interna Server Error',
                 'code' => 500
@@ -129,7 +143,7 @@ class PictureCollectionController extends Controller
     public function destroy($id)
     {
         $pictureInfos = PictureCollection::findorFail($id);
-        
+
         if ($pictureInfos->picture !== 'nofile.webp') {
 
             //delete picha
