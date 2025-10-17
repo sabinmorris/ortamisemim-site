@@ -394,12 +394,24 @@ class GeneralUpdateController extends Controller
     //Function to update about us Info
     public function updateboutus(Request $request)
     {
-
-        $this->validate($request, [
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'titlee' => ['required', 'string', 'max:255'],
             'descriptionn' => ['required', 'string', 'max:5000'],
-            'status' => 'required',
+            'status' => 'required', // Only allow webp files
+        ], [
+            'descriptionn.max' => 'Description must not exceed 5000 word',
+            'status.required' => 'required status',
+            'titlee.required' => 'Tittle required',
+            'titlee.max' => 'tittle must not exceed 255 word.',
         ]);
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $aboutUsInfo = AboutUs::findOrFail($request->aboutId);
         $aboutUsInfo->title = $request->input('titlee');
