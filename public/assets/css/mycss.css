@@ -1,4 +1,9 @@
 
+#navmenu ul li a {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .me-3 {
   width: 120px;
   margin-left: 25px; 
@@ -92,7 +97,7 @@
 
   #header {
     position: sticky;
-    top: 105px;
+    top: 100px;
     /* Height of your image banner */
     z-index: 1000;
   }
@@ -100,6 +105,7 @@
   ul li a:hover {
     background-color: #0d6efd;
     color: #fff;
+    font-weight: bold;
   }
 
   /* === Submenu Hover === */

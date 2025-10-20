@@ -72,7 +72,7 @@
 <div class="container copyright text-center mt-4">
   <p>© <span>Copyright</span> <strong class="px-1 sitename" translate="no">Or-Tamisemim</strong> <span>All Rights Reserved</span></p>
   <div class="credits">
-    Designed by <a href="{{Route('/')}}">Or-Tamisemim</a> Distributed by  <a href="https://tamisemim.go.tz">ThemeTawala</a>
+    <!-- Designed by <a href="{{Route('/')}}">Or-Tamisemim</a> Distributed by  <a href="https://tamisemim.go.tz">ThemeTawala</a> -->
   </div>
 </div>
 
