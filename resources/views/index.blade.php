@@ -56,8 +56,8 @@
             <img src="{{ asset('storage/uploads/post_images/' .$postInfo->post_image)}}" alt="" class="img-fluid">
           </a>
           <div>
-            <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$postInfo->created_at->diffForHumans()}}</span> <span style="float: right;"><i class="bi bi-people"></i>{{$postInfo->view_count}}</span></div>
-            <h3><a href="{{Route('read_more', $postInfo->id)}}">{{$postInfo->post_tittle}}</a></h3>
+            <div class="post-meta fst-italic"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$postInfo->created_at->diffForHumans()}}</span> <span style="float: right;"><i class="bi bi-people"></i>{{$postInfo->view_count}}</span></div>
+            <h6 style="font-weight: bold; font-size: 16px;" ><a href="{{Route('read_more', $postInfo->id)}}" class="fst-italic">{{$postInfo->post_tittle}}</a></h6>
             @if(substr($postInfo->post_description, 0,200))
             <p class="fst-italic">
               {!! htmlspecialchars_decode(substr($postInfo->post_description, 0,255)) !!}
@@ -76,15 +76,15 @@
         @endforeach
         @endif
 
-        @if(count([$ministerInfos]) > 0)
+        @if(count($ministerInfos) > 0)
         @foreach($ministerInfos as $ministerInfo)
-        @if($ministerInfo->status == 1)
+        
         <div class="row">
           <div class="col-lg-4">
             <div class="post-list border-bottom fst-italic">
               <a href="single-post.html#"><img src="{{ asset('storage/uploads/minister_images/' .$ministerInfo->minister_image)}}" alt="" class="img-fluid"></a>
               <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$ministerInfo->created_at->diffForHumans()}}</span></div>
-              <h6 class="mb-2" style="font-weight: bold; font-size: 16px;">{{$ministerInfo->minister_title}}</h6>
+              <p class="mb-2" style="font-weight: bold; font-size: 16px;">{{ $ministerInfo->minister_title }}</p>
               <span class="author mb-3 d-block">{{$ministerInfo->minister_name}}</span>
             </div>
           </div>
@@ -95,7 +95,7 @@
             </div>
           </div>
         </div>
-        @endif
+       
         @endforeach
         @endif
 
