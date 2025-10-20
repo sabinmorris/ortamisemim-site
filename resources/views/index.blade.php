@@ -59,7 +59,7 @@
             <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$postInfo->created_at->diffForHumans()}}</span> <span style="float: right;"><i class="bi bi-people"></i>{{$postInfo->view_count}}</span></div>
             <h3><a href="{{Route('read_more', $postInfo->id)}}">{{$postInfo->post_tittle}}</a></h3>
             @if(substr($postInfo->post_description, 0,200))
-            <p>
+            <p class="fst-italic">
               {!! htmlspecialchars_decode(substr($postInfo->post_description, 0,255)) !!}
               <hr>
               <!-- class="stretched-link" this class used to keep all page linke with one linke addres define within -->
@@ -81,7 +81,7 @@
         @if($ministerInfo->status == 1)
         <div class="row">
           <div class="col-lg-4">
-            <div class="post-list border-bottom">
+            <div class="post-list border-bottom fst-italic">
               <a href="single-post.html#"><img src="{{ asset('storage/uploads/minister_images/' .$ministerInfo->minister_image)}}" alt="" class="img-fluid"></a>
               <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$ministerInfo->created_at->diffForHumans()}}</span></div>
               <h2 class="mb-2"><a href="single-post.html#">{{$ministerInfo->minister_title}}</a></h2>
@@ -91,7 +91,7 @@
 
           <div class="col-lg-8" style="margin-top: 100px;">
             <div class="post-list">
-              <p class="mb-4 d-block">{{$ministerInfo->description}}</p>
+              <p class="mb-4 d-block fst-italic">{{$ministerInfo->description}}</p>
             </div>
           </div>
         </div>
