@@ -6,6 +6,7 @@ use App\Models\Leadership;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class LeadershipController extends Controller
 {
@@ -54,14 +55,29 @@ class LeadershipController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+     // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'role' => 'required',
             'designation' => 'required',
             'description' => ['required', 'string', 'max:500'],
-            'leader_image' => 'mimes:webp|nullable|max:5120', // max 5120kb
-            
+            'leader_image' => 'required|mimes:webp|max:5120', // Only allow webp files
+        ], [
+            'leader_image.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'leader_image.required' => 'Please upload an image before submitting.',
+            'leader_image.max' => 'Image size must not exceed 5MB.',
+            'role.required' => 'please enter role before submiting',
+            'designation.required' => 'Please enter designation before submiting',
+            'description.max' => 'Description must not exceeded 500 words',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         if (request()->hasFile('leader_image')) {
             

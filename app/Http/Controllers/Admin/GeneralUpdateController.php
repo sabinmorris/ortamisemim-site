@@ -484,15 +484,31 @@ class GeneralUpdateController extends Controller
     //Function to update leaders info to the Db
     public function updateleader(Request $request)
     {
-        $this->validate($request, [
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'namee' => ['required', 'string', 'max:255'],
             'rolee' => 'required',
             'designationn' => 'required',
             'descriptionn' => ['required', 'string', 'max:500'],
-            'leader_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
+            'leader_imagee' => 'nullable|mimes:webp|max:5120', // Only allow webp files
             'status' => 'required',
-
+        ], [
+            'leader_imagee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'leader_imagee.required' => 'Please upload an image before submitting.',
+            'leader_imagee.max' => 'Image size must not exceed 5MB.',
+            'rolee.required' => 'please enter role before submiting',
+            'designationn.required' => 'Please enter designation before submiting',
+            'descriptionn.max' => 'Description must not exceeded 500 words',
+            'status.required' => 'Please select status before submiting',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $leaderInfo = Leadership::findOrFail($request->leaderId);
         $leaderInfo->name = $request->input('namee');
@@ -606,6 +622,26 @@ class GeneralUpdateController extends Controller
     //Function for Updating Deaprtment services.
     public function updatedepartmentservice(Request $request)
     {
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
+            'departmentNamee' => ['required', 'string', 'max:255'],
+            'servicee' => ['required', 'string', 'max:500'],
+            'status' => 'required',
+        ], [
+            'departmentNamee.required' => 'Please enter department name before submiting.',
+            'departmentNamee.max' => 'Department name must not exceed 255 words.',
+            'servicee.max' => 'Service must not exceed 500 words.',
+            'servicee.required' => 'Please enter service before submiting',
+            'status' => 'status required',
+        ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $departmentInfo = DepartmentService::findOrFail($request->dptmntId);
         $departmentInfo->departmentName = $request->input('departmentNamee');
