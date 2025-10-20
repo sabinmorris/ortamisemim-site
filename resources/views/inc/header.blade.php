@@ -12,24 +12,24 @@
     </a>
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="{{Route('/')}}" class="active">Home</a></li>
-        <li><a href="{{Route('about_Us')}}" class="active">Kuhusu Sisi</a></li>
-        <li><a href="{{Route('events')}}">Habari na Matukio</a></li>
-        <li><a href="{{Route('our_leadership')}}">Uongozi</a></li>
-        <li class="dropdown"><a href="#"><span>Maktaba</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <li><a href="{{Route('/')}}" class="active">{{strtoupper('Home')}}</a></li>
+        <li><a href="{{Route('about_Us')}}" class="active">{{ strtoupper('Kuhusu Sisi')}}</a></li>
+        <li><a href="{{Route('events')}}">{{ strtoupper('Habari na Matukio')}}</a></li>
+        <li><a href="{{Route('our_leadership')}}">{{ strtoupper('Uongozi')}}</a></li>
+        <li class="dropdown"><a href="#"><span>{{ strtoupper('Maktaba')}}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>
-            <li><a href="{{Route('video_Lebo')}}">Video</a></li>
-            <li><a href="{{Route('photo_Lebo')}}">Picha</a></li>
+            <li><a href="{{Route('video_Lebo')}}">{{ strtoupper('Video')}}</a></li>
+            <li><a href="{{Route('photo_Lebo')}}">{{ strtoupper('Picha')}}</a></li>
             <li class="dropdown">
-              <a class="dropdown-item" href="#"> Nyaraka &raquo; </a>
+              <a class="dropdown-item" href="#"> {{ strtoupper('Nyaraka')}} &raquo; </a>
               @if(count([$departmentInfos]) > 0)
               @foreach($departmentInfos as $departmentInfo)
               <ul class="dropdown-menu dropdown-submenu">
                 <li>
-                  <a class="dropdown-item" href="{{Route('show_document', ['departmentName' => 'uratibu'])}}">Tawala za Mikoa</a>
+                  <a class="dropdown-item" href="{{Route('show_document', ['departmentName' => 'uratibu'])}}">{{ strtoupper('Tawala za Mikoa')}}</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{{Route('show_document', ['departmentName' => 'mipango'])}}">Sera & Mipango</a>
+                  <a class="dropdown-item" href="{{Route('show_document', ['departmentName' => 'mipango'])}}">{{ strtoupper('Sera & Mipango')}}</a>
                 </li>
               </ul>
               @endforeach
@@ -38,20 +38,20 @@
           </ul>
 
         </li>
-        <li class="dropdown"><a href="#"><span>Idara</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <li class="dropdown"><a href="#"><span>{{ strtoupper('Idara')}}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           @if(count($departmentInfos) > 0)
           @foreach($departmentInfos as $departmentInfo)
           <ul>
-            <li><a href="{{Route('utumishi_department', ['departmentName' => 'utumishi'])}}">Utumishi na Uendeshaji</a></li>
-            <li><a href="{{Route('utumishi_department', ['departmentName' => 'mipango'])}}">Mipango Sera na Utafiti</a></li>
-            <li><a href="{{Route('utumishi_department', ['departmentName' => 'uratibu'])}}">Tawala za Mikoa na Serikali za Mitaa</a></li>
-            <li><a href="{{Route('utumishi_department', ['departmentName' => 'idara maalum'])}}">Idara Maalum</a></li>
-            <li><a href="{{Route('utumishi_department', ['departmentName' => 'mrajis'])}}">Mrajis</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'utumishi'])}}">{{ strtoupper('Utumishi na Uendeshaji')}}</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'mipango'])}}">{{ strtoupper('Mipango Sera na Utafiti')}}</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'uratibu'])}}">{{ strtoupper('Tawala za Mikoa na Serikali za Mitaa')}}</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'idara maalum'])}}">{{ strtoupper('Idara Maalum')}}</a></li>
+            <li><a href="{{Route('utumishi_department', ['departmentName' => 'mrajis'])}}" translate="no">{{ strtoupper('Mrajis')}}</a></li>
           </ul>
           @endforeach
           @endif
         </li>
-        <li><a href="{{Route('contact_Us')}}">Wasiliana Nasi</a></li>
+        <li><a href="{{Route('contact_Us')}}">{{ strtoupper('Wasiliana Nasi')}}</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
