@@ -238,13 +238,27 @@ class GeneralUpdateController extends Controller
     //function to update anouncement info from db
     public function updateanounce(Request $request)
     {
-
-        $this->validate($request, [
+        //Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'tittlee' => ['required', 'string', 'max:255'],
-            'file_namee' => 'mimes:pdf|nullable|max:5120', // max 5120kb
+            'file_namee' => 'nullable|mimes:pdf|max:5120', // Only allow pdf files
             'status' => 'required',
-
+        ], [
+            'file_namee.mimes' => 'Invalid file format! Only PDF file are allowed.',
+            'file_namee.required' => 'Please upload file before submitting.',
+            'file_namee.max' => 'File size must not exceed 5MB.',
+            'tittlee.max' => 'Tittle must not exceed 255 word',
+            'tittlee.required' => 'Please Enter Tittle before submiting',
+            'status.required' => 'Please select status before submiting'
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $anouncementInfo = Anouncement::findOrFail($request->anoucementId);
         $anouncementInfo->tittle = $request->input('tittlee');
@@ -313,16 +327,30 @@ class GeneralUpdateController extends Controller
     //Function to update minister description
     public function updateministerdescription(Request $request)
     {
-
-
-        $this->validate($request, [
-            'minister_namee' => ['required', 'string', 'max:255'],
+        //Validation with custom messages
+        $validator = Validator::make($request->all(), [
+            'minister_namee' => ['required', 'string', 'max:50'],
             'minister_titlee' => ['required', 'string', 'max:255'],
-            'descriptionn' => ['required', 'string', 'max:500'],
-            'minister_imagee' => 'mimes:webp|nullable|max:5120', // max 5120kb
+            'descriptionn' => ['required', 'string', 'max:5000'],
+            'minister_imagee' => 'nullable|mimes:webp|max:5120', // Only allow webp files
             'status' => 'required',
-
+        ], [
+            'minister_imagee.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'minister_imagee.required' => 'Please upload an image before submitting.',
+            'minister_imagee.max' => 'Image size must not exceed 5MB.',
+            'minister_namee.max' => 'Post tittle must not exceed 50 words',
+            'minister_titlee' => 'Tittle must not exceed 255 words',
+            'descriptionn.max' => 'Description not exceeded 500 words',
+            'status.required' => 'Please select status before submiting',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $anouncementInfos = MinisterComment::findOrFail($request->descriptionid);
         $anouncementInfos->minister_name = $request->input('minister_namee');
@@ -394,7 +422,7 @@ class GeneralUpdateController extends Controller
     //Function to update about us Info
     public function updateboutus(Request $request)
     {
-        // ✅ Validation with custom messages
+        //Validation with custom messages
         $validator = Validator::make($request->all(), [
             'titlee' => ['required', 'string', 'max:255'],
             'descriptionn' => ['required', 'string', 'max:5000'],

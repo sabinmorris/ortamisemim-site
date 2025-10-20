@@ -204,9 +204,20 @@
                         setTimeout(() => {
                             document.location.reload();
                         }, 3000); // 3000 milliseconds = 3 seconds
+                    },
+                    error: function(xhr) {
 
+                        if (xhr.status === 422) {
+                            // Laravel validation errors
+                            let errors = xhr.responseJSON.errors;
+                            $.each(errors, function(field, messages) {
+                                toastr.error(messages[0], field.toUpperCase() + ' Error');
+                            });
+                        } else {
+                            toastr.error(xhr.responseJSON?.message || 'Unexpected error occurred.');
+                        }
                     }
-                    
+
                 });
             }
         });
@@ -251,7 +262,7 @@
             }
         });
         $('#descriptionUpdateForm').on('submit', function(e) {
-            //e.preventDefault();
+            e.preventDefault();
 
             if (confirm('Are you sure want to update??')) {
                 $.ajax({
@@ -273,7 +284,18 @@
                         setTimeout(() => {
                             document.location.reload();
                         }, 2000); // 2000 milliseconds = 2 seconds
+                    },
+                    error: function(xhr) {
 
+                        if (xhr.status === 422) {
+                            // Laravel validation errors
+                            let errors = xhr.responseJSON.errors;
+                            $.each(errors, function(field, messages) {
+                                toastr.error(messages[0], field.toUpperCase() + ' Error');
+                            });
+                        } else {
+                            toastr.error(xhr.responseJSON?.message || 'Unexpected error occurred.');
+                        }
                     }
                 });
             }

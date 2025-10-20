@@ -1,5 +1,5 @@
 <div class=" align-items-center" style="position: sticky; top: 0; z-index: 1000;">
-  <img src="{{asset('assets/img/BURNNER.webp')}}" style="width: 100%; display: block;">
+  <img src="{{asset('assets/img/BUNNERWEBSITE.webp')}}" style="width: 100%; display: block;">
 </div>
 
 <header id="header" class="header d-flex align-items-center sticky-top">

@@ -7,6 +7,7 @@ use App\Models\Anouncement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class AnouncementController extends Controller
 {
@@ -44,11 +45,25 @@ class AnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
             'tittle' => ['required', 'string', 'max:255'],
-            'file_name' => 'mimes:pdf|required|max:5120', // max 5120kb
-            
+            'file_name' => 'required|mimes:pdf|max:5120', // Only allow webp files
+        ], [
+            'file_name.mimes' => 'Invalid file format! Only PDF file are allowed.',
+            'file_name.required' => 'Please upload file before submitting.',
+            'file_name.max' => 'File size must not exceed 5MB.',
+            'tittle.max' => 'Tittle must not exceed 255 word',
+            'tittle.required' => 'Please Enter Tittle before submitting',
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         if (request()->hasFile('file_name')) {
             

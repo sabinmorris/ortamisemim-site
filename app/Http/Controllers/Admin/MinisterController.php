@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\MinisterComment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class MinisterController extends Controller
 {
@@ -42,13 +43,28 @@ class MinisterController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'minister_name' => 'required',
+        //Validation with custom messages
+        $validator = Validator::make($request->all(), [
+            'minister_name' => ['required', 'string', 'max:50'],
             'minister_title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:500'],
-            'minister_image' => 'mimes:webp|required|max:5120', // max 5120kb
-            
+            'description' => ['required', 'string', 'max:5000'],
+            'minister_image' => 'required|mimes:webp|max:5120', // Only allow webp files
+        ], [
+            'minister_name.max' => 'Name must not exceed 50 words.',
+            'minister_title' => 'Tittle must not exceed 255 words.',
+            'description.max' => 'Description not exceeded 500 words.',
+            'minister_image.mimes' => 'Invalid image format! Only WEBP images are allowed.',
+            'minister_image.required' => 'Please upload an image before submitting.',
+            'minister_image.max' => 'Image size must not exceed 5MB.',     
         ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         if (request()->hasFile('minister_image')) {
             
