@@ -84,7 +84,7 @@
             <div class="post-list border-bottom fst-italic">
               <a href="single-post.html#"><img src="{{ asset('storage/uploads/minister_images/' .$ministerInfo->minister_image)}}" alt="" class="img-fluid"></a>
               <div class="post-meta"><span class="date">Post</span> <span class="mx-1">•</span> <span>{{$ministerInfo->created_at->diffForHumans()}}</span></div>
-              <h5 class="mb-2" style="font-weight: bold;">{{$ministerInfo->minister_title}}</h2>
+              <h6 class="mb-2" style="font-weight: bold; font-size: 16px;">{{$ministerInfo->minister_title}}</h6>
               <span class="author mb-3 d-block">{{$ministerInfo->minister_name}}</span>
             </div>
           </div>
