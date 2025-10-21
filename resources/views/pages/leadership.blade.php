@@ -373,136 +373,6 @@
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
         <div class="section-title-container d-flex align-items-center justify-content-between">
-            <h2>Vikosi</h2>
-            <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
-        </div>
-    </div><!-- End Section Title -->
-    <div class="container">
-        <div class="row gy-4">
-            <div class="col-lg-6 offset-3" data-aos="fade-up" data-aos-delay="100">
-                @if(count([$leaderInfos]) > 0)
-                @foreach($leaderInfos as $leaderInfo)
-                @if($leaderInfo->role == 'm-kikosi-kmkm')
-                <div class="team-member d-flex align-items-start">
-                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>{{$leaderInfo->name}}</h4>
-                        <span>{{$leaderInfo->designation}}</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""> <i class="bi bi-linkedin"></i> </a>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @endforeach
-                @endif
-            </div><!-- End Team Member -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                @if(count([$leaderInfos]) > 0)
-                @foreach($leaderInfos as $leaderInfo)
-                @if($leaderInfo->role == 'm-kikosi-jku')
-                <div class="team-member d-flex align-items-start">
-                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>{{$leaderInfo->name}}</h4>
-                        <span>{{$leaderInfo->designation}}</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""> <i class="bi bi-linkedin"></i> </a>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @endforeach
-                @endif 
-            </div><!-- End Team Member -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                @if(count([$leaderInfos]) > 0)
-                @foreach($leaderInfos as $leaderInfo)
-                @if($leaderInfo->role == 'm-kikosi-kvz')
-                <div class="team-member d-flex align-items-start">
-                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>{{$leaderInfo->name}}</h4>
-                        <span>{{$leaderInfo->designation}}</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""> <i class="bi bi-linkedin"></i> </a>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @endforeach
-                @endif
-            </div><!-- End Team Member -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                @if(count([$leaderInfos]) > 0)
-                @foreach($leaderInfos as $leaderInfo)
-                @if($leaderInfo->role == 'm-kokosi-mafunzo')
-                <div class="team-member d-flex align-items-start">
-                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>{{$leaderInfo->name}}</h4>
-                        <span>{{$leaderInfo->designation}}</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""> <i class="bi bi-linkedin"></i> </a>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @endforeach
-                @endif
-
-            </div>
-            <!-- End Team Member -->
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                @if(count([$leaderInfos]) > 0)
-                @foreach($leaderInfos as $leaderInfo)
-                @if($leaderInfo->role == 'm-kikosi-faya')
-                <div class="team-member d-flex align-items-start">
-                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>{{$leaderInfo->name}}</h4>
-                        <span>{{$leaderInfos->designation}}</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""> <i class="bi bi-linkedin"></i> </a>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @endforeach
-                @endif
-            </div>
-            <!-- End Team Member -->
-        </div>
-
-    </div>
-
-</section><!-- /Team Section -->
-
-
-<!-- Team Section -->
-<section id="team" class="team section">
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <div class="section-title-container d-flex align-items-center justify-content-between">
             <h2>Wilaya</h2>
         </div>
     </div><!-- End Section Title -->
@@ -645,6 +515,135 @@
                     <div class="member-info">
                         <h4>{{$leaderInfo->name}}</h4>
                         <span>{{$leaderInfo->designation}}</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""> <i class="bi bi-linkedin"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endforeach
+                @endif
+            </div>
+            <!-- End Team Member -->
+        </div>
+
+    </div>
+
+</section><!-- /Team Section -->
+
+<!-- Team Section -->
+<section id="team" class="team section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <div class="section-title-container d-flex align-items-center justify-content-between">
+            <h2>Idara Maalum</h2>
+            <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
+        </div>
+    </div><!-- End Section Title -->
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-6 offset-3" data-aos="fade-up" data-aos-delay="100">
+                @if(count([$leaderInfos]) > 0)
+                @foreach($leaderInfos as $leaderInfo)
+                @if($leaderInfo->role == 'm-kikosi-kmkm')
+                <div class="team-member d-flex align-items-start">
+                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>{{$leaderInfo->name}}</h4>
+                        <span>{{$leaderInfo->designation}}</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""> <i class="bi bi-linkedin"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endforeach
+                @endif
+            </div><!-- End Team Member -->
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                @if(count([$leaderInfos]) > 0)
+                @foreach($leaderInfos as $leaderInfo)
+                @if($leaderInfo->role == 'm-kikosi-jku')
+                <div class="team-member d-flex align-items-start">
+                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>{{$leaderInfo->name}}</h4>
+                        <span>{{$leaderInfo->designation}}</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""> <i class="bi bi-linkedin"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endforeach
+                @endif
+            </div><!-- End Team Member -->
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                @if(count([$leaderInfos]) > 0)
+                @foreach($leaderInfos as $leaderInfo)
+                @if($leaderInfo->role == 'm-kikosi-kvz')
+                <div class="team-member d-flex align-items-start">
+                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>{{$leaderInfo->name}}</h4>
+                        <span>{{$leaderInfo->designation}}</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""> <i class="bi bi-linkedin"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endforeach
+                @endif
+            </div><!-- End Team Member -->
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                @if(count([$leaderInfos]) > 0)
+                @foreach($leaderInfos as $leaderInfo)
+                @if($leaderInfo->role == 'm-kokosi-mafunzo')
+                <div class="team-member d-flex align-items-start">
+                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>{{$leaderInfo->name}}</h4>
+                        <span>{{$leaderInfo->designation}}</span>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter-x"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""> <i class="bi bi-linkedin"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endforeach
+                @endif
+
+            </div>
+            <!-- End Team Member -->
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                @if(count([$leaderInfos]) > 0)
+                @foreach($leaderInfos as $leaderInfo)
+                @if($leaderInfo->role == 'm-kikosi-faya')
+                <div class="team-member d-flex align-items-start">
+                    <div class="pic"><img src="{{ asset('storage/uploads/leader_images/' .$leaderInfo->leader_image)}}" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>{{$leaderInfo->name}}</h4>
+                        <span>{{$leaderInfos->designation}}</span>
                         <div class="social">
                             <a href=""><i class="bi bi-twitter-x"></i></a>
                             <a href=""><i class="bi bi-facebook"></i></a>
