@@ -22,6 +22,7 @@
                                     <option value="mipango">{{ __('Sera & Mipango')}}</option>
                                     <option value="idara maalum">{{ __('Idara Maalum')}}</option>
                                     <option value="mrajis">{{ __('Mrajis')}}</option>
+                                    <option value="general">{{ __('General')}}</option>
                                 </select>
                                 @error('departmentName')
                                 <span class="invalid-feedback" role="alert">
