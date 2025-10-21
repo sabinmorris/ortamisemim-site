@@ -38,11 +38,9 @@
 
                 @if(count($moreDeptInfos) > 0)
                 @foreach($moreDeptInfos as $moreDeptInfo)
-                @if($departmentInfo->departmentName == 'general')
                 <ul>
-                    <li class="fst-italic"><i class="bi bi-check-circle"></i> <span>{{$moreDeptInfo->service}}</span></li>
+                    <li><i class="bi bi-check-circle"></i> <span>{{$moreDeptInfo->service}}</span></li>
                 </ul>
-                @endif
                 @endforeach
                 @else
                 <ul>

@@ -38,23 +38,10 @@
         
         @if(count([$departmentInfos]) > 0 )
         @foreach($departmentInfos as $departmentInfo)
-        @if($departmentInfo->status == 1 )
+        @if($departmentInfo->departmentName == 'general' )
 
         <ul>
-          <li><i class="bi bi-check-circle"></i> <span>{{$departmentInfo->service}}</span></li>
-          <!-- <li><i class="bi bi-check-circle"></i> <span>Kusimamia Sera, Sheria na Kanuni mbali mbali za Ofisi.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kubuni na kusimamia utekelezaji wa miradi ya maendeleo.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kudumisha Amani, Ulinzi na Usalama katika Mikoa na Wilaya hadi Shehia.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kulinda mali za Taifa na za watu binafsi zisiharibiwe, kuzuia uingizaji au utoaji nje ya nchi kimagendo, pamoja na kusimamia kazi za uzimaji moto na uokozi.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kuwasajili na kuwapa vitambulisho Wazanzibari wakaazi.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kuwahifadhi kwa kufuata taratibu bora na kwa kuzingatia haki za binaadamu watuhumiwa na waliofungwa ambao wako katika Vyuo vya Mafunzo.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kuandaa na kutekeleza mipango ya kuijengea uwezo Mikoa kitaaluma na utumishi katika Mikoa.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kutoa mwongozo na ushauri kwa Mikoa katika mambo ya kisheria na utaratibu, kujenga mazingira mazuri katika kuimarisha huduma za kijamii na kiuchumi katika Mikoa.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kuratibu, kushauri, kusimamia na kufuatilia utekelezaji wa shughuliza Serikali za Mitaa.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kuimarisha Utawala Bora na kuimarisha uwezo wa Serikali za Mitaa na mamlaka zake.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kufuatilia na kukagua utendaji wa mamlaka za Mikoa, Serikali za Mitaa na Idara Maalum za SMZ katika utoaji wa huduma.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kuendeleza michezo katika Idara na Taasisi zetu.</span></li>
-          <li><i class="bi bi-check-circle"></i> <span>Kuimarisha uhusiano baina ya taasisi za Ofisi ya Raisi Tawala za Mikoa, Serikali za Mitaa na Idara maalum za SMZ. Na taasisi nyengine.</span></li> -->
+          <li class="fst-italic"><i class="bi bi-check-circle"></i> <span>{{$departmentInfo->service}}</span></li>
         </ul>
         @endif
         @endforeach
