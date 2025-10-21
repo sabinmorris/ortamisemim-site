@@ -39,7 +39,7 @@
                 @if(count($depInfos) > 0)
                 @foreach($depInfos as $depInfo)
                 <ul>
-                    <li><i class="bi bi-check-circle"></i> <span>{{$depInfo->service}}</span></li>
+                    <li class="fst-italic"><i class="bi bi-check-circle"></i> <span>{{$depInfo->service}}</span></li>
                 </ul>
                 @endforeach
                 @else
