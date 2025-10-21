@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <form method="POST" id="departmentUpdateForm" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" id="dptmntId" name="dptmntId">
+                        <input type="text" id="dptmntId" name="dptmntId">
                         <div class="row mb-3">
                             <label for="slide_status" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
                             <div class="col-md-6">
