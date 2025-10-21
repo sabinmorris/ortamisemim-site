@@ -89,7 +89,7 @@ class PagesController extends Controller
     public function readmoreabout()
     {
         $aboutusInfos = AboutUs::where('status', 1)->get();
-        $departmentInfos = DepartmentService::where('status', 1)->get();
+        $departmentInfos = DepartmentService::where('status', 1)->orderBy('id', 'desc')->get();
         $pictureInfos = PictureCollection::where('status', 1)->orderBy('created_at', 'desc')->limit(3)->get();
         return view('pages.readmoreabout', compact(['aboutusInfos', 'departmentInfos', 'pictureInfos']));
     }

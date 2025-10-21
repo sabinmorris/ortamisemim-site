@@ -53,7 +53,7 @@
         @endif
 
         <hr>
-        @if(count($departmentInform) > 3)
+        @if(count($departmentInform) > 5)
 
         <a href="{{Route('read_more_about')}}" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
 
@@ -100,7 +100,7 @@
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <div class="section-title-container d-flex align-items-center justify-content-between">
-      <h2>Viongozi</h2>
+      <h2>Uongozi</h2>
       <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
     </div>
   </div><!-- End Section Title -->

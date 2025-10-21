@@ -36,7 +36,7 @@
         @endif
         <h3>HUDUMA ZINAZOTOLEWA</h3>
         
-        @if(count([$departmentInfos]) > 0 )
+        @if(count($departmentInfos) > 0 )
         @foreach($departmentInfos as $departmentInfo)
         @if($departmentInfo->departmentName == 'general' )
 

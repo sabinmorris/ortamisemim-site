@@ -89,7 +89,7 @@
             </div>
           </div>
 
-          <div class="col-lg-8" style="margin-top: 100px;">
+          <div class="col-lg-8" style="margin-top: 0px;">
             <div class="post-list">
               <p class="mb-4 d-block fst-italic">{{$ministerInfo->description}}</p>
             </div>
