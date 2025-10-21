@@ -269,23 +269,13 @@
                         toastr.options.closeMethod = 'fadeOut';
                         toastr.options.closeDuration = 100;
                         toastr.success(response.message);
-                        //$('#departmentservicemodal').modal('hide');
+                        $('#departmentservicemodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
                             document.location.reload();
                         }, 2000); // 2000 milliseconds = 2 seconds
                     },
-                    error: function(xhr) {
-                        if (xhr.status === 422) {
-                            // Laravel validation errors
-                            let errors = xhr.responseJSON.errors;
-                            $.each(errors, function(field, messages) {
-                                toastr.error(messages[0], field.toUpperCase() + ' Error');
-                            });
-                        } else {
-                            toastr.error(xhr.responseJSON?.message || 'Unexpected error occurred.');
-                        }
-                    }
+                    
                 });
             }
         });
