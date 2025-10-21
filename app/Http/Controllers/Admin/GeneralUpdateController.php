@@ -622,7 +622,26 @@ class GeneralUpdateController extends Controller
     //Function for Updating Deaprtment services.
     public function updatedepartmentservice(Request $request)
     {
-        
+        // ✅ Validation with custom messages
+        $validator = Validator::make($request->all(), [
+            'departmentNamee' => ['required', 'string', 'max:255'],
+            'servicee' => ['required', 'string', 'max:500'],
+            'status' => 'required',
+        ], [
+            'departmentNamee.required' => 'Please enter department name before submiting.',
+            'departmentNamee.max' => 'Department name must not exceed 255 words.',
+            'servicee.max' => 'Service must not exceed 500 words.',
+            'servicee.required' => 'Please enter service before submiting',
+            'status' => 'status required',
+        ]);
+
+        // If validation fails, return JSON with field-specific errors
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+                'code' => 422
+            ], 422);
+        }
 
         $departmentInfo = DepartmentService::findOrFail($request->dptmntId);
         $departmentInfo->departmentName = $request->input('departmentNamee');

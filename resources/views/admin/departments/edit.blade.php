@@ -3,7 +3,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">{{ __('Edit Department Service Form111') }}</h4>
+                <h4 class="modal-title" id="myModalLabel">{{ __('Edit Department Service Form') }}</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <form method="POST" id="departmentUpdateForm" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" id="dptmntId" name="dptmntId">
+                        <input type="hidden" id="dptmntId" name="dptmntId">
                         <div class="row mb-3">
                             <label for="slide_status" class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
                             <div class="col-md-6">
