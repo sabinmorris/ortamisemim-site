@@ -55,7 +55,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if(count([$departmentInfos]) > 0)
+                                                @if(count($departmentInfos) > 0)
                                                 @foreach($departmentInfos as $departmentInfo)
                                                 <tr>
                                                     <td>{{$loop->index + 1}}</td>
