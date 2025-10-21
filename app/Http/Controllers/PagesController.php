@@ -37,7 +37,7 @@ class PagesController extends Controller
     {
         $aboutusInfos = AboutUs::where('status', 1)->get();
         $leaderInfos = Leadership::where('status', 1)->get();
-        $departmentInfos = DepartmentService::where('status', 1)->orderBy('id', 'desc')->paginate(3);
+        $departmentInfos = DepartmentService::where('status', 1)->orderBy('id', 'asc')->limit(3)->get();
         $departmentInform = DepartmentService::where('status', 1)->get();
         $pictureInfos = PictureCollection::where('status', 1)->orderBy('created_at', 'desc')->limit(3)->get();
         return view('pages.about', compact(['aboutusInfos', 'leaderInfos', 'departmentInfos', 'departmentInform', 'pictureInfos']));
