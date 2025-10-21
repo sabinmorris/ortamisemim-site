@@ -628,10 +628,9 @@ class GeneralUpdateController extends Controller
             'servicee' => ['required', 'string', 'max:500'],
             'status' => 'required',
         ], [
-            'departmentNamee.required' => 'Please enter department name before submiting.',
+            
             'departmentNamee.max' => 'Department name must not exceed 255 words.',
             'servicee.max' => 'Service must not exceed 500 words.',
-            'servicee.required' => 'Please enter service before submiting',
             'status' => 'status required',
         ]);
 
