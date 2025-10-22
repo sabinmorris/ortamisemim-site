@@ -3,13 +3,13 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">{{ __('Edit Department Service Form') }}</h4>
+                <h4 class="modal-title" id="myModalLabel">{{ __('Edit Department Service') }}</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="card-body">
-                    <form method="POST" id="departmentUpdateForm" enctype="multipart/form-data">
+                    <form id="UpdatedepartmentForm" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" id="dptmntId" name="dptmntId">
                         <div class="row mb-3">
@@ -63,7 +63,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Save') }}
+                                    {{ __('Update') }}
                                 </button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>

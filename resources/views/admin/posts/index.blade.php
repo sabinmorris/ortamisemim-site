@@ -200,7 +200,7 @@
                         //$('#postmodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
-                            document.location.reload();
+                            document.location.reload(true);
                         }, 3000); // 3000 milliseconds = 3 seconds
 
                     },
@@ -230,7 +230,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('.slide_Edit').click(function(e) {
+        $(document).on('click','.slide_Edit', function(e) {
             e.preventDefault();
             let postId = $(this).data('id');
 
@@ -260,10 +260,10 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#postupdateForm').on('submit', function(e) {
+        $(document).on('submit', '#postupdateForm', function(e) {
             e.preventDefault();
 
-            if (confirm('Are you sure want to update??')) {
+            if (confirm('Are you sure want to update post??')) {
                 $.ajax({
                     type: "POST",
                     dataType: "json",
@@ -281,7 +281,7 @@
                         $('#postmodal1').modal('hide');
                         //refresh the page
                         setTimeout(() => {
-                            document.location.reload();
+                            document.location.reload(true);
                         }, 2000); // 2000 milliseconds = 2 seconds
 
                     },

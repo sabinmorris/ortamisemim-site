@@ -71,12 +71,12 @@ class DepartmentServiceConrtoller extends Controller
             return response()->json([
                 'message' => 'Successifully Service Info Saved',
                 'code' => 200
-            ]);
+            ], 200);
         }else{
             return response()->json([
                 'message' => 'Interna Server Error',
                 'code' => 500
-            ]);
+            ],500);
         }
     }
 

@@ -653,12 +653,12 @@ class GeneralUpdateController extends Controller
             return response()->json([
                 'message' => 'Successfull Department Service Info Updated',
                 'code' => 200
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'message' => 'Internal Server Error',
                 'code' => 500
-            ]);
+            ],500);
         }
     }
 

@@ -73,14 +73,11 @@
 
                                                         <a href="" class="department_Edit" data-id="{{$departmentInfo->id}}" data-toggle="modal" data-target=".department-modal-lg" title="edit"><span class="fa fa-pencil-square" style="color:cornflowerblue;"></span></a>
                                                         @include('admin.departments.edit')
-
                                                         &nbsp;&nbsp;
 
                                                         <form id="delete-form-{{$departmentInfo->id}}" action="{{Route('manage-department.destroy', $departmentInfo->id)}}" method="POST" style="display: none">
                                                             {{ csrf_field() }}
                                                             {{method_field('DELETE')}}
-
-
                                                         </form>
 
                                                         <a href="" onclick="if(confirm('Are you sure,You want to delete this?')){
@@ -194,7 +191,8 @@
                         //$('#postmodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
-                            document.location.reload();
+                            document.location.reload(true);
+
                         }, 3000); // 3000 milliseconds = 3 seconds
                     },
                     error: function(xhr) {
@@ -222,12 +220,12 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('.department_Edit').click(function(e) {
+        $(document).on('click', '.department_Edit', function(e) {
             e.preventDefault();
             let dpatmntserviceId = $(this).data('id');
 
             $.ajax({
-                type: "get",
+                type: "GET",
                 dataType: "json",
                 url: "{{Route('manage-department.index')}}" + "/" + dpatmntserviceId + "/edit", //For using Rsource controller. 
                 data: {
@@ -251,14 +249,14 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#departmentUpdateForm').on('submit', function(e) {
+        $(document).on('submit', '#UpdatedepartmentForm', function(e) {
             e.preventDefault();
 
-            if (confirm('Are you sure want to update??')) {
+            if (confirm('Are you sure want to update service??')) {
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "{{Route('update_department_service')}}",
+                    url: "{{ Route('update_department_service')}}",
                     data: new FormData(this),
                     cache: false,
                     processData: false,
@@ -272,10 +270,12 @@
                         $('#departmentservicemodal').modal('hide');
                         //refresh the page
                         setTimeout(() => {
-                            document.location.reload();
+                            document.location.reload(true);
+
                         }, 2000); // 2000 milliseconds = 2 seconds
                     },
                     error: function(xhr) {
+
                         if (xhr.status === 422) {
                             // Laravel validation errors
                             let errors = xhr.responseJSON.errors;
@@ -286,6 +286,8 @@
                             toastr.error(xhr.responseJSON?.message || 'Unexpected error occurred.');
                         }
                     }
+
+
                 });
             }
         });
