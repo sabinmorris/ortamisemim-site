@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendMail;
 use App\Models\Post;
 use App\Models\Slide;
 use App\Models\Video;
+use App\Mail\SendMail;
 use App\Models\AboutUs;
 use App\Models\Leadership;
 use App\Models\Anouncement;
@@ -17,15 +17,30 @@ use App\Models\DepartmentService;
 use App\Models\PictureCollection;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Database\Eloquent\Builder;
 
 class PagesController extends Controller
 {
-    public function homePage()
+    public function homePage(Request $request)
     {
+        $q = $request->input('q');
+        $postInfos = Post::where('post_status', 1)->when($request->has('q') && $q, function (Builder $query) use ($q) {
+            $query->where('post_tittle', 'like', "%$q%")
+                ->orWhere('post_description', 'like', "%$q%");
+        })
+            ->orderBy('id', 'desc')
+            ->paginate(4);
+
+        $postInfos1 = Post::where('post_status', 1)->orderBy('created_at', 'desc')
+        ->when($request->has('q') && $q, function (Builder $query) use ($q) {
+            $query->where('post_tittle', 'like', "%$q%")
+                ->orWhere('post_description', 'like', "%$q%");
+        })
+        ->limit(1)->get();
 
         $slideInfos = Slide::where('status', 1)->orderBy('id', 'desc')->get();
-        $postInfos = Post::where('post_status', 1)->orderBy('id', 'desc')->paginate(4);
-        $postInfos1 = Post::where('post_status', 1)->orderBy('created_at', 'desc')->limit(1)->get();
+        // $postInfos = Post::where('post_status', 1)->orderBy('id', 'desc')->paginate(4);
+        // $postInfos1 = Post::where('post_status', 1)->orderBy('created_at', 'desc')->limit(1)->get();
         $anouncementInfos = Anouncement::where('status', 1)->orderBy('id', 'desc')->get();
         $ministerInfos = MinisterComment::where('status', 1)->get();
         $videoInfos1 = Video::where('status', 1)->orderBy('id', 'desc')->paginate(2);

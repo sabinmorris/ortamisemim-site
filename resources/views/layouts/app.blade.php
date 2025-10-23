@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+<meta http-equiv="refresh" content="60">
+
     @include('inc.headerLink')
     
 </head>

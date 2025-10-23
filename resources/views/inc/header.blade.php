@@ -5,11 +5,11 @@
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container position-relative d-flex align-items-center justify-content-between">
 
-    <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
+    <!-- <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
+      
       <img src="{{asset('assets/img/zanzibar-flag.webp')}}" alt="">
-      <!-- <h1 id="title" class="sitename">Or-Tamisemim</h1> -->
-    </a>
+      <h1 id="title" class="sitename">Or-Tamisemim</h1>
+    </a> -->
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="{{Route('/')}}" class="active">{{strtoupper('Home')}}</a></li>
@@ -68,7 +68,7 @@
     <!-- Search Widget -->
     <div class="search-widget">
       <form action="">
-        <input type="text">
+        <input type="text" name="q" value="{{request('q')}}">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!--/Search Widget -->

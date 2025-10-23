@@ -2,7 +2,7 @@
 @section('content')
 
 <!-- Slider Section -->
-
+@if(!request()->has('q'))
 <section id="slider" class="slider section dark-background">
 
   <!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
@@ -32,6 +32,7 @@
     <div class="ws_shadow"></div>
   </div>
 </section><!-- /Slider Section -->
+@endif
 
 
 <!-- Culture Category Section -->
@@ -76,6 +77,8 @@
         @endforeach
         @endif
 
+        <!-- Minister discription -->
+         @if(!request()->has('q'))
         @if(count($ministerInfos) > 0)
         @foreach($ministerInfos as $ministerInfo)
         
@@ -95,8 +98,8 @@
             </div>
           </div>
         </div>
-       
         @endforeach
+        @endif
         @endif
 
       </div>
