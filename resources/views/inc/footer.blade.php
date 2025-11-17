@@ -48,7 +48,7 @@
       <h4>Taasisi Zetu</h4>
       <ul>
         <li><a href="#">KMKM</a></li>
-        <li><a href="#">JKUz</a></li>
+        <li><a href="#">JKUZ</a></li>
         <li><a href="#">KVZ</a></li>
         <li><a href="https://chuochamafunzohq.go.tz/" target="_blank">MF</a></li>
         <li><a href="#">Matukio ya Kijamii</a></li>
@@ -60,7 +60,7 @@
       <ul>
         <li><a href="https://eoffice.goz.go.tz/login" target="_blank">E-Office</a></li>
         <li><a href="https://mail.tamisemim.go.tz/" target="_blank">Mail</a></li>
-        <li><a href="https://www.zhsfsmz.go.tz/" target="_blank">Zhsf</a></li>
+        <li><a href="https://www.zhsfsmz.go.tz/" target="_blank">ZHSF</a></li>
         <!-- <li><a href="#">Trodelas</a></li>
         <li><a href="#">Flexo</a></li> -->
       </ul>
