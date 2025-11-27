@@ -97,7 +97,7 @@
 
   #header {
     position: sticky;
-    top: 0px;
+    top: 100x;
     /* Height of your image banner */
     z-index: 1000;
   }

@@ -1,15 +1,11 @@
-<div class=" align-items-center" style="position: sticky; top: 0; z-index: 1000; margin-bottom: -1px;">
+<div class=" align-items-center" style="position: sticky; top: 0; z-index: 1000;">
   <img src="{{asset('assets/img/BUNNERWEBSITE.webp')}}" style="width: 100%; display: block;">
 </div>
 
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container position-relative d-flex align-items-center justify-content-between">
 
-    <!-- <a href="{{Route('/')}}" class="logo d-flex align-items-center me-auto me-xl-0" translate="no">
-      
-      <img src="{{asset('assets/img/zanzibar-flag.webp')}}" alt="">
-      <h1 id="title" class="sitename">Or-Tamisemim</h1>
-    </a> -->
+    
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="{{Route('/')}}" class="active">{{strtoupper('Home')}}</a></li>
