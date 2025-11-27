@@ -39,8 +39,6 @@ class PagesController extends Controller
         ->limit(1)->get();
 
         $slideInfos = Slide::where('status', 1)->orderBy('id', 'desc')->get();
-        // $postInfos = Post::where('post_status', 1)->orderBy('id', 'desc')->paginate(4);
-        // $postInfos1 = Post::where('post_status', 1)->orderBy('created_at', 'desc')->limit(1)->get();
         $anouncementInfos = Anouncement::where('status', 1)->orderBy('id', 'desc')->get();
         $ministerInfos = MinisterComment::where('status', 1)->get();
         $videoInfos1 = Video::where('status', 1)->orderBy('id', 'desc')->paginate(2);

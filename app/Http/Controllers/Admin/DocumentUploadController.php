@@ -69,11 +69,11 @@ class DocumentUploadController extends Controller
             $request =request(); 
             $file = $request->file('document');
             //Get filename with extension
-            $filenameWithExt = $request->file('document')->getClientOriginalName();
+            $filenameWithExt = $request->file('document')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             
             $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
             $file->move('storage/uploads/document_files', $fileNamestoStore);

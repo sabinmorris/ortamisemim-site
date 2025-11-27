@@ -65,11 +65,11 @@ class PictureCollectionController extends Controller
             $request = request();
             $file = $request->file('picture');
             //Get filename with extension
-            $filenameWithExt = $request->file('picture')->getClientOriginalName();
+            $filenameWithExt = $request->file('picture')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/aboutpictures', $fileNamestoStore);

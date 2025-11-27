@@ -68,11 +68,11 @@ class SlideController extends Controller
             //$request =request(); 
             $file = $request->file('slide_image');
             //Get filename with extension
-            $filenameWithExt = $request->file('slide_image')->getClientOriginalName();
+            $filenameWithExt = $request->file('slide_image')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/slide_images', $fileNamestoStore);

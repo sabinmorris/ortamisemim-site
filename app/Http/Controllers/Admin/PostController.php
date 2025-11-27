@@ -70,11 +70,11 @@ class PostController extends Controller
             //$request =request(); 
             $file = $request->file('post_image');
             //Get filename with extension
-            $filenameWithExt = $request->file('post_image')->getClientOriginalName();
+            $filenameWithExt = $request->file('post_image')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             
             $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
             $file->move('storage/uploads/post_images', $fileNamestoStore);

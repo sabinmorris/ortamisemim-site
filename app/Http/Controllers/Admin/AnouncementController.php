@@ -70,11 +70,11 @@ class AnouncementController extends Controller
             $request =request(); 
             $file = $request->file('file_name');
             //Get filename with extension
-            $filenameWithExt = $request->file('file_name')->getClientOriginalName();
+            $filenameWithExt = $request->file('file_name')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             
             $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
             $file->move('storage/uploads/anouncement_docs', $fileNamestoStore);

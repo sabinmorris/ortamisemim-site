@@ -71,11 +71,11 @@ class MinisterController extends Controller
             $request =request(); 
             $file = $request->file('minister_image');
             //Get filename with extension
-            $filenameWithExt = $request->file('minister_image')->getClientOriginalName();
+            $filenameWithExt = $request->file('minister_image')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             
             $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
             $file->move('storage/uploads/minister_images', $fileNamestoStore);

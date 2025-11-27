@@ -84,11 +84,11 @@ class LeadershipController extends Controller
             $request =request(); 
             $file = $request->file('leader_image');
             //Get filename with extension
-            $filenameWithExt = $request->file('leader_image')->getClientOriginalName();
+            $filenameWithExt = $request->file('leader_image')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
             
             $fileNamestoStore = $filename. '_'. time() . '.' . $extension;
             $file->move('storage/uploads/leader_images', $fileNamestoStore);

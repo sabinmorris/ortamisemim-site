@@ -91,11 +91,11 @@ class GeneralUpdateController extends Controller
             //$request =request(); 
             $file = $request->file('slide_imagee');
             //Get filename with extension
-            $filenameWithExt = $request->file('slide_imagee')->getClientOriginalName();
+            $filenameWithExt = $request->file('slide_imagee')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/slide_images', $fileNamestoStore);
@@ -181,11 +181,11 @@ class GeneralUpdateController extends Controller
             //$request =request(); 
             $file = $request->file('post_imagee');
             //Get filename with extension
-            $filenameWithExt = $request->file('post_imagee')->getClientOriginalName();
+            $filenameWithExt = $request->file('post_imagee')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/post_images', $fileNamestoStore);
@@ -272,11 +272,11 @@ class GeneralUpdateController extends Controller
             //$request =request(); 
             $file = $request->file('file_namee');
             //Get filename with extension
-            $filenameWithExt = $request->file('file_namee')->getClientOriginalName();
+            $filenameWithExt = $request->file('file_namee')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/anouncement_docs', $fileNamestoStore);
@@ -366,11 +366,11 @@ class GeneralUpdateController extends Controller
             //$request =request(); 
             $file = $request->file('minister_imagee');
             //Get filename with extension
-            $filenameWithExt = $request->file('minister_imagee')->getClientOriginalName();
+            $filenameWithExt = $request->file('minister_imagee')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/minister_images', $fileNamestoStore);
@@ -525,11 +525,11 @@ class GeneralUpdateController extends Controller
             //$request =request(); 
             $file = $request->file('leader_imagee');
             //Get filename with extension
-            $filenameWithExt = $request->file('leader_imagee')->getClientOriginalName();
+            $filenameWithExt = $request->file('leader_imagee')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/leader_images', $fileNamestoStore);
@@ -719,11 +719,11 @@ class GeneralUpdateController extends Controller
             //$request =request(); 
             $file = $request->file('documentt');
             //Get filename with extension
-            $filenameWithExt = $request->file('documentt')->getClientOriginalName();
+            $filenameWithExt = $request->file('documentt')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/document_files', $fileNamestoStore);
@@ -808,11 +808,11 @@ class GeneralUpdateController extends Controller
             //$request =request(); 
             $file = $request->file('picturee');
             //Get filename with extension
-            $filenameWithExt = $request->file('picturee')->getClientOriginalName();
+            $filenameWithExt = $request->file('picturee')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/aboutpictures', $fileNamestoStore);

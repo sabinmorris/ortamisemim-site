@@ -76,11 +76,11 @@ class HomeController extends Controller
             //$request =request(); 
             $file = $request->file('user_imagee');
             //Get filename with extension
-            $filenameWithExt = $request->file('user_imagee')->getClientOriginalName();
+            $filenameWithExt = $request->file('user_imagee')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/user_images', $fileNamestoStore);
@@ -122,11 +122,11 @@ class HomeController extends Controller
             //$request =request(); 
             $file = $request->file('user_imagee');
             //Get filename with extension
-            $filenameWithExt = $request->file('user_imagee')->getClientOriginalName();
+            $filenameWithExt = $request->file('user_imagee')->hashName();
             //Get file name
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             //File Extension
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file->extension();
 
             $fileNamestoStore = $filename . '_' . time() . '.' . $extension;
             $file->move('storage/uploads/user_images', $fileNamestoStore);
