@@ -99,7 +99,7 @@
     position: sticky;
     top: 100x;
     /* Height of your image banner */
-    z-index: 1000;
+    z-index: 9000;
   }
 
   ul li a:hover {
