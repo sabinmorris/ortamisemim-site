@@ -1,4 +1,6 @@
-<div class=" align-items-center" style="position: sticky; top: 0; z-index: 1000;">
+
+<div style="position: sticky; top: 0; z-index: 2000;">
+<div class=" align-items-center">
   <img src="{{asset('assets/img/BUNNERWEBSITE.webp')}}" style="width: 100%; display: block;">
 </div>
 
@@ -70,3 +72,4 @@
     </div><!--/Search Widget -->
   </div>
 </header>
+</div>
