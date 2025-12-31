@@ -61,7 +61,7 @@
         <li><a href="https://eoffice.goz.go.tz/login" target="_blank">E-Office</a></li>
         <li><a href="https://mail.tamisemim.go.tz/" target="_blank">Mail</a></li>
         <li><a href="https://www.zhsfsmz.go.tz/" target="_blank">ZHSF</a></li>
-        <li><a href="https://mutm.tamisemim.go.tz/zcrlb/index">ZCRLB</a></li>
+        <li><a href="https://mutm.tamisemim.go.tz/zcrlb/index" target="_blank">ZCRLB</a></li>
         <!--<li><a href="#">Flexo</a></li> -->
       </ul>
     </div>
