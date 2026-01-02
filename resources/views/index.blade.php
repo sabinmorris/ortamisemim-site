@@ -50,7 +50,7 @@
 
     <div class="row">
       <div class="col-md-8">
-        @if(count($postInfos1) > 0)
+        @if(count([$postInfos1]) > 0)
         @foreach($postInfos1 as $postInfo)
         <div class="d-lg-flex post-entry">
           <a href="{{Route('read_more', $postInfo->id)}}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
@@ -79,7 +79,7 @@
 
         <!-- Minister discription -->
          @if(!request()->has('q'))
-        @if(count($ministerInfos) > 0)
+        @if(count([$ministerInfos]) > 0)
         @foreach($ministerInfos as $ministerInfo)
         
         <div class="row">
