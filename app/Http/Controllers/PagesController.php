@@ -31,12 +31,14 @@ class PagesController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(4);
 
-        $postInfos1 = Post::where('post_status', 1)->orderBy('created_at', 'desc')
-        ->when($request->has('q') && $q, function (Builder $query) use ($q) {
-            $query->where('post_tittle', 'like', "%$q%")
-                ->orWhere('post_description', 'like', "%$q%");
-        })
-        ->limit(1)->get();
+        // $postInfos1 = Post::where('post_status', 1)->orderBy('created_at', 'desc')
+        // ->when($request->has('q') && $q, function (Builder $query) use ($q) {
+        //     $query->where('post_tittle', 'like', "%$q%")
+        //         ->orWhere('post_description', 'like', "%$q%");
+        // })
+        // ->limit(1)->get();
+
+        $postInfos1 = Post::where('post_status', 1)->orderBy('created_at', 'desc')->get();
 
         $slideInfos = Slide::where('status', 1)->orderBy('id', 'desc')->get();
         $anouncementInfos = Anouncement::where('status', 1)->orderBy('id', 'desc')->get();
