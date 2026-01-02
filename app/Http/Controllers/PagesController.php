@@ -58,13 +58,12 @@ class PagesController extends Controller
 
     public function newsevents()
     {
-        //$postInfos = Post::where('post_status', 1)->get();
-        //$postInfos = Post::orderBy('id', 'desc')->simplePaginate(2);
+        
         $postInfos = Post::where('post_status', 1)->orderBy('id', 'desc')->paginate(4);
         $videoInfos1 = Video::where('status', 1)->orderBy('id', 'desc')->paginate(2);
         $departmentInfos = DepartmentService::where('status', 1)->get();
-        $leaderInfos = Leadership::where('status', 1)->get();
-        return view('pages.newsevent', compact(['postInfos', 'videoInfos1', 'departmentInfos', 'leaderInfos']));
+        //$leaderInfos = Leadership::where('status', 1)->get();
+        return view('pages.newsevent', compact(['postInfos', 'videoInfos1', 'departmentInfos']));
     }
 
     public function contactUs()
